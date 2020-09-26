@@ -40,7 +40,6 @@
     },
     "php-cs-fixer.onsave": true,
     "php-cs-fixer.lastDownload": 1600926378970,
-    "files.trimTrailingWhitespace": true,
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
@@ -89,4 +88,7 @@
         "vue-html",
         "markdown"
     ],
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "editor.renderWhitespace": "all",
 }
