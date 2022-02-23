@@ -1,0 +1,93 @@
+{
+  "workbench.startupEditor": "none",
+  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.minimap.enabled": false,
+  "workbench.settings.editor": "json",
+  "workbench.settings.useSplitJSON": true,
+  "editor.fontSize": 15,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontSize": 15,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "diffEditor.renderSideBySide": false,
+  "editor.lineNumbers": "relative",
+  "editor.lineHeight": 40,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-d>": false
+  },
+  "php-cs-fixer.config": "~/.php_cs",
+  "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+  "php-cs-fixer.allowRisky": true,
+  "[php]": {
+    "editor.defaultFormatter": "junstyle.php-cs-fixer"
+  },
+  "php-cs-fixer.onsave": true,
+  "php-cs-fixer.lastDownload": 1642352133467,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    // Hide everything in /public, except "index.php"
+    "**/public/[abcdefghjklmnopqrstuvwxyz]*": true,
+    "**/public/i[abcdefghijklmopqrstuvwxyz]*": true,
+    // Hide everything in /vendor, except "laravel" folder.
+    "**/vendor/[abcdefghijkmnopqrstuvwxyz]*": true,
+    "**/vendor/l[bcdefghijklmnopqrstuvwxyz]*": true,
+    "storage/framework/views": true
+  },
+  "zenMode.centerLayout": false,
+  "zenMode.fullScreen": false,
+  "workbench.editor.showTabs": false,
+  "editor.renderControlCharacters": false,
+  "editor.renderIndentGuides": false,
+  "editor.renderLineHighlight": "none",
+  "editor.matchBrackets": "never",
+  "workbench.sideBar.location": "right",
+  "editor.quickSuggestionsDelay": 0,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.gotoLocation.multipleReferences": "goto",
+  "editor.gotoLocation.multipleDefinitions": "goto",
+  "editor.gotoLocation.multipleDeclarations": "goto",
+  "editor.gotoLocation.multipleImplementations": "goto",
+  "editor.gotoLocation.multipleTypeDefinitions": "goto",
+  "vetur.format.options.tabSize": 4,
+  "vetur.validation.template": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "vue-html",
+    "markdown"
+  ],
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "editor.renderWhitespace": "all",
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggestSelection": "first",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "workbench.activityBar.visible": false,
+  "explorer.confirmDelete": false,
+  "vim.useSystemClipboard": true,
+  "workbench.statusBar.visible": false,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "editor.accessibilitySupport": "off"
+}
