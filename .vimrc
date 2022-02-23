@@ -32,15 +32,3 @@ augroup autosourcing
 	autocmd!
 	autocmd BufWritePost .vimrc source %
 augroup END
-
-call plug#begin()
-  source ~/.vim/plugins.vim
-call plug#end()
-
-call sourcery#init()
-
-function! SourceryMappings()
-	nmap <buffer> gp <Plug>SourceryGoToRelatedPluginDefinition
-	nmap <buffer> gm <Plug>SourceryGoToRelatedMappings
-	nmap <buffer> gc <Plug>SourceryGoToRelatedConfig
-endfunction
