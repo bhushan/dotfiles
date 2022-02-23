@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ~/.dotfiles/.global_gitignore
+	excludesfile = ~/.global_gitignore
 	editor = vim
 [user]
 	email = bhushangaykawad@gmail.com
