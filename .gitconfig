@@ -1,0 +1,10 @@
+[core]
+	excludesfile = ~/.dotfiles/.global_gitignore
+	editor = vim
+[user]
+	email = bhushangaykawad@gmail.com
+	name = Bhushan
+[credential]
+	helper = cache
+[pull]
+	ff = only
