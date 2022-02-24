@@ -10,6 +10,6 @@ ln -s ~/.dotfiles/aliases ~/.aliases
 ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/global_gitignore ~/.global_gitignore
-ln -s ~/.dotfiles/vscode/keybindings.json /Users/rb/Library/Application\ Support/Code/User/keybindings.json
-ln -s ~/.dotfiles/vscode/settings.json /Users/rb/Library/Application\ Support/Code/User/settings.json
+ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+ln -s ~/.dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ln -s ~/.dotfiles/hammerspoon ~/.hammerspoon
