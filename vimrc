@@ -1,23 +1,21 @@
+"load all plugins
 so ~/.vim/plugins.vim
 
 "-------------General Settings--------------"
 inoremap jj <Esc>
-set clipboard+=unnamed	"Universal Clipboard
+set clipboard+=unnamed "Universal Clipboard
 let mapleader = ',' "The default leader is \, but a comma is much better.
-syntax enable
-set belloff=all
 
-colorscheme carbon
-set relativenumber number
+set backspace=indent,eol,start "make backspace work as usual
+syntax enable "syntax highlighting enabled
+set belloff=all "off annoying notification bell
 
-let g:airline_powerline_fonts = 1
-let g:airline_section_x=''
-let g:airline_section_y=''
-let g:airline_section_z=''
+colorscheme carbon "use carbon theme
+set relativenumber number "enable relative line numbers
 
 "-------------Search--------------"
-set hlsearch
-set incsearch
+set hlsearch "highlight search
+set incsearch "highlight matches while searching
 
 "-------------Mappings--------------"
 "Make it easy to edit the Vimrc file.
@@ -25,6 +23,10 @@ nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
 "Add simple highlight removal.
 nmap <Leader><space> :nohlsearch<cr>
+
+"-------------Prettier Settings--------------"
+let g:prettier#autoformat = 0
+nnoremap <Leader>ff :silent %!prettier --stdin-filepath %<CR>
 
 "-------------Auto-Commands--------------"
 "Automatically source the Vimrc file on save.
