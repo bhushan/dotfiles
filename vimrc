@@ -19,6 +19,9 @@ set hlsearch "highlight search
 set incsearch "highlight matches while searching
 
 "-------------Split Management--------------"
+set splitbelow
+set splitright
+
 "focus up window
 nmap <C-K> <C-W>k
 "focus down window
