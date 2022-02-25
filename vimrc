@@ -51,7 +51,7 @@ nmap <Leader>ep :tabedit ~/.vim/plugins.vim<CR>
 nmap <Leader><space> :nohlsearch<CR>
 
 "make NERDTreeToggle easy
-nmap <C-1> :NERDTreeToggle<CR>
+nmap <Leader>1 :NERDTreeToggle<CR>
 
 "plugins install and update shortcuts
 nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<cr>
