@@ -2,9 +2,10 @@
 so ~/.vim/plugins.vim
 
 "-------------General Settings--------------"
+"map escape to jj
 inoremap jj <Esc>
-set clipboard+=unnamed "Universal Clipboard
-let mapleader = ',' "The default leader is \, but a comma is much better.
+set clipboard+=unnamed "universal Clipboard
+let mapleader = ',' "them default leader is \, but a comma is much better.
 
 set backspace=indent,eol,start "make backspace work as usual
 syntax enable "syntax highlighting enabled
@@ -17,11 +18,21 @@ set relativenumber number "enable relative line numbers
 set hlsearch "highlight search
 set incsearch "highlight matches while searching
 
+"-------------Split Management--------------"
+"focus up window
+nmap <C-K> <C-W>k
+"focus down window
+nmap <C-J> <C-W>j
+"focus left window
+nmap <C-H> <C-W>h
+"focus right window
+nmap <C-L> <C-W>l
+
 "-------------Mappings--------------"
-"Make it easy to edit the Vimrc file.
+"make it easy to edit the Vimrc file.
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
-"Add simple highlight removal.
+"add simple highlight removal.
 nmap <Leader><space> :nohlsearch<cr>
 
 "-------------Prettier Settings--------------"
@@ -29,8 +40,8 @@ let g:prettier#autoformat = 0
 nnoremap <Leader>ff :silent %!prettier --stdin-filepath %<CR>
 
 "-------------Auto-Commands--------------"
-"Automatically source the Vimrc file on save.
+"automatically source the Vimrc file on save.
 augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
+ autocmd!
+ autocmd BufWritePost .vimrc source %
 augroup END
