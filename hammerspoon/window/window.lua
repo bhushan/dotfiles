@@ -39,12 +39,16 @@ function winresize(how)
    win:move(newrect)
 end
 
-function winmovescreen(how)
+function winmovefocus(how)
    local win = hs.window.focusedWindow()
-   if how == "left" then
-      win:moveOneScreenWest()
+   if how == "up" then
+      win:focusWindowNorth()
+   elseif how == "down" then
+      win:focusWindowSouth()
+   elseif how == "left" then
+      win:focusWindowWest()
    elseif how == "right" then
-      win:moveOneScreenEast()
+      win:focusWindowEast()
    end
 end
 
@@ -134,19 +138,24 @@ hs.hotkey.bind({"ctrl","cmd"}, "Right", hs.fnutils.partial(winresize, "right"))
 hs.hotkey.bind({"ctrl","cmd"}, "Up",    hs.fnutils.partial(winresize, "up"))
 hs.hotkey.bind({"ctrl","cmd"}, "Down",  hs.fnutils.partial(winresize, "down"))
 
--- Center of the screen
-hs.hotkey.bind({"ctrl", "cmd"}, "C", center)
-
 -- Thirds of the screen
 hs.hotkey.bind({"ctrl", "alt"}, "Left",  left_third)
 hs.hotkey.bind({"ctrl", "alt"}, "Right", right_third)
 hs.hotkey.bind({"ctrl", "alt"}, "Up",    up_third)
 hs.hotkey.bind({"ctrl", "alt"}, "Down",  down_third)
 
+-- Center of the screen
+hs.hotkey.bind({"cmd", "shift"}, "C", center)
+
 -- Maximized
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "F",     hs.fnutils.partial(winresize, "max"))
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Up",    hs.fnutils.partial(winresize, "max"))
+hs.hotkey.bind({"cmd", "shift"}, "F",     hs.fnutils.partial(winresize, "max"))
 
 -- Move between screens
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Left",  hs.fnutils.partial(winmovescreen, "left"))
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Right", hs.fnutils.partial(winmovescreen, "right"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Up",  hs.fnutils.partial(winmovefocus, "up"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Down",  hs.fnutils.partial(winmovefocus, "down"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Left",  hs.fnutils.partial(winmovefocus, "left"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Right", hs.fnutils.partial(winmovefocus, "right"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "K",  hs.fnutils.partial(winmovefocus, "up"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "J",  hs.fnutils.partial(winmovefocus, "down"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "H",  hs.fnutils.partial(winmovefocus, "left"))
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "L", hs.fnutils.partial(winmovefocus, "right"))
