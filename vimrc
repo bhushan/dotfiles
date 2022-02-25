@@ -57,6 +57,13 @@ nmap <Leader>1 :NERDTreeToggle<CR>
 nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<cr>
 nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<cr>
 
+"move line up and down in normal mode
+nnoremap J :m .+1<CR>==
+nnoremap K :m .-2<CR>==
+"move line up and down in visual mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 "-------------Prettier Settings--------------"
 "disable auto formatting
 let g:prettier#autoformat = 0
