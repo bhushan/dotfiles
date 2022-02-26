@@ -56,18 +56,27 @@ nnoremap K :m .-2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap L :m '<-2<CR>gv=gv
 
-"-------------Prettier Settings--------------"
+" Config: prettier
 "disable auto formatting
 let g:prettier#autoformat = 0
+
+" Mappings: prettier
 "format current buffer using prettier
 nnoremap <Leader>ff :silent %!prettier --stdin-filepath %<CR>
 
-"-------------ToggleTerm Settings--------------"
+" Mappings: toggleterm
 "opens horizontal terminal instead of float
 nnoremap <Leader>` :ToggleTerm size=40 direction=horizontal<CR>
 
-"-------------Telescope Settings--------------"
+" Mappings: telescope
 nmap <Leader>f :Telescope find_files<CR>
 nmap <Leader>/ :Telescope live_grep<CR>
 nmap <Leader>b :Telescope buffers<CR>
 nmap <Leader>h :Telescope help_tags<CR>
+
+" Mappings: sourcery
+function! SourceryMappings()
+  nmap <buffer> gp <Plug>SourceryGoToRelatedPluginDefinition
+  nmap <buffer> gm <Plug>SourceryGoToRelatedMappings
+  nmap <buffer> gc <Plug>SourceryGoToRelatedConfig
+endfunction
