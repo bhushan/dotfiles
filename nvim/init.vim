@@ -10,4 +10,12 @@ call plug#begin()
     source ~/.config/nvim/plugins.vim
 call plug#end()
 
+"specific to nvim
+if has('nvim')
 call sourcery#init()
+endif
+
+"manually source file as vim-sourcery only works with nvim
+if !has('nvim')
+source nvim/mappings.vim
+endif

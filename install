@@ -4,13 +4,20 @@
 touch ~/.hushlogin
 
 "Symlink configuration files"
-ln -s ~/.dotfiles/vim ~/.vim
-ln -s ~/.dotfiles/vimrc ~/.vimrc
 ln -s ~/.dotfiles/aliases ~/.aliases
+
+"vim/nvim/ideavim bindings/settings"
+ln -s ~/.dotfiles/vimrc ~/.config/nvim/init.vim
+ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
+
+"git configs"
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/global_gitignore ~/.global_gitignore
+
+"vscode settings and bindings"
 ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 ln -s ~/.dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+"hammerspoon config"
 ln -s ~/.dotfiles/hammerspoon ~/.hammerspoon
-ln -s ~/.dotfiles/nvim ~/.config/nvim

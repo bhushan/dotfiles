@@ -46,11 +46,6 @@ nmap <Leader>ep :tabedit ~/.config/nvim/plugins.vim<CR>
 "add simple highlight removal.
 nmap <Leader><space> :nohlsearch<CR>
 
-"make NERDTreeToggle easy
-nmap <Leader>1 :NERDTreeToggle<CR>
-"make NERDTree open in right side
-let g:NERDTreeWinPos = "right"
-
 "move line up and down in normal mode
 nnoremap J :m .+1<CR>==
 nnoremap K :m .-2<CR>==
@@ -65,6 +60,9 @@ let g:prettier#autoformat = 0
 " Mappings: prettier
 "format current buffer using prettier
 nnoremap <Leader>ff :silent %!prettier --stdin-filepath %<CR>
+
+"nvim specific plugins
+if has('nvim')
 
 " Mappings: toggleterm
 "opens horizontal terminal instead of float
@@ -87,5 +85,6 @@ function! SourceryMappings()
 "plugins install and update shortcuts
 nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<CR>
 nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<CR>
-
 endfunction
+
+endif

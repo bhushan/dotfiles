@@ -1,6 +1,6 @@
 [core]
 	excludesfile = ~/.global_gitignore
-	editor = vim
+	editor = nvim
 [user]
 	email = bhushangaykawad@gmail.com
 	name = Bhushan
