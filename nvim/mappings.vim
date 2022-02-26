@@ -6,10 +6,16 @@ let mapleader = ',' "them default leader is \, but a comma is much better.
 set backspace=indent,eol,start "make backspace work as usual
 
 syntax enable "syntax highlighting enabled
-colorscheme gruvbox "use gruvbox theme
+colorscheme carbon "use carbon theme
 set relativenumber number "enable relative line numbers
 
 set belloff=all "off annoying notification bell
+
+"disable arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 "-------------Search--------------"
 set hlsearch "highlight search
@@ -45,10 +51,6 @@ nmap <Leader>1 :NERDTreeToggle<CR>
 "make NERDTree open in right side
 let g:NERDTreeWinPos = "right"
 
-"plugins install and update shortcuts
-nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<cr>
-nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<cr>
-
 "move line up and down in normal mode
 nnoremap J :m .+1<CR>==
 nnoremap K :m .-2<CR>==
@@ -69,14 +71,21 @@ nnoremap <Leader>ff :silent %!prettier --stdin-filepath %<CR>
 nnoremap <Leader>` :ToggleTerm size=40 direction=horizontal<CR>
 
 " Mappings: telescope
-nmap <Leader>f :Telescope find_files<CR>
-nmap <Leader>/ :Telescope live_grep<CR>
+nmap <Leader>f :Telescope git_files<CR>
 nmap <Leader>b :Telescope buffers<CR>
-nmap <Leader>h :Telescope help_tags<CR>
+"open nvim configs in telescope
+nnoremap <silent> <leader>en :lua require'telescope.builtin'.edit_vim{}<CR>
+"open dotfiles folder in telescope
+nnoremap <silent> <leader>ed :lua require'telescope.builtin'.dotfiles{}<CR>
 
 " Mappings: sourcery
 function! SourceryMappings()
   nmap <buffer> gp <Plug>SourceryGoToRelatedPluginDefinition
   nmap <buffer> gm <Plug>SourceryGoToRelatedMappings
   nmap <buffer> gc <Plug>SourceryGoToRelatedConfig
+
+"plugins install and update shortcuts
+nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<CR>
+nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<CR>
+
 endfunction
