@@ -1,23 +1,30 @@
 #!/usr/bin/env bash
 
-"Remove last login information from terminal when opened"
+#Remove last login information from terminal when opened
+rm ~/.hushlogin
 touch ~/.hushlogin
 
-"Symlink configuration files"
+#Symlink configuration files
+rm ~/.aliases
 ln -s ~/.dotfiles/aliases ~/.aliases
 
-"vim/nvim/ideavim bindings/settings"
-ln -s ~/.dotfiles/vimrc ~/.config/nvim/init.vim
+#"vim/nvim/ideavim bindings/settings
+rm ~/.config/nvim ~/.vimrc ~/.ideavimrc
 ln -s ~/.dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/nvim/init.vim ~/.vimrc
 ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
 
-"git configs"
+#git configs
+rm ~/.gitconfig ~/.global_gitignore
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/global_gitignore ~/.global_gitignore
 
-"vscode settings and bindings"
+#vscode settings and bindings
+rm ~/Library/Application\ Support/Code/User/keybindings.json
+rm ~/Library/Application\ Support/Code/User/settings.json
 ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 ln -s ~/.dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
-"hammerspoon config"
+#hammerspoon config
+rm ~/.hammerspoon
 ln -s ~/.dotfiles/hammerspoon ~/.hammerspoon
