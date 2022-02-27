@@ -28,3 +28,7 @@ ln -s ~/.dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/
 #hammerspoon config
 rm ~/.hammerspoon
 ln -s ~/.dotfiles/hammerspoon ~/.hammerspoon
+
+#tmux config
+rm ~/.tmux.conf
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf

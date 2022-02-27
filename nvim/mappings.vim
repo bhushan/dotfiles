@@ -9,7 +9,12 @@ syntax enable "syntax highlighting enabled
 colorscheme carbon "use carbon theme
 set relativenumber number "enable relative line numbers
 
+set showtabline=0 "hide all tabs
+
 set belloff=all "off annoying notification bell
+set foldcolumn=2 "fake left padding
+"match fold column color to fake left padding
+hi FoldColumn guibg=bg guifg=bg
 
 "disable arrow keys
 noremap <Up> <Nop>

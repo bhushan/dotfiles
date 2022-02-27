@@ -5,17 +5,20 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+"experimenting with update time so kept in here, will move to mappings later
+set updatetime=100
+
 "load all plugins
 call plug#begin()
-    source ~/.config/nvim/plugins.vim
+  source ~/.config/nvim/plugins.vim
 call plug#end()
 
 "specific to nvim
 if has('nvim')
-call sourcery#init()
+  call sourcery#init()
 endif
 
 "manually source file as vim-sourcery only works with nvim
 if !has('nvim')
-source nvim/mappings.vim
+  source ~/.config/nvim/mappings.vim
 endif

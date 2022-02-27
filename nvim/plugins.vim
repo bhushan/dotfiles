@@ -8,6 +8,9 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --productio
 "improve behaviour of built-in netrw
 Plug 'tpope/vim-vinegar'
 
+"gitgutter
+Plug 'airblade/vim-gitgutter'
+
 "specific to nvim only
 if has('nvim')
 "float horizontal and vertical terminal
@@ -24,4 +27,5 @@ Plug 'nvim-telescope/telescope.nvim'
 
 "auto source all files
 Plug 'jesseleite/vim-sourcery'
+
 endif
