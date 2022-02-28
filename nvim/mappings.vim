@@ -71,7 +71,7 @@ let g:prettier#autoformat = 0
 
 " Mappings: prettier
 "format current buffer using prettier
-nnoremap <leader>ff :silent %!prettier --stdin-filepath %<cr>
+nnoremap <leader>pf :silent %!prettier --stdin-filepath %<cr>
 
 "nvim specific plugins
 if has('nvim')
@@ -81,12 +81,14 @@ if has('nvim')
 nnoremap <leader>` :ToggleTerm size=40 direction=horizontal<cr>
 
 " Mappings: telescope
-nmap <leader>f :Telescope git_files<cr>
-nmap <leader>b :Telescope buffers<cr>
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+nnoremap <leader>tb <cmd>Telescope buffers<cr>
+nnoremap <leader>th <cmd>Telescope help_tags<cr>
 "open nvim configs in telescope
-nnoremap <silent> <leader>en :lua require'telescope.builtin'.edit_vim{}<cr>
+nnoremap <silent> <leader>tn :lua require'telescope.builtin'.edit_vim{}<cr>
 "open dotfiles folder in telescope
-nnoremap <silent> <leader>ed :lua require'telescope.builtin'.dotfiles{}<cr>
+nnoremap <silent> <leader>td :lua require'telescope.builtin'.dotfiles{}<cr>
 
 " Mappings: sourcery
 function! SourceryMappings()

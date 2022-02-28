@@ -1,10 +1,10 @@
 [core]
-	excludesfile = ~/.global_gitignore
-	editor = nvim
+excludesfile = ~/.global_gitignore
+editor = nvim
 [user]
-	email = bhushangaykawad@gmail.com
-	name = Bhushan
+email = bhushangaykawad@gmail.com
+name = Bhushan
 [credential]
-	helper = cache
+helper = cache
 [pull]
-	ff = only
+ff = only

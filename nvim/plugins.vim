@@ -24,6 +24,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
 "awesome file search
 Plug 'nvim-telescope/telescope.nvim'
+"make fuzzy file search faster
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"better syntax highlighting 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "auto source all files
 Plug 'jesseleite/vim-sourcery'
