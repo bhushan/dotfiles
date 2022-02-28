@@ -22,6 +22,13 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+"quit
+nnoremap <leader>q :q<cr>
+"force quit
+nnoremap <leader>fq :q!<cr>
+"save buffer
+nnoremap <leader>w :w<cr>
+
 "-------------Search--------------"
 set hlsearch "highlight search
 set incsearch "highlight matches while searching
@@ -43,20 +50,20 @@ nmap <C-L> <C-W>l
 
 "-------------Mappings--------------"
 "make it easy to edit the Vimrc file.
-nmap <Leader>ev :tabedit $MYVIMRC<CR>
+nmap <leader>ev :tabedit $MYVIMRC<cr>
 
 "make it easy to edit the plugins file.
-nmap <Leader>ep :tabedit ~/.config/nvim/plugins.vim<CR>
+nmap <leader>ep :tabedit ~/.config/nvim/plugins.vim<cr>
 
 "add simple highlight removal.
-nmap <Leader><space> :nohlsearch<CR>
+nmap <silent> <leader><space> :nohlsearch<cr>
 
 "move line up and down in normal mode
-nnoremap J :m .+1<CR>==
-nnoremap K :m .-2<CR>==
+nnoremap J :m .+1<cr>==
+nnoremap K :m .-2<cr>==
 "move line up and down in visual mode
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap L :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap L :m '<-2<cr>gv=gv
 
 " Config: prettier
 "disable auto formatting
@@ -64,22 +71,22 @@ let g:prettier#autoformat = 0
 
 " Mappings: prettier
 "format current buffer using prettier
-nnoremap <Leader>ff :silent %!prettier --stdin-filepath %<CR>
+nnoremap <leader>ff :silent %!prettier --stdin-filepath %<cr>
 
 "nvim specific plugins
 if has('nvim')
 
 " Mappings: toggleterm
 "opens horizontal terminal instead of float
-nnoremap <Leader>` :ToggleTerm size=40 direction=horizontal<CR>
+nnoremap <leader>` :ToggleTerm size=40 direction=horizontal<cr>
 
 " Mappings: telescope
-nmap <Leader>f :Telescope git_files<CR>
-nmap <Leader>b :Telescope buffers<CR>
+nmap <leader>f :Telescope git_files<cr>
+nmap <leader>b :Telescope buffers<cr>
 "open nvim configs in telescope
-nnoremap <silent> <leader>en :lua require'telescope.builtin'.edit_vim{}<CR>
+nnoremap <silent> <leader>en :lua require'telescope.builtin'.edit_vim{}<cr>
 "open dotfiles folder in telescope
-nnoremap <silent> <leader>ed :lua require'telescope.builtin'.dotfiles{}<CR>
+nnoremap <silent> <leader>ed :lua require'telescope.builtin'.dotfiles{}<cr>
 
 " Mappings: sourcery
 function! SourceryMappings()
@@ -88,8 +95,8 @@ function! SourceryMappings()
   nmap <buffer> gc <Plug>SourceryGoToRelatedConfig
 
 "plugins install and update shortcuts
-nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<CR>
-nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<CR>
+nnoremap <buffer><nowait> <leader>pi <cmd>PlugInstall<cr>
+nnoremap <buffer><nowait> <leader>pu <cmd>PlugUpdate<cr>
 endfunction
 
 endif
