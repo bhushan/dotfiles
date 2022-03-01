@@ -11,7 +11,7 @@ ln -s ~/.dotfiles/aliases ~/.aliases
 #"vim/nvim/ideavim bindings/settings
 rm ~/.config/nvim ~/.vimrc ~/.ideavimrc
 ln -s ~/.dotfiles/nvim ~/.config/nvim
-ln -s ~/.dotfiles/nvim/init.vim ~/.vimrc
+ln -s ~/.dotfiles/vimrc ~/.vimrc
 ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
 
 #git configs
