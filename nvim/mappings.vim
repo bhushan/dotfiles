@@ -29,6 +29,10 @@ nnoremap <leader>fq :q!<cr>
 "save buffer
 nnoremap <leader>w :w<cr>
 
+
+" Automatically rebalance windows when vim is resized
+autocmd VimResized * :wincmd =
+
 "-------------Search--------------"
 set hlsearch "highlight search
 set incsearch "highlight matches while searching
