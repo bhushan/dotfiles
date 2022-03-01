@@ -1,5 +1,11 @@
 # Dotfiles
 
+## Installation
+
+```bash
+git clone https://github.com/bhushan/dotfiles ~/.dotfiles` && bash ~/.dotfiles/install
+```
+
 ## Prerequisites
 * [Vim](https://vim.org)
 * [Neovim Version > 0.5](https://github.com/neovim/neovim/releases/tag/v0.5.0) - Required - For lua configuration
