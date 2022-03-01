@@ -14,6 +14,7 @@ alias fresh="php artisan migrate:fresh"
 alias seed="php artisan migrate:fresh --seed"
 alias pstorm="open -a PhpStorm "
 alias vimrc="vim ~/.vimrc"
+alias lg="lazygit"
 
 # Opens database in applications like TablePlus
 # Example 1: `db` command will check env file in its directory and grab env variables and will open that database

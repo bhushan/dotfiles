@@ -11,6 +11,9 @@ Plug 'tpope/vim-vinegar'
 "gitgutter
 Plug 'airblade/vim-gitgutter'
 
+"git helpers
+Plug 'tpope/vim-fugitive'
+
 "specific to nvim only
 if has('nvim')
 "float horizontal and vertical terminal
@@ -26,6 +29,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 "make fuzzy file search faster
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 "better syntax highlighting 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
