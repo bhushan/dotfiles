@@ -58,9 +58,6 @@ nmap <leader>ep :tabedit ~/.config/nvim/plugins.vim<cr>
 "add simple highlight removal.
 nmap <silent> <leader><space> :nohlsearch<cr>
 
-"move line up and down in normal mode
-nnoremap J :m .+1<cr>==
-nnoremap K :m .-2<cr>==
 "move line up and down in visual mode
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap L :m '<-2<cr>gv=gv

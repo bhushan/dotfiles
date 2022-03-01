@@ -33,6 +33,9 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 "better syntax highlighting 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+"show next possible keybinding
+Plug 'folke/which-key.nvim'
+
 "auto source all files
 Plug 'jesseleite/vim-sourcery'
 
