@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-git clone https://github.com/bhushan/dotfiles ~/.dotfiles && bash ~/.dotfiles/install
+git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && git submodule update --init && bash ~/.dotfiles/install
 ```
 
 ## Prerequisites
