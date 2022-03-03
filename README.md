@@ -15,3 +15,5 @@ git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && g
 - [RipGrep](https://github.com/BurntSushi/ripgrep) - For telescope live grep
 - [fd](https://github.com/sharkdp/fd) - For telescope
 - [fzf](https://github.com/junegunn/fzf) - For telescope
+- [Prettier](https://github.com/prettier/prettier) - for autoformatting most files
+- [Stylua](https://github.com/JohnnyMorganz/StyLua) - for autoformatting lua files
