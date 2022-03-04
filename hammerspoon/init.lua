@@ -1,2 +1,2 @@
-require "window.window"
-require "shortcuts.shortcuts"
+require("window.window")
+require("shortcuts.shortcuts")
