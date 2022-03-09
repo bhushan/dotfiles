@@ -32,7 +32,7 @@
     "editor.defaultFormatter": "junstyle.php-cs-fixer"
   },
   "php-cs-fixer.onsave": true,
-  "php-cs-fixer.lastDownload": 1642352133467,
+  "php-cs-fixer.lastDownload": 1646451439155,
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
