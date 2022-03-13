@@ -1,5 +1,3 @@
-export mode="light"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -29,6 +27,28 @@ export PATH="$HOME/.symfony/bin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# -------- Dynamically switch light and dark mode -------- #
+# currently to enable dark mode, comment export line below
+# export LIGHT_MODE="set-to-something"
+
+setITermProfile() {
+  if [ -n "$1" ]; then
+    # Set iTerm2 profile based on argument
+    echo -e "\033]50;SetProfile=$1\a"
+    return
+  fi
+
+  if [ -z ${LIGHT_MODE+x} ]; then
+    # Set iTerm2 profile to dark mode
+    echo -e "\033]50;SetProfile=dark\a"
+    return
+  fi
+
+  # Set iTerm2 profile to light mode
+  echo -e "\033]50;SetProfile=light\a"
+}
+# -------- Dynamically switch light and dark mode end -------- #
+
 # -------- tmux session config -------- #
 # Attach to session
 ta() {
@@ -42,6 +62,8 @@ ta() {
 
 # Ensure attached to session when opening new terminal windows
 if [ -z "$TMUX" ]; then
+  setITermProfile
+  # needs to be excuted after iterm profile is set properly
   ta
 fi
 # -------- tmux session config end -------- #
