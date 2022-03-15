@@ -29,7 +29,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # -------- Dynamically switch light and dark mode -------- #
 # currently to enable dark mode, comment export line below
-# export LIGHT_MODE="set-to-something"
+# export LIGHT_MODE="enabled-for-everything"
 
 setITermProfile() {
   if [ -n "$1" ]; then
