@@ -19,9 +19,7 @@ alias oc="cd ~/code"
 alias od="cd ~/.dotfiles"
 alias on="cd ~/.config/nvim"
 alias oo="cd ~/code/opensource"
-alias vim="nvim"
-alias vi="nvim"
-alias tree="tree -L 2 "
+alias t="tree -L 2 "
 
 # Opens database in applications like TablePlus
 # Example 1: `db` command will check env file in its directory and grab env variables and will open that database
