@@ -72,3 +72,5 @@ if [  "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
 fi
 # -------- tmux session config end -------- #
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
