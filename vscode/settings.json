@@ -49,7 +49,6 @@
   "zenMode.fullScreen": false,
   "workbench.editor.showTabs": false,
   "editor.renderControlCharacters": false,
-  "editor.renderIndentGuides": false,
   "editor.renderLineHighlight": "none",
   "editor.matchBrackets": "never",
   "workbench.sideBar.location": "right",
@@ -101,5 +100,6 @@
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  },
+  "editor.guides.indentation": false
 }
