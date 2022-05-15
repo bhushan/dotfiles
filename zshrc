@@ -60,10 +60,15 @@ ta() {
   tmux ls && read tmux_session && tmux attach -t ${tmux_session:-main} || tmux new -s ${tmux_session:-main}
 }
 
-# Ensure attached to session when opening new terminal windows
-if [ -z "$TMUX" ]; then
-  setITermProfile
-  # needs to be excuted after iterm profile is set properly
-  ta
+if [  "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
+  if [  "$TERM_PROGRAM" != "vscode" ]; then
+    # Ensure attached to session when opening new terminal windows
+    if [ -z "$TMUX" ]; then
+    setITermProfile
+    # needs to be excuted after iterm profile is set properly
+    ta
+    fi
+  fi
 fi
 # -------- tmux session config end -------- #
+
