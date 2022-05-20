@@ -1,6 +1,6 @@
 [
   {
-    "key": ", 1",
+    "key": "ctrl+1",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   {
@@ -37,7 +37,7 @@
     "command": "-workbench.action.gotoSymbol"
   },
   {
-    "key": "ctrl+v",
+    "key": "ctrl+\\",
     "command": "workbench.action.splitEditor"
   },
   {
@@ -115,5 +115,15 @@
     "key": "cmd+d",
     "command": "-editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
   }
 ]
