@@ -1,25 +1,44 @@
+#!/bin/bash
+
+# Helpers
 alias cc="clear"
 alias x="exit"
-alias dump="composer dump-autoload -o"
+alias vimrc="vim ~/.vimrc"
+alias lg="lazygit"
+alias t="tree -L 2 "
+
+# JS
 alias watch="npm run watch"
+
+# Git
 alias wip="git add . && git commit -m 'wip'"
 alias push="git push"
 alias wpush="git add . && git commit -m 'wip' && git push"
 alias nah="git reset --hard && git clean -df"
+
+# PHP
+alias dump="composer dump-autoload -o"
 alias p="./vendor/bin/phpunit"
 alias pf="./vendor/bin/phpunit --filter "
+
+# Laravel
 alias art="php artisan "
 alias migrate="php artisan migrate"
 alias fresh="php artisan migrate:fresh"
 alias seed="php artisan migrate:fresh --seed"
 alias pstorm="open -a PhpStorm "
-alias vimrc="vim ~/.vimrc"
-alias lg="lazygit"
+
+# most visited directories
 alias oc="cd ~/code"
 alias od="cd ~/.dotfiles"
 alias on="cd ~/.config/nvim"
 alias oo="cd ~/code/opensource"
-alias t="tree -L 2 "
+
+# open vim/nvim as quickly as possible
+alias v="vim "
+alias n="nvim "
+alias nv="nvim "
+alias nvi="nvim "
 
 # Opens database in applications like TablePlus
 # Example 1: `db` command will check env file in its directory and grab env variables and will open that database
