@@ -11,9 +11,9 @@ alias t="tree -L 2 "
 alias watch="npm run watch"
 
 # Git
-alias wip="git add . && git commit -m 'wip'"
+alias wip="git add . && git commit -m 'WIP'"
 alias push="git push"
-alias wpush="git add . && git commit -m 'wip' && git push"
+alias wpush="git add . && git commit -m 'WIP' && git push"
 alias nah="git reset --hard && git clean -df"
 
 # PHP
