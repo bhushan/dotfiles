@@ -36,3 +36,8 @@ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 #zshrc config
 rm ~/.zshrc
 ln -s ~/.dotfiles/zshrc ~/.zshrc
+
+#karabiner config
+rm ~/.config/karabiner
+ln -s ~/.dotfiles/karabiner ~/.config/karabiner
+
