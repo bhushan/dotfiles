@@ -8,3 +8,5 @@ name = Bhushan
 helper = cache
 [pull]
 ff = only
+[init]
+defaultBranch = main
