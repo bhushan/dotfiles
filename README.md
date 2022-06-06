@@ -18,5 +18,5 @@ git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && g
 - [tree](https://formulae.brew.sh/formula/tree) - For better tree view of files/folders structure
 - [Prettier](https://github.com/prettier/prettier) - for autoformatting most files
 - [Stylua](https://github.com/JohnnyMorganz/StyLua) - for autoformatting lua files
-- [Karabiner](https://formulae.brew.sh/cask/karabiner-elements) - for mapping caps lock to escape and many other complex stuffs
+- [Karabiner](https://formulae.brew.sh/cask/karabiner-elements) - for mapping caps lock to escape and many other complex stuffs, checkout [here](https://ke-complex-modifications.pqrs.org)
 
