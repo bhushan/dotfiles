@@ -7,8 +7,8 @@ local logger = hs.logger.new("windows")
 
 function winresize(how)
     local win = hs.window.focusedWindow()
-    local app = win:application():name()
-    local windowLayout
+    -- local app = win:application():name()
+    -- local windowLayout
     local newrect
 
     if how == "left" then

@@ -1,7 +1,7 @@
 --- start quick open applications
-function open_app(names)
+local function open_app(names)
     return function()
-        for k, name in pairs(names) do
+        for _, name in pairs(names) do
             if hs.application.launchOrFocus(name) then
                 return
             end
