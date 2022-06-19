@@ -86,4 +86,9 @@ rtouch () {
 }
 # -------- Recursively create directory and touch file if exists end -------- #
 
+# -------- Keybindings -------- #
+bindkey "^a"      beginning-of-line
+bindkey "^e"      end-of-line
+# -------- Keybindings end -------- #
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
