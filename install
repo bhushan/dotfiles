@@ -41,3 +41,6 @@ ln -s ~/.dotfiles/zshrc ~/.zshrc
 rm ~/.config/karabiner
 ln -s ~/.dotfiles/karabiner ~/.config/karabiner
 
+#iterm2 config
+rm ~/Library/Preferences/com.googlecode.iterm2.plist
+ln -s ~/.dotfiles/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
