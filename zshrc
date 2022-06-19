@@ -29,7 +29,7 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # -------- Dynamically switch light and dark mode -------- #
 # currently to enable dark mode, comment export line below
-export LIGHT_MODE="enabled"
+# export LIGHT_MODE="enabled"
 
 setITermProfile() {
   if [ -n "$1" ]; then
@@ -72,5 +72,18 @@ if [  "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
 fi
 # -------- tmux session config end -------- #
 
+
+# -------- Recursively create directory and touch file if exists -------- #
+rtouch () {
+  if [ -n "$1" ]; then
+    export _file=$1
+    mkdir -p "${_file%/*}";
+    touch "${_file}";
+    return
+  fi
+
+  echo "Please provide file path ex. rtouch ~/code/temp/example.js"
+}
+# -------- Recursively create directory and touch file if exists end -------- #
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
