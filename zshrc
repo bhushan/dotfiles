@@ -75,7 +75,7 @@ fi
 # -------- Recursively create directory and touch file if exists -------- #
 rtouch () {
   if [ -n "$1" ]; then
-    export _file=$1
+    local _file=$1
     mkdir -p "${_file%/*}";
     touch "${_file}";
     return
