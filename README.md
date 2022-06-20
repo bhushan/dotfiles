@@ -19,4 +19,4 @@ git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && g
 - [Prettier](https://github.com/prettier/prettier) - for autoformatting most files
 - [Stylua](https://github.com/JohnnyMorganz/StyLua) - for autoformatting lua files
 - [Karabiner](https://formulae.brew.sh/cask/karabiner-elements) - for mapping caps lock to escape and many other complex stuffs, checkout [here](https://ke-complex-modifications.pqrs.org)
-
+- [shfmt](https://formulae.brew.sh/formula/shfmt) - zsh/bash files formatter and styler

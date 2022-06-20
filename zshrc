@@ -16,8 +16,8 @@ source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
-  [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
-  [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"                                       # This loads nvm
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 source ~/.aliases
 
@@ -59,25 +59,24 @@ ta() {
   tmux ls && read tmux_session && tmux attach -t ${tmux_session:-main} || tmux new -s ${tmux_session:-main}
 }
 
-if [  "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
-  if [  "$TERM_PROGRAM" != "vscode" ]; then
+if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
+  if [ "$TERM_PROGRAM" != "vscode" ]; then
     # Ensure attached to session when opening new terminal windows
     if [ -z "$TMUX" ]; then
-    setITermProfile
-    # needs to be excuted after iterm profile is set properly
-    ta
+      setITermProfile
+      # needs to be excuted after iterm profile is set properly
+      ta
     fi
   fi
 fi
 # -------- tmux session config end -------- #
 
-
 # -------- Recursively create directory and touch file if exists -------- #
-rtouch () {
+rtouch() {
   if [ -n "$1" ]; then
     local _file=$1
-    mkdir -p "${_file%/*}";
-    touch "${_file}";
+    mkdir -p "${_file%/*}"
+    touch "${_file}"
     return
   fi
 
@@ -101,7 +100,7 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -115,25 +114,26 @@ bindkey -v '^?' backward-delete-char
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
+    [[ $1 = 'block' ]]; then
     echo -ne '\e[1 q'
   elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
+    [[ ${KEYMAP} == viins ]] ||
+    [[ ${KEYMAP} = '' ]] ||
+    [[ $1 = 'beam' ]]; then
     echo -ne '\e[5 q'
   fi
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
+  zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+  echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+echo -ne '\e[5 q'                # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q'; } # Use beam shape cursor for each new prompt.
 
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
 bindkey '^e' edit-command-line
 # -------- VI MODE on terminal end -------- #
