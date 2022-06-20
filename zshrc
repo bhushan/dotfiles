@@ -91,3 +91,11 @@ bindkey "^e"      end-of-line
 # -------- Keybindings end -------- #
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# -------- For Office specific settings -------- #
+local FILE=~/.org_zshrc
+
+if [[ -f "$FILE" ]]; then
+  source $FILE
+fi
+# -------- For Office specific settings end -------- #
