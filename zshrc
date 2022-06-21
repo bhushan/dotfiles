@@ -9,11 +9,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git jsontools)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"                                       # This loads nvm
@@ -137,3 +135,18 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 # -------- VI MODE on terminal end -------- #
+
+# -------- zsh highlighting -------- #
+# for apple silicon machines
+local zsh_highlighting_apple_silicon=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [[ -f "$zsh_highlighting_apple_silicon" ]]; then
+  source $zsh_highlighting_apple_silicon
+fi
+
+local zsh_highlighting_intel=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+if [[ -f "$zsh_highlighting_intel" ]]; then
+  source $zsh_highlighting_intel
+fi
+# -------- zsh highlighting end -------- #
