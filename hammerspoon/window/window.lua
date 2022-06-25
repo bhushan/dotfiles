@@ -4,7 +4,6 @@ local frameCache = {}
 local logger = hs.logger.new("windows")
 
 -- Resize current window
-
 function winresize(how)
     local win = hs.window.focusedWindow()
     -- local app = win:application():name()
@@ -31,6 +30,8 @@ function winresize(how)
         newrect = { 0, 0, 1, 1 / 3 }
     elseif how == "middle_third_v" or how == "vthird-1" then
         newrect = { 0, 1 / 3, 1, 1 / 3 }
+    elseif how == "center" then
+        newrect = { 0.9, 0.9, 0.9, 0.9 }
     elseif how == "bottom_third" or how == "vthird-2" then
         newrect = { 0, 2 / 3, 1, 1 / 3 }
     end
@@ -146,6 +147,7 @@ end
 
 function center()
     local win = hs.window.focusedWindow()
+    winresize("center")
     win:centerOnScreen()
 end
 
