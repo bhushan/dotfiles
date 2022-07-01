@@ -1,12 +1,18 @@
-# Dotfiles
+```
+ ____  _
+|  _ \| |__
+| |_) | '_ \
+|  _ <| |_) |
+|_| \_\_.__/
+```
 
-## Installation
+# Installation
 
 ```bash
 git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && git submodule update --init && bash ~/.dotfiles/install
 ```
 
-## Prerequisites
+# Prerequisites
 
 - [Vim](https://vim.org)
 - [Neovim Version > 0.5](https://github.com/neovim/neovim/releases/tag/v0.5.0) - Required - For lua configuration
@@ -20,6 +26,10 @@ git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && g
 - [Stylua](https://github.com/JohnnyMorganz/StyLua) - for autoformatting lua files
 - [Karabiner](https://formulae.brew.sh/cask/karabiner-elements) - for mapping caps lock to escape and many other complex stuffs, checkout [here](https://ke-complex-modifications.pqrs.org)
 - [shfmt](https://formulae.brew.sh/formula/shfmt) - zsh/bash files formatter and styler
+- [figlet](https://formulae.brew.sh/formula/figlet) - for awesome asci art on terminal like shown at the top of this readme
 
-## Notes
+# Notes
+
 - cmd+opt+d toggles dock on mac devices
+
+# Always work in Progress...
