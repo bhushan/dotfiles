@@ -5,3 +5,6 @@ node_modules
 vendor
 .DS_Store
 .ccls-cache
+
+# custom format set by me for c and cpp binary outputs
+*.o
