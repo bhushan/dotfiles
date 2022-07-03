@@ -12,7 +12,7 @@
 git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && git submodule update --init && bash ~/.dotfiles/install
 ```
 
-# Prerequisites
+## Prerequisites
 
 - [Vim](https://vim.org)
 - [Neovim Version > 0.5](https://github.com/neovim/neovim/releases/tag/v0.5.0) - Required - For lua configuration
@@ -30,8 +30,8 @@ git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && g
 - [ccls](https://formulae.brew.sh/formula/ccls) - for c, c++ and objective c LSP support
 - [cmake](https://formulae.brew.sh/formula/cmake) - for c, c++ and objective c LSP support
 
-# Notes
+## Notes
 
 - cmd+opt+d toggles dock on mac devices
 
-# Always work in Progress...
+## Always work in Progress...
