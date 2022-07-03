@@ -27,6 +27,8 @@ git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && g
 - [Karabiner](https://formulae.brew.sh/cask/karabiner-elements) - for mapping caps lock to escape and many other complex stuffs, checkout [here](https://ke-complex-modifications.pqrs.org)
 - [shfmt](https://formulae.brew.sh/formula/shfmt) - zsh/bash files formatter and styler
 - [figlet](https://formulae.brew.sh/formula/figlet) - for awesome asci art on terminal like shown at the top of this readme
+- [ccls](https://formulae.brew.sh/formula/ccls) - for c, c++ and objective c LSP support
+- [cmake](https://formulae.brew.sh/formula/cmake) - for c, c++ and objective c LSP support
 
 # Notes
 

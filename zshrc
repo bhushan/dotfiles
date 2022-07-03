@@ -23,6 +23,7 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.symfony/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$(brew --prefix llvm)/bin:$PATH"
 
 # -------- Dynamically switch light and dark mode -------- #
 # currently to enable dark mode, comment export line below
