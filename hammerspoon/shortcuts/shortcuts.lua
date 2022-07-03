@@ -12,7 +12,7 @@ end
 -- Hammerspoon will try to open applications with same order passed in as argument
 -- If Microsoft Teams is opened then Spotify app will not open
 -- and if Microsoft Teams is not found then Spotify will be opened so on and so forth
-hs.hotkey.bind({ "cmd", "shift" }, "T", open_app({ "iTerm" }))
+hs.hotkey.bind({ "cmd", "shift" }, "T", open_app({ "Kitty" }))
 hs.hotkey.bind({ "cmd", "shift" }, "S", open_app({ "Slack" }))
 hs.hotkey.bind({ "cmd", "shift" }, "D", open_app({ "Discord" }))
 hs.hotkey.bind(

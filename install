@@ -9,7 +9,7 @@ rm ~/.aliases
 ln -s ~/.dotfiles/aliases ~/.aliases
 
 #"vim/nvim/ideavim bindings/settings
-rm ~/.config/nvim ~/.vimrc ~/.ideavimrc
+rm -r ~/.config/nvim ~/.vimrc ~/.ideavimrc
 ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
@@ -45,6 +45,10 @@ ln -s ~/.dotfiles/karabiner ~/.config/karabiner
 rm ~/Library/Preferences/com.googlecode.iterm2.plist
 ln -s ~/.dotfiles/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
 
+#kitty config
+rm -r ~/.config/kitty
+ln -s ~/.dotfiles/kitty ~/.config/kitty
+
 #custom zsh theme
-rm ~/.oh-my-zsh/custom.zsh-theme
+rm ~/.oh-my-zsh/themes/custom.zsh-theme
 ln -s ~/.dotfiles/zsh/themes/custom.zsh-theme ~/.oh-my-zsh/themes/custom.zsh-theme
