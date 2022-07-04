@@ -46,7 +46,7 @@ rm ~/Library/Preferences/com.googlecode.iterm2.plist
 ln -s ~/.dotfiles/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
 
 #kitty config
-rm -r ~/.config/kitty
+rm ~/.config/kitty
 ln -s ~/.dotfiles/kitty ~/.config/kitty
 
 #custom zsh theme
