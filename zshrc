@@ -23,7 +23,12 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/.symfony/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# llvn is needed for cmake and ccls to work together
 export PATH="$(brew --prefix llvm)/bin:$PATH"
+# If you need to have openjdk first in your PATH
+export PATH="$(brew --prefix openjdk)/bin:$PATH"
+# For compilers to find openjdk you may need to set
+export CPPFLAGS="-I$(brew --prefix openjdk)/include"
 
 # -------- Dynamically switch light and dark mode -------- #
 # currently to enable dark mode, comment export line below
