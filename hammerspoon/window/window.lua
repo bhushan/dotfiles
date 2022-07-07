@@ -5,150 +5,130 @@ local logger = hs.logger.new("windows")
 
 -- Resize current window
 function winresize(how)
-    local win = hs.window.focusedWindow()
-    -- local app = win:application():name()
-    -- local windowLayout
-    local newrect
+  local win = hs.window.focusedWindow()
+  -- local app = win:application():name()
+  -- local windowLayout
+  local newrect
 
-    if how == "left" then
-        newrect = hs.layout.left50
-    elseif how == "right" then
-        newrect = hs.layout.right50
-    elseif how == "up" then
-        newrect = { 0, 0, 1, 0.5 }
-    elseif how == "down" then
-        newrect = { 0, 0.5, 1, 0.5 }
-    elseif how == "max" then
-        newrect = hs.layout.maximized
-    elseif how == "left_third" or how == "hthird-0" then
-        newrect = { 0, 0, 1 / 3, 1 }
-    elseif how == "middle_third_h" or how == "hthird-1" then
-        newrect = { 1 / 3, 0, 1 / 3, 1 }
-    elseif how == "right_third" or how == "hthird-2" then
-        newrect = { 2 / 3, 0, 1 / 3, 1 }
-    elseif how == "top_third" or how == "vthird-0" then
-        newrect = { 0, 0, 1, 1 / 3 }
-    elseif how == "middle_third_v" or how == "vthird-1" then
-        newrect = { 0, 1 / 3, 1, 1 / 3 }
-    elseif how == "center" then
-        newrect = { 0.9, 0.9, 0.9, 0.9 }
-    elseif how == "bottom_third" or how == "vthird-2" then
-        newrect = { 0, 2 / 3, 1, 1 / 3 }
-    end
+  if how == "left" then
+    newrect = hs.layout.left50
+  elseif how == "right" then
+    newrect = hs.layout.right50
+  elseif how == "up" then
+    newrect = { 0, 0, 1, 0.5 }
+  elseif how == "down" then
+    newrect = { 0, 0.5, 1, 0.5 }
+  elseif how == "max" then
+    newrect = hs.layout.maximized
+  elseif how == "left_third" or how == "hthird-0" then
+    newrect = { 0, 0, 1 / 3, 1 }
+  elseif how == "middle_third_h" or how == "hthird-1" then
+    newrect = { 1 / 3, 0, 1 / 3, 1 }
+  elseif how == "right_third" or how == "hthird-2" then
+    newrect = { 2 / 3, 0, 1 / 3, 1 }
+  elseif how == "top_third" or how == "vthird-0" then
+    newrect = { 0, 0, 1, 1 / 3 }
+  elseif how == "middle_third_v" or how == "vthird-1" then
+    newrect = { 0, 1 / 3, 1, 1 / 3 }
+  elseif how == "center" then
+    newrect = { 0.9, 0.9, 0.9, 0.9 }
+  elseif how == "bottom_third" or how == "vthird-2" then
+    newrect = { 0, 2 / 3, 1, 1 / 3 }
+  end
 
-    win:move(newrect)
+  win:move(newrect)
 end
 
 function winmovefocus(how)
-    local win = hs.window.focusedWindow()
-    if how == "up" then
-        win:focusWindowNorth()
-    elseif how == "down" then
-        win:focusWindowSouth()
-    elseif how == "left" then
-        win:focusWindowWest()
-    elseif how == "right" then
-        win:focusWindowEast()
-    end
+  local win = hs.window.focusedWindow()
+  if how == "up" then
+    win:focusWindowNorth()
+  elseif how == "down" then
+    win:focusWindowSouth()
+  elseif how == "left" then
+    win:focusWindowWest()
+  elseif how == "right" then
+    win:focusWindowEast()
+  end
 end
 
 -- Toggle a window between its normal size, and being maximized
 function toggle_window_maximized()
-    local win = hs.window.focusedWindow()
-    if frameCache[win:id()] then
-        win:setFrame(frameCache[win:id()])
-        frameCache[win:id()] = nil
-    else
-        frameCache[win:id()] = win:frame()
-        win:maximize()
-    end
+  local win = hs.window.focusedWindow()
+  if frameCache[win:id()] then
+    win:setFrame(frameCache[win:id()])
+    frameCache[win:id()] = nil
+  else
+    frameCache[win:id()] = win:frame()
+    win:maximize()
+  end
 end
 
 -- Move between thirds of the screen
 function get_horizontal_third(win)
-    local frame = win:frame()
-    local screenframe = win:screen():frame()
-    local relframe = hs.geometry(
-        frame.x - screenframe.x,
-        frame.y - screenframe.y,
-        frame.w,
-        frame.h
-    )
-    local third = math.floor(3.01 * relframe.x / screenframe.w)
-    logger.df("Screen frame: %s", screenframe)
-    logger.df(
-        "Window frame: %s, relframe %s is in horizontal third #%d",
-        frame,
-        relframe,
-        third
-    )
-    return third
+  local frame = win:frame()
+  local screenframe = win:screen():frame()
+  local relframe = hs.geometry(frame.x - screenframe.x, frame.y - screenframe.y, frame.w, frame.h)
+  local third = math.floor(3.01 * relframe.x / screenframe.w)
+  logger.df("Screen frame: %s", screenframe)
+  logger.df("Window frame: %s, relframe %s is in horizontal third #%d", frame, relframe, third)
+  return third
 end
 
 function get_vertical_third(win)
-    local frame = win:frame()
-    local screenframe = win:screen():frame()
-    local relframe = hs.geometry(
-        frame.x - screenframe.x,
-        frame.y - screenframe.y,
-        frame.w,
-        frame.h
-    )
-    local third = math.floor(3.01 * relframe.y / screenframe.h)
-    logger.df("Screen frame: %s", screenframe)
-    logger.df(
-        "Window frame: %s, relframe %s is in vertical third #%d",
-        frame,
-        relframe,
-        third
-    )
-    return third
+  local frame = win:frame()
+  local screenframe = win:screen():frame()
+  local relframe = hs.geometry(frame.x - screenframe.x, frame.y - screenframe.y, frame.w, frame.h)
+  local third = math.floor(3.01 * relframe.y / screenframe.h)
+  logger.df("Screen frame: %s", screenframe)
+  logger.df("Window frame: %s, relframe %s is in vertical third #%d", frame, relframe, third)
+  return third
 end
 
 function left_third()
-    local win = hs.window.focusedWindow()
-    local third = get_horizontal_third(win)
-    if third == 0 then
-        winresize("hthird-0")
-    else
-        winresize("hthird-" .. (third - 1))
-    end
+  local win = hs.window.focusedWindow()
+  local third = get_horizontal_third(win)
+  if third == 0 then
+    winresize("hthird-0")
+  else
+    winresize("hthird-" .. (third - 1))
+  end
 end
 
 function right_third()
-    local win = hs.window.focusedWindow()
-    local third = get_horizontal_third(win)
-    if third == 2 then
-        winresize("hthird-2")
-    else
-        winresize("hthird-" .. (third + 1))
-    end
+  local win = hs.window.focusedWindow()
+  local third = get_horizontal_third(win)
+  if third == 2 then
+    winresize("hthird-2")
+  else
+    winresize("hthird-" .. (third + 1))
+  end
 end
 
 function up_third()
-    local win = hs.window.focusedWindow()
-    local third = get_vertical_third(win)
-    if third == 0 then
-        winresize("vthird-0")
-    else
-        winresize("vthird-" .. (third - 1))
-    end
+  local win = hs.window.focusedWindow()
+  local third = get_vertical_third(win)
+  if third == 0 then
+    winresize("vthird-0")
+  else
+    winresize("vthird-" .. (third - 1))
+  end
 end
 
 function down_third()
-    local win = hs.window.focusedWindow()
-    local third = get_vertical_third(win)
-    if third == 2 then
-        winresize("vthird-2")
-    else
-        winresize("vthird-" .. (third + 1))
-    end
+  local win = hs.window.focusedWindow()
+  local third = get_vertical_third(win)
+  if third == 2 then
+    winresize("vthird-2")
+  else
+    winresize("vthird-" .. (third + 1))
+  end
 end
 
 function center()
-    local win = hs.window.focusedWindow()
-    winresize("center")
-    win:centerOnScreen()
+  local win = hs.window.focusedWindow()
+  winresize("center")
+  win:centerOnScreen()
 end
 
 -------- Key bindings
@@ -172,23 +152,7 @@ hs.hotkey.bind({ "cmd", "shift" }, "C", center)
 hs.hotkey.bind({ "cmd", "shift" }, "F", hs.fnutils.partial(winresize, "max"))
 
 -- Move between screens
-hs.hotkey.bind(
-    { "ctrl", "alt", "cmd" },
-    "H",
-    hs.fnutils.partial(winmovefocus, "left")
-)
-hs.hotkey.bind(
-    { "ctrl", "alt", "cmd" },
-    "L",
-    hs.fnutils.partial(winmovefocus, "right")
-)
-hs.hotkey.bind(
-    { "ctrl", "alt", "cmd" },
-    "K",
-    hs.fnutils.partial(winmovefocus, "up")
-)
-hs.hotkey.bind(
-    { "ctrl", "alt", "cmd" },
-    "J",
-    hs.fnutils.partial(winmovefocus, "down")
-)
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "H", hs.fnutils.partial(winmovefocus, "left"))
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "L", hs.fnutils.partial(winmovefocus, "right"))
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "K", hs.fnutils.partial(winmovefocus, "up"))
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "J", hs.fnutils.partial(winmovefocus, "down"))
