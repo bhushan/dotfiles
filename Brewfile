@@ -1,13 +1,19 @@
 # Taps
 tap 'homebrew/cask'
 tap 'homebrew/bundle'
-tap 'jesseduffield/lazygit'
 
 # Brew
 brew 'fzf'
 brew 'rg'
 brew 'git'
 brew 'gh'
+brew 'tree'
+
+# File formatters
+brew 'shfmt'
+brew 'stylua'
+brew 'prettier'
+
 brew 'curl'
 brew 'mycli'
 brew 'mysql-client'
