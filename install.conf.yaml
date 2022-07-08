@@ -1,59 +1,20 @@
 - defaults:
     link:
       relink: true
+      force: true
+    shell:
+      stdout: true
+      stderr: true
+
 - shell:
     - description: Validating sudo credentials
       command: "sudo --validate"
 
 - clean: ["~"]
 
-- link:
-    ~/.dotfiles: ""
-    ~/.config/nvim:
-      relink: true
-      path: nvim
-    ~/.config/karabiner:
-      relink: true
-      path: karabiner
-    ~/.config/kitty:
-      relink: true
-      path: kitty
-    ~/.aliases:
-      force: true
-      path: aliases
-    ~/.vimrc:
-      force: true
-      path: vimrc
-    ~/.ideavimrc:
-      force: true
-      path: ideavimrc
-    ~/.global_gitignore:
-      force: true
-      path: global_gitignore
-    ~/.gitconfig:
-      force: true
-      path: gitconfig
-    ~/Library/Application\ Support/Code/User/keybindings.json:
-      force: true
-      path: vscode/keybindings.json
-    ~/Library/Application\ Support/Code/User/settings.json:
-      force: true
-      path: vscode/settings.json
-    ~/.hammerspoon:
-      relink: true
-      path: hammerspoon
-    ~/.tmux.conf:
-      force: true
-      path: tmux.conf
-    ~/.zshrc:
-      force: true
-      path: zshrc
-    ~/.oh-my-zsh/themes/custom.zsh-theme:
-      force: true
-      path: zsh/themes/custom.zsh-theme
-
 - create:
     - ~/code
+    - ~/.config
 
 - shell:
     - description: Install submodules
@@ -61,7 +22,7 @@
     - description: Hush login
       command: "[ -f ~/.hushlogin ] || touch ~/.hushlogin"
     - description: Install Brew
-      command: '[ -x "$(which brew)" ] || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+      command: '[ -x "$(which brew)" ] || /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
     - description: Update Brew
       command: "brew update"
     - description: Install Brew bundler
@@ -69,10 +30,28 @@
     - description: Install Brewfile bundle
       command: "brew bundle"
     - description: Installing oh-my-zsh
-      command: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+      command: '/bin/zsh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
     - description: Install TPM
       command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
     - description: Install Valet
-      command: "sudo valet install && sudo valet trust && valet park ~/code"
+      command: "sudo composer global require laravel/valet && sudo valet install && sudo valet trust && valet park ~/code"
     - description: Clear sudo credential cache
       command: "sudo --reset-timestamp"
+
+- link:
+    ~/.dotfiles: ""
+    ~/.config/nvim: nvim
+    ~/.config/karabiner: karabiner
+    ~/.config/kitty: kitty
+    ~/.aliases: aliases
+    ~/.vimrc: vimrc
+    ~/.ideavimrc: ideavimrc
+    ~/.global_gitignore: global_gitignore
+    ~/.gitconfig: gitconfig
+    "~/Library/Application\ Support/Code/User/keybindings.json": vscode/keybindings.json
+    "~/Library/Application\ Support/Code/User/settings.json": vscode/settings.json
+    ~/.hammerspoon:
+      if: '[ `uname` = Darwin ]'
+      path: hammerspoon
+    ~/.tmux.conf: tmux.conf
+    ~/.zshrc: zshrc
