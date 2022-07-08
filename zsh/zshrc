@@ -24,11 +24,7 @@ ZSH_THEME="custom"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -149,3 +145,13 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
 # -------- VI MODE on terminal end -------- #
+
+# -------- zsh-syntax-highlighting -------- #
+# for apple silicon machines
+if [[ $(uname -m) == 'arm64' ]]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+# for intel machines
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+# -------- zsh highlighting end -------- #
