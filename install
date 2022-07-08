@@ -1,54 +1,15 @@
 #!/usr/bin/env bash
 
-#Remove last login information from terminal when opened
-rm ~/.hushlogin
-touch ~/.hushlogin
+set -e
 
-#Symlink configuration files
-rm ~/.aliases
-ln -s ~/.dotfiles/aliases ~/.aliases
+CONFIG="install.conf.yaml"
+DOTBOT_DIR="dotbot"
 
-#"vim/nvim/ideavim bindings/settings
-rm -r ~/.config/nvim ~/.vimrc ~/.ideavimrc
-ln -s ~/.dotfiles/nvim ~/.config/nvim
-ln -s ~/.dotfiles/vimrc ~/.vimrc
-ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-#git configs
-rm ~/.gitconfig ~/.global_gitignore
-ln -s ~/.dotfiles/gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/global_gitignore ~/.global_gitignore
+cd "${BASEDIR}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
 
-#vscode settings and bindings
-rm ~/Library/Application\ Support/Code/User/keybindings.json
-rm ~/Library/Application\ Support/Code/User/settings.json
-ln -s ~/.dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
-ln -s ~/.dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-
-#hammerspoon config
-rm ~/.hammerspoon
-ln -s ~/.dotfiles/hammerspoon ~/.hammerspoon
-
-#tmux config
-rm ~/.tmux.conf
-ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
-
-#zshrc config
-rm ~/.zshrc
-ln -s ~/.dotfiles/zshrc ~/.zshrc
-
-#karabiner config
-rm ~/.config/karabiner
-ln -s ~/.dotfiles/karabiner ~/.config/karabiner
-
-#iterm2 config
-rm ~/Library/Preferences/com.googlecode.iterm2.plist
-ln -s ~/.dotfiles/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
-
-#kitty config
-rm ~/.config/kitty
-ln -s ~/.dotfiles/kitty ~/.config/kitty
-
-#custom zsh theme
-rm ~/.oh-my-zsh/themes/custom.zsh-theme
-ln -s ~/.dotfiles/zsh/themes/custom.zsh-theme ~/.oh-my-zsh/themes/custom.zsh-theme
+"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"

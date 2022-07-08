@@ -1,0 +1,28 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.dotfiles: ""
+    ~/.aliases: aliases
+    ~/.config/nvim: nvim
+    ~/.vimrc: vimrc
+    ~/.ideavimrc: ideavimrc
+    ~/.global_gitignore: global_gitignore
+    ~/.gitconfig: gitconfig
+    ~/Library/Application\ Support/Code/User/keybindings.json: vscode/keybindings.json
+    ~/Library/Application\ Support/Code/User/settings.json: vscode/settings.json
+    ~/.hammerspoon: hammerspoon
+    ~/.tmux.conf: tmux.conf
+    ~/.zshrc: zshrc
+    ~/.config/karabiner: karabiner
+    ~/.config/kitty: kitty
+    ~/.oh-my-zsh/themes/custom.zsh-theme: zsh/themes/custom.zsh-theme
+
+- create:
+    - ~/.hushlogin
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
