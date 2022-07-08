@@ -1,24 +1,8 @@
-```
-                   bbbbbbbb
-                   b::::::b
-                   b::::::b
-                   b::::::b
-                    b:::::b
-rrrrr   rrrrrrrrr   b:::::bbbbbbbbb
-r::::rrr:::::::::r  b::::::::::::::bb
-r:::::::::::::::::r b::::::::::::::::b
-rr::::::rrrrr::::::rb:::::bbbbb:::::::b
- r:::::r     r:::::rb:::::b    b::::::b
- r:::::r     rrrrrrrb:::::b     b:::::b
- r:::::r            b:::::b     b:::::b
- r:::::r            b:::::b     b:::::b
- r:::::r            b:::::bbbbbb::::::b
- r:::::r            b::::::::::::::::b
- r:::::r            b:::::::::::::::b
- rrrrrrr            bbbbbbbbbbbbbbbb
-```
+# .files
 
-# Installation
+These are my dotfiles. Take anything you want, but at your own risk. It mainly targets macOS systems.
+
+## Installation
 
 ```bash
 git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && git submodule update --init && bash ~/.dotfiles/install
