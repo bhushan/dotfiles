@@ -1,6 +1,9 @@
 - defaults:
     link:
       relink: true
+- shell:
+    - description: Validating sudo credentials
+      command: "sudo --validate"
 
 - clean: ["~"]
 
@@ -22,7 +25,26 @@
     ~/.oh-my-zsh/themes/custom.zsh-theme: zsh/themes/custom.zsh-theme
 
 - create:
-    - ~/.hushlogin
+    - ~/code
 
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
+    - description: Install submodules
+      command: "git submodule update --init --recursive"
+    - description: Hush login
+      command: "[ -f ~/.hushlogin ] || touch ~/.hushlogin"
+    - description: Install Brew
+      command: '[ -x "$(which brew)" ] || arch -x86_64 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+    - description: Update Brew
+      command: "brew update"
+    - description: Install Brew bundler
+      command: "brew tap homebrew/bundle"
+    - description: Install Brewfile bundle
+      command: "brew bundle"
+    - description: Installing oh-my-zsh
+      command: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+    - description: Install TPM
+      command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+    - description: Install Valet
+      command: "sudo valet install && sudo valet trust && valet park ~/code"
+    - description: Clear sudo credential cache
+      command: "sudo --reset-timestamp"
