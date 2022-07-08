@@ -22,7 +22,7 @@
     - description: Hush login
       command: "[ -f ~/.hushlogin ] || touch ~/.hushlogin"
     - description: Install Brew
-      command: '[ -x "$(which brew)" ] || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+      command: "[ -x \"$(which brew)\" ] || /bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)\""
     - description: Update Brew
       command: "brew update"
     - description: Install Brew bundler
@@ -30,7 +30,7 @@
     - description: Install Brewfile bundle
       command: "brew bundle"
     - description: Installing oh-my-zsh
-      command: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+      command: "[ -z ${ZSH+x} ] || /bin/bash -c \"$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
     - description: Install TPM
       command: "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
     - description: Install Valet
@@ -50,8 +50,8 @@
     ~/.gitconfig: gitconfig
     "~/Library/Application\ Support/Code/User/keybindings.json": vscode/keybindings.json
     "~/Library/Application\ Support/Code/User/settings.json": vscode/settings.json
-    ~/.hammerspoon:
-      if: '[ `uname` = Darwin ]'
-      path: hammerspoon
+    ~/.hammerspoon: hammerspoon
     ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
+    ~/.zshrc: zsh/zshrc
+    ~/.zprofile: zsh/zprofile
+    ~/.oh-my-zsh/themes/custom.zsh-theme: zsh/themes/custom.zsh-theme
