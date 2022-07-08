@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Paths
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$(brew --prefix)/bin:$PATH"
