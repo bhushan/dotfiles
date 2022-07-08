@@ -2,7 +2,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_CUSTOM="$HOME/.dotfiles/zsh/themes"
+ZSH_CUSTOM="$HOME/.dotfiles/zsh"
 ZSH_THEME="custom"
 
 # Which plugins would you like to load?
