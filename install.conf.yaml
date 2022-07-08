@@ -9,20 +9,48 @@
 
 - link:
     ~/.dotfiles: ""
-    ~/.aliases: aliases
-    ~/.config/nvim: nvim
-    ~/.vimrc: vimrc
-    ~/.ideavimrc: ideavimrc
-    ~/.global_gitignore: global_gitignore
-    ~/.gitconfig: gitconfig
-    ~/Library/Application\ Support/Code/User/keybindings.json: vscode/keybindings.json
-    ~/Library/Application\ Support/Code/User/settings.json: vscode/settings.json
-    ~/.hammerspoon: hammerspoon
-    ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
-    ~/.config/karabiner: karabiner
-    ~/.config/kitty: kitty
-    ~/.oh-my-zsh/themes/custom.zsh-theme: zsh/themes/custom.zsh-theme
+    ~/.config/nvim:
+      relink: true
+      path: nvim
+    ~/.config/karabiner:
+      relink: true
+      path: karabiner
+    ~/.config/kitty:
+      relink: true
+      path: kitty
+    ~/.aliases:
+      force: true
+      path: aliases
+    ~/.vimrc:
+      force: true
+      path: vimrc
+    ~/.ideavimrc:
+      force: true
+      path: ideavimrc
+    ~/.global_gitignore:
+      force: true
+      path: global_gitignore
+    ~/.gitconfig:
+      force: true
+      path: gitconfig
+    ~/Library/Application\ Support/Code/User/keybindings.json:
+      force: true
+      path: vscode/keybindings.json
+    ~/Library/Application\ Support/Code/User/settings.json:
+      force: true
+      path: vscode/settings.json
+    ~/.hammerspoon:
+      relink: true
+      path: hammerspoon
+    ~/.tmux.conf:
+      force: true
+      path: tmux.conf
+    ~/.zshrc:
+      force: true
+      path: zshrc
+    ~/.oh-my-zsh/themes/custom.zsh-theme:
+      force: true
+      path: zsh/themes/custom.zsh-theme
 
 - create:
     - ~/code
@@ -33,7 +61,7 @@
     - description: Hush login
       command: "[ -f ~/.hushlogin ] || touch ~/.hushlogin"
     - description: Install Brew
-      command: '[ -x "$(which brew)" ] || arch -x86_64 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+      command: '[ -x "$(which brew)" ] || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
     - description: Update Brew
       command: "brew update"
     - description: Install Brew bundler
