@@ -17,7 +17,6 @@ brew 'tree'
 # File formatters
 brew 'shfmt'
 brew 'stylua'
-brew 'prettier'
 
 # utils
 brew 'curl'
