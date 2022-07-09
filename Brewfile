@@ -2,11 +2,16 @@
 tap 'homebrew/cask'
 tap 'homebrew/bundle'
 
-# Brew
+# Fuzzy search
 brew 'fzf'
 brew 'rg'
+brew 'fd'
+
+# Git
 brew 'git'
 brew 'gh'
+brew 'lazygit'
+
 brew 'tree'
 
 # File formatters
@@ -14,18 +19,19 @@ brew 'shfmt'
 brew 'stylua'
 brew 'prettier'
 
+# utils
 brew 'curl'
-brew 'mycli'
-brew 'mysql-client'
-brew 'python@3.9'
-brew 'sqlite'
+brew 'wget'
+
+brew 'python'
 brew 'tmux'
 brew 'neovim'
 brew 'zsh-syntax-highlighting'
-brew 'lazygit'
+
 brew 'nvm'
 brew 'nginx'
 brew 'php'
+brew 'sqlite'
 brew 'composer'
 brew 'dnsmasq'
 
