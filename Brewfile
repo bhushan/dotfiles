@@ -4,7 +4,7 @@ tap 'homebrew/bundle'
 
 # Fuzzy search
 brew 'fzf'
-brew 'rg'
+brew 'ripgrep'
 brew 'fd'
 
 # Git
