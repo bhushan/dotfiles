@@ -51,7 +51,7 @@
     "~/Library/Application\ Support/Code/User/keybindings.json": vscode/keybindings.json
     "~/Library/Application\ Support/Code/User/settings.json": vscode/settings.json
     ~/.hammerspoon: hammerspoon
-    ~/.tmux.conf: tmux.conf
+    ~/.tmux.conf: tmux/tmux.conf
     ~/.zshrc: zsh/zshrc
     ~/.zprofile: zsh/zprofile
     ~/.oh-my-zsh/themes/custom.zsh-theme: zsh/themes/custom.zsh-theme
