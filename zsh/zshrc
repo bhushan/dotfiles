@@ -34,28 +34,6 @@ export NVM_DIR="$HOME/.nvm"
 
 source ~/.aliases
 
-# -------- Dynamically switch light and dark mode -------- #
-# currently to enable dark mode, comment export line below
-# export LIGHT_MODE="enabled"
-
-setITermProfile() {
-  if [ -n "$1" ]; then
-    # Set iTerm2 profile based on argument
-    echo -e "\033]50;SetProfile=$1\a"
-    return
-  fi
-
-  if [ -z ${LIGHT_MODE+x} ]; then
-    # Set iTerm2 profile to dark mode
-    echo -e "\033]50;SetProfile=dark\a"
-    return
-  fi
-
-  # Set iTerm2 profile to light mode
-  echo -e "\033]50;SetProfile=light\a"
-}
-# -------- Dynamically switch light and dark mode end -------- #
-
 # -------- tmux session config -------- #
 # Attach to session
 ta() {
@@ -151,7 +129,7 @@ bindkey '^e' edit-command-line
 if [[ $(uname -m) == 'arm64' ]]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
-# for intel machines
+  # for intel machines
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 # -------- zsh highlighting end -------- #
