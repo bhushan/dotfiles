@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# for apple silicon machines
+if [[ $(uname -m) == 'arm64' ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  # for intel machines
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
