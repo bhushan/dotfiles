@@ -34,6 +34,8 @@ brew 'java'
 brew 'sqlite'
 brew 'composer'
 brew 'dnsmasq'
+brew 'figlet'
+brew 'lolcat'
 
 # Cask
 cask 'karabiner-elements'
