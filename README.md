@@ -5,7 +5,7 @@ These are my dotfiles. Take anything you want, but at your own risk. It mainly t
 ## Installation
 
 ```bash
-git clone https://github.com/bhushan/dotfiles ~/.dotfiles && cd ~/.dotfiles && git submodule update --init && bash ~/.dotfiles/install
+mkdir -p ~/code && git clone https://github.com/bhushan/dotfiles ~/code/dotfiles && cd ~/code/dotfiles && git submodule update --init && bash ~/code/dotfiles/install
 ```
 
 ## Prerequisites
