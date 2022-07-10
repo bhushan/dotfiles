@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="custom"
 # My custom hook for setting up theme everywhere
-export SET_THEME="github_dimmed"
+export SET_THEME="dracula"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
