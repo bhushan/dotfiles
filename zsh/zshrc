@@ -36,9 +36,9 @@ source ~/.aliases
 
 # -------- tmux session config -------- #
 # Ensure attached to session when opening new terminal windows of kitty
-if ([ -z "$TMUX" ] && echo "$TERM" | grep -q "kitty"); then
-  tmux ls && read tmux_session && tmux attach -t ${tmux_session:-main} || tmux new -s ${tmux_session:-main}
-fi
+# if ([ -z "$TMUX" ] && echo "$TERM" | grep -q "kitty"); then
+#   tmux ls && read tmux_session && tmux attach -t ${tmux_session:-main} || tmux new -s ${tmux_session:-main}
+# fi
 # -------- tmux session config end -------- #
 
 # -------- Recursively create directory and touch file if exists -------- #
