@@ -3,6 +3,7 @@
 # Helpers
 alias cc="clear"
 alias x="exit"
+alias ":q"="exit"
 alias vimrc="vim ~/.vimrc"
 alias lg="lazygit"
 alias t="tree -L 2 "
