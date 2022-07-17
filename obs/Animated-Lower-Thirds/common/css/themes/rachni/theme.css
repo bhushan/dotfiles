@@ -1,0 +1,66 @@
+:root {
+  --main-color: #d2d2d2;
+  --element-radius: 0.2em;
+  --obs-background: #31363B; 
+  --obs-button-background: #00BCD4;
+  --obs-button-border: #76797C;
+  --obs-button-hover-background: #914C67;
+  --obs-button-hover-border: #76797c;
+  --obs-button-active-background: #1f1e1f;
+  --obs-switch-active-background: #00BCD4;
+  --obs-button-color: #fff;
+  --obs-field-background: #232629;
+  --obs-field-background-disable: #3f4448;
+  --obs-field-border: solid 1px #76797c;
+  --obs-panel-border: solid 1px #76797c;
+  --obs-scrollbar-color: #76797c;
+  --obs-scrollbar-thickness: 8px;
+  --obs-scrollbar-radius: 14px;
+  --obs-tab-background: #54575b;
+  --obs-tab-border: #76797c;
+  --obs-tab-active-background: #914c67;
+  --obs-tab-active-border: #76797c;
+  --obs-tabs-separator: #76797c;
+  --alt-preview-background: linear-gradient(135deg, #25282c 0%,
+                                                    #25282c 8%,
+                                                    #232629 10%,
+                                                    #232629 18%, 
+                                                    #25282c 20%, 
+                                                    #25282c 28%, 
+                                                    #232629 30%, 
+                                                    #232629 38%, 
+                                                    #25282c 40%, 
+                                                    #25282c 48%, 
+                                                    #232629 50%, 
+                                                    #232629 58%, 
+                                                    #25282c 60%,
+                                                    #25282c 68%, 
+                                                    #232629 70%, 
+                                                    #232629 78%, 
+                                                    #25282c 80%, 
+                                                    #25282c 88%, 
+                                                    #232629 90%, 
+                                                    #232629 98%, 
+                                                    #25282c 100%);
+}
+
+/*Fixing border issues*/
+select {background-position: right 4px center;}
+#alt-1-name-appearance, #alt-1-info-appearance,
+#alt-2-name-appearance, #alt-2-info-appearance,
+#alt-3-name-appearance, #alt-3-info-appearance,
+#alt-4-name-appearance, #alt-4-info-appearance {
+  padding: 0 0 0 2px;
+}
+#alt-1-name-color, #alt-1-info-color,
+#alt-2-name-color, #alt-2-info-color,
+#alt-3-name-color, #alt-3-info-color,
+#alt-4-name-color, #alt-4-info-color {
+  margin: 3px;
+}
+#alt-1-style-color-1, #alt-1-style-color-2,
+#alt-2-style-color-1, #alt-2-style-color-2,
+#alt-3-style-color-1, #alt-3-style-color-2,
+#alt-4-style-color-1, #alt-4-style-color-2 {
+  margin: 3px;
+}
