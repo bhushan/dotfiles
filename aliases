@@ -42,6 +42,13 @@ alias n="nvim "
 alias nv="nvim "
 alias nvi="nvim "
 
+# docker
+alias d="docker "
+alias dc="docker-compose "
+alias dcu="docker-compose up"
+alias dcd="docker-compose down"
+alias dps="docker ps"
+
 # Opens database in applications like TablePlus
 # Example 1: `db` command will check env file in its directory and grab env variables and will open that database
 # Example 2: `db test` command will open test database
