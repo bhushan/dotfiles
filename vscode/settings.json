@@ -6,7 +6,7 @@
   "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
   "editor.fontSize": 15,
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "FiraCode Nerd Font",
   "editor.fontLigatures": true,
   "terminal.integrated.fontSize": 15,
   "vim.insertModeKeyBindings": [
