@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Only show it on kitty
-if ([ -z "$TMUX" ] && echo "$TERM" | grep -q "kitty"); then
-  figlet -f slant -w $(tput cols) -c BHUSHAN | lolcat
-fi
+# if ([ -z "$TMUX" ] && echo "$TERM" | grep -q "kitty"); then
+#   figlet -f slant -w $(tput cols) -c BHUSHAN | lolcat
+# fi
 
 # Paths
 export PATH="$HOME/.composer/vendor/bin:$PATH"
