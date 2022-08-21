@@ -20,6 +20,7 @@ brew 'stylua'
 # utils
 brew 'curl'
 brew 'wget'
+brew 'htop'
 
 brew 'python'
 brew 'tmux'
