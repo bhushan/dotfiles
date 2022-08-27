@@ -5,7 +5,7 @@ local control_key_handler = function()
   send_escape = false
 end
 
-local DELAY_IN_SECONDS = 0.15
+local DELAY_IN_SECONDS = 0.30
 local control_key_timer = hs.timer.delayed.new(DELAY_IN_SECONDS, control_key_handler)
 
 local control_handler = function(evt)
