@@ -38,7 +38,6 @@ brew 'figlet'
 brew 'lolcat'
 
 # Cask
-cask 'karabiner-elements'
 cask 'slack'
 cask 'discord'
 cask 'tableplus'
