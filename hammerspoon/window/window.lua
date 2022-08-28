@@ -132,12 +132,17 @@ local function center()
 end
 
 -------- Key bindings
+local shift_cmd = { "shift", "cmd" }
 
 -- Halves of the screen
-hs.hotkey.bind({ "shift", "cmd" }, "H", hs.fnutils.partial(winresize, "left"))
-hs.hotkey.bind({ "shift", "cmd" }, "L", hs.fnutils.partial(winresize, "right"))
-hs.hotkey.bind({ "shift", "cmd" }, "K", hs.fnutils.partial(winresize, "up"))
-hs.hotkey.bind({ "shift", "cmd" }, "J", hs.fnutils.partial(winresize, "down"))
+hs.hotkey.bind(shift_cmd, "H", hs.fnutils.partial(winresize, "left"))
+hs.hotkey.bind(shift_cmd, "L", hs.fnutils.partial(winresize, "right"))
+hs.hotkey.bind(shift_cmd, "K", hs.fnutils.partial(winresize, "up"))
+hs.hotkey.bind(shift_cmd, "J", hs.fnutils.partial(winresize, "down"))
+-- Center of the screen
+hs.hotkey.bind(shift_cmd, "C", center)
+-- Maximized
+hs.hotkey.bind(shift_cmd, "F", hs.fnutils.partial(winresize, "max"))
 
 -- Thirds of the screen
 -- hs.hotkey.bind({ "ctrl", "alt" }, "H", left_third)
@@ -145,14 +150,20 @@ hs.hotkey.bind({ "shift", "cmd" }, "J", hs.fnutils.partial(winresize, "down"))
 -- hs.hotkey.bind({ "ctrl", "alt" }, "K", up_third)
 -- hs.hotkey.bind({ "ctrl", "alt" }, "J", down_third)
 
--- Center of the screen
-hs.hotkey.bind({ "cmd", "shift" }, "C", center)
-
--- Maximized
-hs.hotkey.bind({ "cmd", "shift" }, "F", hs.fnutils.partial(winresize, "max"))
+local ctrl_alt_cmd = { "ctrl", "alt", "cmd" }
 
 -- Move between screens
-hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "H", hs.fnutils.partial(winmovefocus, "left"))
-hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "L", hs.fnutils.partial(winmovefocus, "right"))
--- hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "K", hs.fnutils.partial(winmovefocus, "up"))
--- hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "J", hs.fnutils.partial(winmovefocus, "down"))
+hs.hotkey.bind(ctrl_alt_cmd, "H", hs.fnutils.partial(winmovefocus, "left"))
+hs.hotkey.bind(ctrl_alt_cmd, "L", hs.fnutils.partial(winmovefocus, "right"))
+-- hs.hotkey.bind(ctrl_alt_cmd, "K", hs.fnutils.partial(winmovefocus, "up"))
+-- hs.hotkey.bind(ctrl_alt_cmd, "J", hs.fnutils.partial(winmovefocus, "down"))
+
+hs.hotkey.bind(ctrl_alt_cmd, "n", function()
+  -- get the focused window
+  local win = hs.window.focusedWindow()
+  -- get the screen where the focused window is displayed, a.k.a. current screen
+  local screen = win:screen()
+  -- compute the unitRect of the focused window relative to the current screen
+  -- and move the window to the next screen setting the same unitRect
+  win:move(win:frame():toUnitRect(screen:frame()), screen:next(), true, 0)
+end)
