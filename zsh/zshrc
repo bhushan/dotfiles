@@ -7,8 +7,11 @@
 
 # Paths
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.symfony/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
 
 if [[ $(uname -m) == 'arm64' ]]; then
   # If you need to have openjdk first in your PATH
