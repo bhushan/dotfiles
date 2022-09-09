@@ -6,7 +6,6 @@ alias x="exit"
 alias ":q"="exit"
 alias vimrc="vim ~/.vimrc"
 alias lg="lazygit"
-alias t="tree -L 2 "
 
 # JS
 alias watch="npm run watch"

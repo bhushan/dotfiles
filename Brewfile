@@ -11,8 +11,6 @@ brew 'git'
 brew 'gh'
 brew 'lazygit'
 
-brew 'tree'
-
 # File formatters
 brew 'shfmt'
 brew 'stylua'
