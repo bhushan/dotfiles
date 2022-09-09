@@ -29,12 +29,6 @@ alias fresh="php artisan migrate:fresh"
 alias seed="php artisan migrate:fresh --seed"
 alias pstorm="open -a PhpStorm "
 
-# most visited directories
-alias oc="cd ~/code"
-alias od="cd ~/.dotfiles"
-alias on="cd ~/.config/nvim"
-alias oo="cd ~/code/opensource"
-
 # open vim/nvim as quickly as possible
 alias v="vim "
 alias n="nvim "
