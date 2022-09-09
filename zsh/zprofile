@@ -7,3 +7,5 @@ else
   # for intel machines
   eval "$(/usr/local/bin/brew shellenv)"
 fi
+
+eval "$(zoxide init zsh)"
