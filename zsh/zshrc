@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# remove title bar text completely
+DISABLE_AUTO_TITLE="true"
+printf "\033]0; \007"
+
 # Paths
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
