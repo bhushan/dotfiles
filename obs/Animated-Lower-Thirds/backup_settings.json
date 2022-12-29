@@ -21,29 +21,35 @@
   "alt-1-style-color-2": "#393939",
   "alt-1-style-color-3": "#393939",
   "alt-1-style-color-4": "#393939",
+  "alt-1-style-color-5": "#393939",
 
   "lower-thirds-switch1": "false",
   "lower-thirds-switch2": "false",
   "lower-thirds-switch3": "false",
   "lower-thirds-switch4": "false",
+  "lower-thirds-switch5": "false",
 
   "alt-1-logo-default": "../logos/logo_1.png",
   "alt-2-logo-default": "../logos/logo_2.png",
   "alt-3-logo-default": "../logos/logo_3.png",
   "alt-4-logo-default": "../logos/logo_4.png",
+  "alt-5-logo-default": "../logos/logo_5.png",
 
   "alt-1-logo-1": "../logos/logo_1.png",
   "alt-1-logo-2": "../logos/logo_2.png",
   "alt-1-logo-3": "../logos/logo_3.png",
   "alt-1-logo-4": "../logos/logo_4.png",
+  "alt-1-logo-5": "../logos/logo_5.png",
 
   "alt-1-name-1": "Day to day content",
   "alt-1-name-2": "Let's build network",
   "alt-1-name-3": "Let's share thoughts",
   "alt-1-name-4": "Developer workflow streams",
+  "alt-1-name-5": "SWITCH TO 1.5X",
 
   "alt-1-info-1": "Like, Share and Subscribe",
   "alt-1-info-2": "@rckstrbhushan",
   "alt-1-info-3": "@rckstrbhushan",
-  "alt-1-info-4": "@rckstrbhushan"
+  "alt-1-info-4": "@rckstrbhushan",
+  "alt-1-info-5": "FOR BETTER EXPERIENCE"
 }
