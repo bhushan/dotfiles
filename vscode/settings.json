@@ -110,4 +110,5 @@
   "editor.scrollbar.verticalScrollbarSize": 0,
   "editor.scrollbar.vertical": "hidden",
   "breadcrumbs.enabled": false,
+  "window.title": " ",
 }
