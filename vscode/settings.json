@@ -106,6 +106,8 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.layoutControl.enabled": false,
   "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.horizontalScrollbarSize": 0,
+  "editor.scrollbar.verticalScrollbarSize": 0,
   "editor.scrollbar.vertical": "hidden",
   "breadcrumbs.enabled": false,
 }
