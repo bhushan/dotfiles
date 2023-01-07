@@ -111,4 +111,7 @@
   "editor.scrollbar.vertical": "hidden",
   "breadcrumbs.enabled": false,
   "window.title": " ",
+  "vscode_custom_css.imports": [
+    "file:///Users/rb/.dotfiles/vscode/hide-top-bar.css"
+  ]
 }
