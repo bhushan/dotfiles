@@ -113,5 +113,8 @@
   "window.title": " ${dirty}",
   "vscode_custom_css.imports": [
     "file:///Users/rb/.dotfiles/vscode/hide-top-bar.css"
-  ]
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
 }
