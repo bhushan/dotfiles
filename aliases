@@ -6,6 +6,7 @@ alias x="exit"
 alias ":q"="exit"
 alias vimrc="vim ~/.vimrc"
 alias lg="lazygit"
+alias sc="./vendor/bin/scratch" # Ebook generator package
 
 # JS
 alias watch="npm run watch"
