@@ -141,5 +141,13 @@
     "key": "ctrl+d",
     "command": "-deleteRight",
     "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "phpunit.TestNearest"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "phpunit.RerunLastTest"
   }
 ]
