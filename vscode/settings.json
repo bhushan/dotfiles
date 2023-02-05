@@ -11,8 +11,13 @@
   "terminal.integrated.fontSize": 15,
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "j"],
-      "after": ["<Esc>"]
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     }
   ],
   "diffEditor.renderSideBySide": false,
@@ -23,7 +28,6 @@
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false,
-    "<C-d>": false
   },
   "php-cs-fixer.config": "~/.php_cs",
   "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",

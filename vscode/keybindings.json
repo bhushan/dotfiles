@@ -107,11 +107,6 @@
     "when": "workbench.view.search.active && neverMatch =~ /doesNotMatch/"
   },
   {
-    "key": "ctrl+d",
-    "command": "editor.action.addSelectionToNextFindMatch",
-    "when": "editorFocus"
-  },
-  {
     "key": "cmd+d",
     "command": "-editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
@@ -141,5 +136,10 @@
   {
     "key": "ctrl+j",
     "command": "workbench.action.navigateDown"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-deleteRight",
+    "when": "textInputFocus"
   }
 ]
