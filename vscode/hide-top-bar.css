@@ -5,3 +5,7 @@
 div#workbench\.parts\.titlebar {
   background-color: #272a36 !important;
 }
+
+.scroll-decoration {
+  display: none !important;
+}
