@@ -1,11 +1,9 @@
-.title.show-file-icons {
-  display: none !important;
-}
-
 div#workbench\.parts\.titlebar {
   background-color: #272a36 !important;
 }
 
+.title.show-file-icons,
+.shadow.top,
 .scroll-decoration {
   display: none !important;
 }
