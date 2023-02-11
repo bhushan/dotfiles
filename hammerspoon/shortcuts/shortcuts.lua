@@ -21,4 +21,3 @@ hs.hotkey.bind({ "cmd", "shift" }, "P", open_app({ "Postman" }))
 hs.hotkey.bind({ "cmd", "shift" }, "M", open_app({ "Microsoft Teams", "Spotify" }))
 hs.hotkey.bind({ "cmd", "shift" }, "O", open_app({ "Microsoft Outlook", "OBS" }))
 hs.hotkey.bind({ "cmd", "shift" }, "B", open_app({ "Google Chrome", "Brave Browser" }))
-
