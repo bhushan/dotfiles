@@ -1,6 +1,6 @@
 # Taps
-tap 'homebrew/cask'
-tap 'homebrew/bundle'
+# tap 'homebrew/cask'
+# tap 'homebrew/bundle'
 
 # Fuzzy search
 brew 'fzf'
