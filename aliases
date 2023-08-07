@@ -22,15 +22,14 @@ alias nah="git reset --hard && git clean -df"
 alias dump="composer dump-autoload -o"
 alias p="./vendor/bin/phpunit"
 alias pf="./vendor/bin/phpunit --filter "
+alias pest="./vendor/bin/pest "
 
 # Laravel
 alias art="php artisan "
 alias migrate="php artisan migrate"
 alias fresh="php artisan migrate:fresh"
 alias seed="php artisan migrate:fresh --seed"
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-alias phpunit='[ -f phpunit ] && sh phpunit || sh vendor/bin/phpunit'
-alias pest='[ -f pest ] && sh pest || sh vendor/bin/pest'
+alias sail="./vendor/bin/sail "
 alias pstorm="open -a PhpStorm "
 alias wstorm="open -a WebStorm "
 
