@@ -25,7 +25,7 @@ alias pf="./vendor/bin/phpunit --filter "
 alias pest="./vendor/bin/pest "
 
 # Laravel
-alias art="php artisan "
+alias a="php artisan "
 alias migrate="php artisan migrate"
 alias fresh="php artisan migrate:fresh"
 alias seed="php artisan migrate:fresh --seed"
