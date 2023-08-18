@@ -20,9 +20,10 @@ alias nah="git reset --hard && git clean -df"
 
 # PHP
 alias dump="composer dump-autoload -o"
-alias p="./vendor/bin/phpunit"
-alias pf="./vendor/bin/phpunit --filter "
-alias pest="./vendor/bin/pest "
+# alias p="./vendor/bin/phpunit"
+# alias pf="./vendor/bin/phpunit --filter "
+alias p="./vendor/bin/pest "
+alias pf="./vendor/bin/pest --filter"
 
 # Laravel
 alias a="php artisan "
