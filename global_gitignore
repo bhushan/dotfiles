@@ -1,5 +1,6 @@
 .idea
 .vscode
+.vapor
 .*.cache
 node_modules
 vendor
