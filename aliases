@@ -24,6 +24,7 @@ alias dump="composer dump-autoload -o"
 # alias pf="./vendor/bin/phpunit --filter "
 alias p="./vendor/bin/pest "
 alias pf="./vendor/bin/pest --filter"
+alias pint="./vendor/bin/pint "
 
 # Laravel
 alias a="php artisan "
