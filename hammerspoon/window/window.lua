@@ -19,13 +19,13 @@ local function winresize(how)
   elseif how == "down" then
     newrect = { 0, 0.5, 1, 0.5 }
   elseif how == "top_left" then
-    newrect = { 0, 0.5, 0.5, 0.5 }
+    newrect = { 0, 0, 0.5, 0.5 }
   elseif how == "top_right" then
-    newrect = { 0.5, 0.5, 1, 0.5 }
+    newrect = { 0.5, 0, 0.5, 0.5 }
   elseif how == "bottom_left" then
     newrect = { 0, 0.5, 0.5, 0.5 }
   elseif how == "bottom_right" then
-    newrect = { 0.5, 0.5, 1, 0.5 }
+    newrect = { 0.5, 0.5, 0.5 ,0.5 }
   elseif how == "max" then
     newrect = hs.layout.maximized
     -- elseif how == "left_third" or how == "hthird-0" then
@@ -148,6 +148,8 @@ hs.hotkey.bind(shift_cmd, "L", hs.fnutils.partial(winresize, "right"))
 hs.hotkey.bind(shift_cmd, "K", hs.fnutils.partial(winresize, "up"))
 hs.hotkey.bind(shift_cmd, "J", hs.fnutils.partial(winresize, "down"))
 
+hs.hotkey.bind(shift_cmd, "I", hs.fnutils.partial(winresize, "top_left"))
+hs.hotkey.bind(shift_cmd, "O", hs.fnutils.partial(winresize, "top_right"))
 hs.hotkey.bind(shift_cmd, ",", hs.fnutils.partial(winresize, "bottom_left"))
 hs.hotkey.bind(shift_cmd, ".", hs.fnutils.partial(winresize, "bottom_right"))
 
