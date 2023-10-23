@@ -21,5 +21,5 @@ hs.hotkey.bind({ "cmd", "shift" }, "W", open_app({ "PhpStorm", "Webstorm", "Visu
 hs.hotkey.bind({ "cmd", "shift" }, "P", open_app({ "Postman" }))
 
 -- hs.hotkey.bind({ "cmd", "shift" }, "M", open_app({ "Spotify" }))
-hs.hotkey.bind({ "cmd", "shift" }, "O", open_app({ "OBS" }))
+-- hs.hotkey.bind({ "cmd", "shift" }, "O", open_app({ "OBS" }))
 hs.hotkey.bind({ "cmd", "shift" }, "B", open_app({ "Google Chrome", "Brave Browser" }))
