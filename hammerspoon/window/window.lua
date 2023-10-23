@@ -18,22 +18,30 @@ local function winresize(how)
     newrect = { 0, 0, 1, 0.5 }
   elseif how == "down" then
     newrect = { 0, 0.5, 1, 0.5 }
+  elseif how == "top_left" then
+    newrect = { 0, 0.5, 0.5, 0.5 }
+  elseif how == "top_right" then
+    newrect = { 0.5, 0.5, 1, 0.5 }
+  elseif how == "bottom_left" then
+    newrect = { 0, 0.5, 0.5, 0.5 }
+  elseif how == "bottom_right" then
+    newrect = { 0.5, 0.5, 1, 0.5 }
   elseif how == "max" then
     newrect = hs.layout.maximized
-  elseif how == "left_third" or how == "hthird-0" then
-    newrect = { 0, 0, 1 / 3, 1 }
-  elseif how == "middle_third_h" or how == "hthird-1" then
-    newrect = { 1 / 3, 0, 1 / 3, 1 }
-  elseif how == "right_third" or how == "hthird-2" then
-    newrect = { 2 / 3, 0, 1 / 3, 1 }
-  elseif how == "top_third" or how == "vthird-0" then
-    newrect = { 0, 0, 1, 1 / 3 }
-  elseif how == "middle_third_v" or how == "vthird-1" then
-    newrect = { 0, 1 / 3, 1, 1 / 3 }
+    -- elseif how == "left_third" or how == "hthird-0" then
+    --   newrect = { 0, 0, 1 / 3, 1 }
+    -- elseif how == "middle_third_h" or how == "hthird-1" then
+    --   newrect = { 1 / 3, 0, 1 / 3, 1 }
+    -- elseif how == "right_third" or how == "hthird-2" then
+    --   newrect = { 2 / 3, 0, 1 / 3, 1 }
+    -- elseif how == "top_third" or how == "vthird-0" then
+    --   newrect = { 0, 0, 1, 1 / 3 }
+    -- elseif how == "middle_third_v" or how == "vthird-1" then
+    --   newrect = { 0, 1 / 3, 1, 1 / 3 }
   elseif how == "center" then
     newrect = { 0.9, 0.9, 0.9, 0.9 }
-  elseif how == "bottom_third" or how == "vthird-2" then
-    newrect = { 0, 2 / 3, 1, 1 / 3 }
+    -- elseif how == "bottom_third" or how == "vthird-2" then
+    --   newrect = { 0, 2 / 3, 1, 1 / 3 }
   end
 
   win:move(newrect)
@@ -139,6 +147,10 @@ hs.hotkey.bind(shift_cmd, "H", hs.fnutils.partial(winresize, "left"))
 hs.hotkey.bind(shift_cmd, "L", hs.fnutils.partial(winresize, "right"))
 hs.hotkey.bind(shift_cmd, "K", hs.fnutils.partial(winresize, "up"))
 hs.hotkey.bind(shift_cmd, "J", hs.fnutils.partial(winresize, "down"))
+
+hs.hotkey.bind(shift_cmd, ",", hs.fnutils.partial(winresize, "bottom_left"))
+hs.hotkey.bind(shift_cmd, ".", hs.fnutils.partial(winresize, "bottom_right"))
+
 -- Center of the screen
 hs.hotkey.bind(shift_cmd, "C", center)
 -- Maximized
