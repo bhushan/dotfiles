@@ -20,6 +20,7 @@ alias nah="git reset --hard && git clean -df"
 
 # PHP
 alias dump="composer dump-autoload -o"
+alias ci="composer install"
 # alias p="./vendor/bin/phpunit"
 # alias pf="./vendor/bin/phpunit --filter "
 alias p="./vendor/bin/pest "
