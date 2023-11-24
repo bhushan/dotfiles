@@ -35,6 +35,7 @@ brew 'java'
 brew 'sqlite'
 brew 'composer'
 brew 'dnsmasq'
+brew 'k6'
 
 # Cask
 cask 'slack'
