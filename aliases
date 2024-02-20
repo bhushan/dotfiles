@@ -17,6 +17,7 @@ alias gl="git log --graph --abbrev-commit --decorate --date=relative "
 alias pull="git pull origin "
 alias push="git push origin "
 alias checkout="git checkout "
+alias fetch="git fetch origin "
 alias wpush="git add . && git commit -m 'WIP' && git push"
 alias nah="git reset --hard && git clean -df"
 
