@@ -2,6 +2,10 @@
 inoremap jj <Esc>
 set clipboard+=unnamed "universal Clipboard
 
+" Reselect visual selection after indenting
+xnoremap > >gv
+xnoremap < <gv
+
 let data_dir = '~/.vim'
 
 if empty(glob(data_dir . '/autoload/plug.vim'))
