@@ -35,9 +35,10 @@ alias a="php artisan "
 alias migrate="php artisan migrate"
 alias fresh="php artisan migrate:fresh"
 alias seed="php artisan db:seed"
-alias sail="./vendor/bin/sail "
+# alias sail="./vendor/bin/sail "
 alias pstorm="open -a PhpStorm "
 alias wstorm="open -a WebStorm "
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 
 # open vim/nvim as quickly as possible
 alias v="vim "
