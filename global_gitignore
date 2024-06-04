@@ -7,6 +7,7 @@ vendor
 .DS_Store
 .ccls-cache
 worker.log
+.phpactor.json
 
 # custom format set by me for c and cpp binary outputs using runner.lua
 *.o
