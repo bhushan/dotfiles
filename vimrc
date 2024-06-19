@@ -6,6 +6,10 @@ set clipboard+=unnamed "universal Clipboard
 xnoremap > >gv
 xnoremap < <gv
 
+" Paste replace visual selection without copying it.
+vmap p "_dP
+vmap P "_dP
+
 let data_dir = '~/.vim'
 
 if empty(glob(data_dir . '/autoload/plug.vim'))
