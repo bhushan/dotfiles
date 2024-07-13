@@ -53,6 +53,10 @@ alias dcu="docker-compose up"
 alias dcd="docker-compose down"
 alias dps="docker ps"
 
+# python
+alias python="python3 "
+alias py="python3 "
+
 # Opens database in applications like TablePlus
 # Example 1: `db` command will check env file in its directory and grab env variables and will open that database
 # Example 2: `db test` command will open test database
