@@ -14,3 +14,5 @@ defaultBranch = main
 	enabled = true
 [push]
 	autoSetupRemote = true
+[gpg]
+	format = ssh

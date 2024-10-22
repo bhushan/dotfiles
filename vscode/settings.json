@@ -51,7 +51,7 @@
   },
   "zenMode.centerLayout": false,
   "zenMode.fullScreen": false,
-  "workbench.editor.showTabs": false,
+  "workbench.editor.showTabs": "single",
   "editor.renderControlCharacters": false,
   "editor.renderLineHighlight": "none",
   "editor.matchBrackets": "never",
@@ -67,7 +67,7 @@
   "vetur.format.options.tabSize": 4,
   "vetur.validation.template": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.probe": [
     "javascript",
@@ -85,7 +85,6 @@
   "editor.inlineSuggest.enabled": true,
   "editor.suggestSelection": "first",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "workbench.activityBar.visible": false,
   "explorer.confirmDelete": false,
   "vim.useSystemClipboard": true,
   "workbench.statusBar.visible": false,
@@ -123,5 +122,6 @@
   },
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
-  }
+  },
+  "workbench.activityBar.location": "hidden"
 }
