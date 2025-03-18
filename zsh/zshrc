@@ -14,9 +14,9 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 export PATH="$HOME/.docker/cli-plugins:$PATH"
 export PATH="/Users/Shared/DBngin/mysql/5.7.23/bin:$PATH"
 export PATH="/Users/Shared/DBngin/redis/7.0.0/bin:$PATH"
-# export PATH="/opt/homebrew/opt/php@8.2/bin:$PATH"
-# export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
-# export PATH="/opt/homebrew/opt/php@8.2/sbin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
+export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 # Path to your oh-my-zsh installation.
