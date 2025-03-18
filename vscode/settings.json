@@ -123,5 +123,6 @@
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
-  "workbench.activityBar.location": "hidden"
+  "workbench.activityBar.location": "hidden",
+  "editor.largeFileOptimizations": false
 }
