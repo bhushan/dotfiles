@@ -1,6 +1,6 @@
 {
   "workbench.startupEditor": "none",
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "editor.minimap.enabled": false,
   "workbench.settings.editor": "json",
