@@ -17,7 +17,7 @@ end
 hs.hotkey.bind({ "cmd", "shift" }, "T", open_app({ "Kitty" }))
 hs.hotkey.bind({ "cmd", "shift" }, "S", open_app({ "Slack" }))
 hs.hotkey.bind({ "cmd", "shift" }, "D", open_app({ "TablePlus" }))
-hs.hotkey.bind({ "cmd", "shift" }, "W", open_app({ "Visual Studio Code", "PhpStorm", "Webstorm", "IntelliJ IDEA" }))
+hs.hotkey.bind({ "cmd", "shift" }, "W", open_app({ "PhpStorm", "Visual Studio Code", "Webstorm", "IntelliJ IDEA" }))
 hs.hotkey.bind({ "cmd", "shift" }, "P", open_app({ "Postman" }))
 
 hs.hotkey.bind({ "cmd", "shift" }, "M", open_app({ "Spotify" }))
