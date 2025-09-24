@@ -5,5 +5,8 @@
         "use",
         "packer_plugins",
         "hs"
+    ],
+    "diagnostics.disable": [
+        "missing-fields"
     ]
 }
