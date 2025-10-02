@@ -1,5 +1,33 @@
 #!/usr/bin/perl
-# Originally from https://github.com/scottchiefbaker/perl-git-prompt/blob/master/utils/term-colors.pl
+
+#
+# term-colors - Terminal color palette viewer
+#
+# Description:
+#   Displays all 256 terminal colors in a formatted grid with color codes.
+#   Useful for selecting colors for terminal applications and themes.
+#
+# Usage:
+#   term-colors [OPTIONS]
+#
+# Options:
+#   --perl       Show Perl Term::ANSIColor constant names (requires Term::ANSIColor >= 4.0)
+#   --both       Show both Perl constant names and ANSI color codes
+#   --true|--24  Show 24-bit true color matrix
+#
+# Examples:
+#   term-colors              # Show basic 256 color palette
+#   term-colors --perl       # Show Perl constant names
+#   term-colors --both       # Show both formats
+#   term-colors --true       # Show true color matrix
+#
+# Dependencies:
+#   - Perl 5.x
+#   - Term::ANSIColor (optional, for --perl mode)
+#
+# Originally from:
+#   https://github.com/scottchiefbaker/perl-git-prompt/blob/master/utils/term-colors.pl
+#
 
 use strict;
 
@@ -68,7 +96,20 @@ END {
 }
 
 #################################################################################
+# Subroutines
+#################################################################################
 
+#
+# has_term_ansicolor($version)
+#
+# Checks if Term::ANSIColor module is available with specified version.
+#
+# Parameters:
+#   $version - Minimum required version (default: 4)
+#
+# Returns:
+#   1 if module is available with required version, 0 otherwise
+#
 sub has_term_ansicolor {
 	my $version = shift();
 	$version ||= 4;
@@ -86,6 +127,17 @@ sub has_term_ansicolor {
 	}
 }
 
+#
+# set_fcolor($color)
+#
+# Returns ANSI escape sequence for setting foreground color.
+#
+# Parameters:
+#   $color - Color number (0-255), or undef to reset
+#
+# Returns:
+#   ANSI escape sequence string
+#
 sub set_fcolor {
 	my $c = shift();
 
@@ -96,6 +148,17 @@ sub set_fcolor {
 	return $ret;
 }
 
+#
+# set_bcolor($color)
+#
+# Returns ANSI escape sequence for setting background color.
+#
+# Parameters:
+#   $color - Color number (0-255), or undef to reset
+#
+# Returns:
+#   ANSI escape sequence string
+#
 sub set_bcolor {
 	my $c = shift();
 
@@ -106,6 +169,19 @@ sub set_bcolor {
 	return $ret;
 }
 
+#
+# highlight_string($needle, $haystack, $color)
+#
+# Highlights a substring within a string using terminal colors.
+#
+# Parameters:
+#   $needle   - String to highlight
+#   $haystack - String to search in
+#   $color    - Color number to use for highlighting (default: 2 - green)
+#
+# Returns:
+#   String with highlighted needle
+#
 sub highlight_string {
 	my $needle = shift();
 	my $haystack = shift();
@@ -119,6 +195,14 @@ sub highlight_string {
 	return $haystack;
 }
 
+#
+# get_color_mapping()
+#
+# Creates a mapping of Term::ANSIColor constant names to color numbers.
+#
+# Returns:
+#   Hash reference mapping color names to numbers (0-255)
+#
 sub get_color_mapping {
 	my $map = {};
 
@@ -132,6 +216,12 @@ sub get_color_mapping {
 	return $map;
 }
 
+#
+# term_ansicolor()
+#
+# Displays all 256 colors using Term::ANSIColor constant names.
+# Formats output in a grid with optional ANSI number display.
+#
 sub term_ansicolor {
 	my @colors = get_color_names();
 	my $map    = get_color_mapping();
@@ -175,6 +265,15 @@ sub term_ansicolor {
 	}
 }
 
+#
+# get_color_names()
+#
+# Generates all 256 Term::ANSIColor constant names.
+# Includes ANSI (0-15), RGB (216 colors), and greyscale (24 colors).
+#
+# Returns:
+#   Array of color constant names
+#
 sub get_color_names {
 	my @colors    = ();
 	my ($r,$g,$b) = 0;
@@ -201,10 +300,21 @@ sub get_color_names {
 	return @colors;
 }
 
+#
+# needs_white($color_num)
+#
+# Determines if a background color needs white foreground text for readability.
+#
+# Parameters:
+#   $color_num - Color number (0-255)
+#
+# Returns:
+#   1 if white foreground needed, 0 if black foreground needed
+#
 sub needs_white {
 	my $num = shift();
 
-	# Sorta lame, but it's a hard coded list of which background colors need a white foreground
+	# Hard-coded list of dark background colors that need white foreground
 	my @white = qw(0 1 4 5 8 232 233 234 235 236 237 238 239 240 241 242 243 16 17 18
 	19 20 21 22 28 52 53 54 55 25 56 57 58 59 60 88 89 90 91 92 93 124 125 29 30 31 26
 	27 61 62 64 160 196 161 126 63 94 95 100 101 127 128 129 12 130 131 23 24);
@@ -216,6 +326,12 @@ sub needs_white {
 	}
 }
 
+#
+# show_true_color_matrix()
+#
+# Displays a 24-bit true color matrix (16.7 million colors).
+# Shows RGB color combinations in a grid pattern.
+#
 sub show_true_color_matrix {
 	my $step  = 32;
 	my $reset = set_bcolor();
@@ -223,8 +339,7 @@ sub show_true_color_matrix {
 	for (my $r = 0; $r <= 255; $r += $step) {
 		for (my $g = 0; $g <= 255; $g += $step) {
 			for (my $b = 0; $b <= 255; $b += $step) {
-				#if (!defined($c)) { $ret = "\e[0m"; } # Reset the color
-				#else { $ret = "\e[38;5;${c}m"; }
+				# Use 24-bit color escape sequence
 				my $color = "\e[48;2;$r;$g;${b}m";
 
 				print $color . "  ";

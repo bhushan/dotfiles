@@ -1,67 +1,86 @@
 #!/bin/sh
 
-# if not currently in tmux
-if [ -z "$TMUX" ]; then
-  # tmux is not active
-  echo "is not tmux"
-  # save fzf to variables
-  ZOXIDE_RESULT=$(zoxide query -l | fzf --reverse)
+#
+# t - tmux session manager with zoxide integration
+#
+# Description:
+#   Interactive tmux session switcher that uses zoxide for directory navigation
+#   and fzf for fuzzy finding. Creates new sessions or switches to existing ones
+#   based on directory selection.
+#
+# Usage:
+#   t [directory]
+#
+# Dependencies:
+#   - tmux: Terminal multiplexer
+#   - zoxide: Smarter cd command with frecency-based directory tracking
+#   - fzf: Fuzzy finder for directory selection
+#
+# Behavior:
+#   - When not in tmux: Creates new session and attaches to it
+#   - When in tmux: Creates session in detached mode and switches to it
+#   - Session names are based on the directory basename
+#   - Automatically changes to selected directory before creating session
+#
 
-  # if empty exit
+# Check if not currently in tmux
+if [ -z "$TMUX" ]; then
+  # Not in tmux - will create and attach to new session
+
+  # Use zoxide and fzf to select directory
+  ZOXIDE_RESULT=$(zoxide query -l | fzf --reverse --height 40% --border)
+
+  # Exit if user cancelled selection
   if [ -z "$ZOXIDE_RESULT" ]; then
     exit 0
   fi
 
-  FOLDER=$(basename $ZOXIDE_RESULT)
+  # Extract folder name for session naming
+  FOLDER=$(basename "$ZOXIDE_RESULT")
 
-  # lookup tmux session name
-  SESSION=$(tmux list-sessions | grep $FOLDER | awk '{print $1}')
+  # Sanitize session name (tmux doesn't allow certain characters)
+  FOLDER=$(echo "$FOLDER" | tr '.' '_')
+
+  # Check if session already exists
+  SESSION=$(tmux list-sessions 2>/dev/null | grep "^$FOLDER:" | awk '{print $1}')
   SESSION=${SESSION//:/}
-  echo $SESSION
-  
+
   if [ -z "$SESSION" ]; then
-    # session does not exist
-    echo "session does not exist"
-    # jump to directory
-    cd $ZOXIDE_RESULT
-    # create session
-    tmux new-session -s $FOLDER
+    # Session does not exist - create new one
+    cd "$ZOXIDE_RESULT" || exit 1
+    tmux new-session -s "$FOLDER"
   else
-    # session exists
-    echo "session exists"
-    # attach to session
-    tmux attach -t $SESSION
+    # Session exists - attach to it
+    tmux attach -t "$SESSION"
   fi
 else
-  # tmux is active
-  echo "is tmux"
-  # save fzf to variables
-  ZOXIDE_RESULT=$(zoxide query -l | fzf --reverse)
+  # Already in tmux - will create detached session and switch to it
 
-  # if no result exit
+  # Use zoxide and fzf to select directory
+  ZOXIDE_RESULT=$(zoxide query -l | fzf --reverse --height 40% --border)
+
+  # Exit if user cancelled selection
   if [ -z "$ZOXIDE_RESULT" ]; then
     exit 0
   fi
 
-  FOLDER=$(basename $ZOXIDE_RESULT)
-  # lookup tmux session name
-  SESSION=$(tmux list-sessions | grep $FOLDER | awk '{print $1}')
+  # Extract folder name for session naming
+  FOLDER=$(basename "$ZOXIDE_RESULT")
+
+  # Sanitize session name (tmux doesn't allow certain characters)
+  FOLDER=$(echo "$FOLDER" | tr '.' '_')
+
+  # Check if session already exists
+  SESSION=$(tmux list-sessions 2>/dev/null | grep "^$FOLDER:" | awk '{print $1}')
   SESSION=${SESSION//:/}
 
   if [ -z "$SESSION" ]; then
-    # session does not exist
-    echo "session does not exist"
-    # jump to directory
-    cd $ZOXIDE_RESULT
-    # create session
-    tmux new-session -d -s $FOLDER
-    # attach to session
-    tmux switch-client -t $FOLDER
+    # Session does not exist - create detached and switch to it
+    cd "$ZOXIDE_RESULT" || exit 1
+    tmux new-session -d -s "$FOLDER" -c "$ZOXIDE_RESULT"
+    tmux switch-client -t "$FOLDER"
   else
-    # session exists
-    echo "session exists"
-    # attach to session
-    # switch to tmux session
-    tmux switch-client -t $SESSION
+    # Session exists - switch to it
+    tmux switch-client -t "$SESSION"
   fi
 fi
