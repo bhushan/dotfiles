@@ -10,6 +10,7 @@ worker.log
 .phpactor.json
 .claude
 .junie
+.ai
 
 # custom format set by me for c and cpp binary outputs using runner.lua
 *.o
