@@ -62,7 +62,7 @@ cask 'discord'
 # GUI Applications - Development
 cask 'kitty'
 cask 'claude-code'
-cask 'docker'
+cask 'docker-desktop'
 cask 'tableplus'
 cask 'visual-studio-code'
 cask 'webstorm'
