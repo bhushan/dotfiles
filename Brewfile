@@ -1,54 +1,81 @@
-# Taps
-# tap 'homebrew/cask'
-# tap 'homebrew/bundle'
-
-# Fuzzy search
-brew 'fzf'
-brew 'ripgrep'
-brew 'fd'
-brew 'zoxide'
-
-# Git
+# Core Development Tools
+brew 'neovim'
+brew 'tmux'
 brew 'git'
 brew 'gh'
 brew 'lazygit'
 
-# File formatters
+# Shell & Terminal Enhancements
+brew 'zsh-syntax-highlighting'
+brew 'zsh-autosuggestions'
+brew 'starship'
+
+# Modern CLI Tools
+brew 'fzf'
+brew 'ripgrep'
+brew 'fd'
+brew 'zoxide'
+brew 'bat'
+brew 'eza'
+brew 'delta'
+brew 'jq'
+brew 'yq'
+
+# File Formatters & Linters
 brew 'shfmt'
 brew 'stylua'
+brew 'prettier'
 
-# utils
+# System Utilities
 brew 'curl'
 brew 'wget'
 brew 'htop'
+brew 'btop'
+brew 'tldr'
+brew 'tree'
 
+# Programming Languages & Runtimes
 brew 'python'
-brew 'tmux'
-brew 'neovim'
-brew 'zsh-syntax-highlighting'
-
 brew 'nvm'
-brew 'nginx'
 brew 'php'
-brew 'mysql'
-brew 'java'
-brew 'sqlite'
 brew 'composer'
+brew 'java'
+
+# Databases
+brew 'mysql'
+brew 'sqlite'
+
+# Web Services
+brew 'nginx'
 brew 'dnsmasq'
+
+# Performance & Testing
 brew 'k6'
 
-# Cask
+# GUI Applications - Productivity
+cask 'alfred'
+cask 'maccy'
+cask 'hammerspoon'
 cask 'slack'
 cask 'discord'
-cask 'tableplus'
-cask 'docker'
-cask 'maccy'
-cask 'alfred'
-cask 'hammerspoon'
+
+# GUI Applications - Development
 cask 'kitty'
-cask 'brave-browser'
-cask 'spotify'
+cask 'claude-code'
+cask 'docker'
+cask 'tableplus'
 cask 'visual-studio-code'
 cask 'webstorm'
 cask 'phpstorm'
+
+# GUI Applications - Browsers
+cask 'arc'
+
+# GUI Applications - Media & Entertainment
+cask 'spotify'
 cask 'obs'
+
+# Mac App Store Applications (optional)
+# mas 'Keynote', id: 409183694
+# mas 'Numbers', id: 409203825
+# mas 'Pages', id: 409201541
