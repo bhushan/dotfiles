@@ -20,7 +20,7 @@ This runs the `install` script which:
 
 ### Brewfile Installation
 ```bash
-brew bundle --no-lock
+brew bundle
 ```
 
 Installs all dependencies defined in `Brewfile`, including:
@@ -78,15 +78,23 @@ The central configuration file that defines:
 - Shell commands to run during installation
 - Directory creation tasks
 
-Key symlinks created:
+Symlinks created:
 - `nvim/` → `~/.config/nvim`
 - `karabiner/` → `~/.config/karabiner`
 - `kitty/` → `~/.config/kitty`
 - `hammerspoon/` → `~/.hammerspoon`
+- `tmux/tmux.conf` → `~/.tmux.conf`
 - `aliases` → `~/.aliases`
+- `vimrc` → `~/.vimrc`
+- `ideavimrc` → `~/.ideavimrc`
 - `gitconfig` → `~/.gitconfig`
-- `vscode/` files → VSCode user settings
+- `global_gitignore` → `~/.global_gitignore`
+- `vscode/keybindings.json` → `~/Library/Application Support/Code/User/keybindings.json`
+- `vscode/settings.json` → `~/Library/Application Support/Code/User/settings.json`
+- `lazygit/config.yml` → `~/Library/Application Support/lazygit/config.yml`
 - `zsh/zshrc` → `~/.zshrc`
+- `zsh/zprofile` → `~/.zprofile`
+- `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
 
 ### Neovim Configuration (`nvim/`)
 Uses lazy.nvim plugin manager with modular structure:
