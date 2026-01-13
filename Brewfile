@@ -67,6 +67,7 @@ cask 'tableplus'
 cask 'visual-studio-code'
 cask 'webstorm'
 cask 'phpstorm'
+cask 'postman'
 
 # GUI Applications - Browsers
 cask 'arc'
