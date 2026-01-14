@@ -1,21 +1,24 @@
+# GitHub Dimmed theme (see colors/github-dimmed.md)
 gui:
   theme:
     activeBorderColor:
-      - green
+      - '#539bf5' # blue
       - bold
     inactiveBorderColor:
-      - white
+      - '#444c56' # border
     optionsTextColor:
-      - blue
+      - '#539bf5' # blue
     selectedLineBgColor:
-      - default # set to `default` to have no background colour
+      - '#2d333b' # bg_highlight
     selectedRangeBgColor:
-      - blue
+      - '#444c56' # bg_visual
     cherryPickedCommitBgColor:
-      - cyan
+      - '#76e3ea' # cyan
     cherryPickedCommitFgColor:
-      - blue
+      - '#22272e' # bg
     unstagedChangesColor:
-      - red
+      - '#f47067' # red
     defaultFgColor:
-      - default
+      - '#adbac7' # fg
+    searchingActiveBorderColor:
+      - '#c69026' # yellow

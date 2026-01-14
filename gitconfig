@@ -21,3 +21,27 @@ defaultBranch = main
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+# GitHub Dimmed theme for delta (see colors/github-dimmed.md)
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = false
+	line-numbers = true
+	syntax-theme = GitHub
+	minus-style = syntax "#3d2b2b"
+	minus-emph-style = syntax "#5d3030"
+	plus-style = syntax "#2b3d32"
+	plus-emph-style = syntax "#305d35"
+	line-numbers-minus-style = "#f47067"
+	line-numbers-plus-style = "#57ab5a"
+	line-numbers-zero-style = "#768390"
+	hunk-header-style = syntax bold
+	hunk-header-decoration-style = "#444c56" box
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default

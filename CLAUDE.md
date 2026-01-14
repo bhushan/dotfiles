@@ -211,6 +211,32 @@ git submodule update --remote dotbot
 - Custom zsh theme at `zsh/themes/custom.zsh-theme`
 - Git global ignore list at `global_gitignore`
 
+## Theme: GitHub Dimmed
+
+All tools use a unified **GitHub Dimmed** color scheme. The central color reference is at `colors/github-dimmed.md`.
+
+### Configured Applications
+
+| Application | Config File                          | Theme Plugin/Config         |
+| ----------- | ------------------------------------ | --------------------------- |
+| Kitty       | `kitty/current-theme.conf`           | Custom colors               |
+| tmux        | `tmux/tmux.conf`                     | Custom status line colors   |
+| Neovim      | `nvim/lua/plugins/ui/theme.lua`      | `github-nvim-theme`         |
+| Lualine     | `nvim/lua/plugins/ui/lualine.lua`    | Custom theme with colors    |
+| lazygit     | `lazygit/config.yml`                 | Custom GUI theme            |
+| delta       | `gitconfig`                          | GitHub syntax theme + colors|
+
+### Key Colors
+
+- **Background**: `#22272e`
+- **Foreground**: `#adbac7`
+- **Blue (accent)**: `#539bf5`
+- **Green (success)**: `#57ab5a`
+- **Red (error)**: `#f47067`
+- **Purple (keywords)**: `#b083f0`
+
+See `colors/github-dimmed.md` for the complete palette.
+
 ## Modern CLI Tools
 
 The Brewfile includes modern replacements for traditional Unix tools:
