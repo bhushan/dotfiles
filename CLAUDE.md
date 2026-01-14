@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Code Style
 
-- Always keep Claude.md file updated
+- Always update CLAUDE.md after each change to the dotfiles (new tools, config changes, etc.)
 
 ## Overview
 
@@ -38,8 +38,8 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Formatters**: shfmt, stylua, prettier
 - **System utilities**: htop, btop, tldr, tree
 - **Language runtimes**: php, python, node (via nvm), java, composer
-- **Databases**: mysql, sqlite
-- **Cloud tools**: awscli
+- **Databases**: mysql, postgresql, sqlite
+- **Cloud tools**: awscli, session-manager-plugin
 - **GUI applications**: kitty, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
 - **Media**: spotify, obs

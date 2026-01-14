@@ -43,6 +43,7 @@ brew 'composer'
 
 # Databases
 brew 'mysql'
+brew 'postgresql@17'
 brew 'sqlite'
 
 # Web Services
