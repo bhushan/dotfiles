@@ -13,3 +13,9 @@ git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+
+# Brewfile as single source of truth (like Terraform)
+# Install packages in Brewfile and remove those not listed
+echo "Syncing Homebrew packages with Brewfile..."
+brew bundle --file="${BASEDIR}/Brewfile"
+brew bundle cleanup --force --file="${BASEDIR}/Brewfile"

@@ -23,6 +23,7 @@ This runs the `install` script which:
 - Executes Dotbot with `install.conf.yaml` as the configuration
 - Updates git submodules (Dotbot itself is a submodule)
 - Creates symlinks from this repo to home directory locations
+- Syncs Homebrew packages with Brewfile (Terraform-style: installs new packages AND removes unlisted ones)
 
 ### Brewfile Installation
 
