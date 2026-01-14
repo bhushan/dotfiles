@@ -37,7 +37,7 @@ brew 'tree'
 # Programming Languages & Runtimes
 brew 'python'
 brew 'nvm'
-brew 'php'
+brew 'php@8.3'
 brew 'composer'
 brew 'java'
 
