@@ -2,13 +2,13 @@
 brew 'neovim'
 brew 'tmux'
 brew 'git'
-brew 'gh'
+# brew 'gh'
 brew 'lazygit'
 
 # Shell & Terminal Enhancements
 brew 'zsh-syntax-highlighting'
 brew 'zsh-autosuggestions'
-brew 'starship'
+# brew 'starship'
 
 # Modern CLI Tools
 brew 'fzf'
@@ -39,7 +39,7 @@ brew 'python'
 brew 'nvm'
 brew 'php@8.3'
 brew 'composer'
-brew 'java'
+# brew 'java'
 
 # Databases
 brew 'mysql'
@@ -51,9 +51,10 @@ brew 'dnsmasq'
 
 # Cloud Tools
 brew 'awscli'
+cask 'session-manager-plugin'
 
 # Performance & Testing
-brew 'k6'
+# brew 'k6'
 
 # GUI Applications - Productivity
 cask 'alfred'
@@ -61,15 +62,15 @@ cask 'maccy'
 cask 'clocker'
 cask 'hammerspoon'
 cask 'slack'
-cask 'discord'
+# cask 'discord'
 
 # GUI Applications - Development
 cask 'kitty'
 cask 'claude-code'
 cask 'docker-desktop'
 cask 'tableplus'
-cask 'visual-studio-code'
-cask 'webstorm'
+# cask 'visual-studio-code'
+# cask 'webstorm'
 cask 'phpstorm'
 cask 'postman'
 
