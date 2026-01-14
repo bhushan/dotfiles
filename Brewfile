@@ -58,6 +58,7 @@ brew 'k6'
 # GUI Applications - Productivity
 cask 'alfred'
 cask 'maccy'
+cask 'clocker'
 cask 'hammerspoon'
 cask 'slack'
 cask 'discord'
