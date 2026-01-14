@@ -42,9 +42,10 @@ brew 'composer'
 # brew 'java'
 
 # Databases
-brew 'mysql'
-brew 'postgresql@17'
-brew 'sqlite'
+# brew 'mysql'
+# brew 'postgresql@17'
+# brew 'sqlite'
+cask 'dbngin'
 
 # Web Services
 brew 'nginx'

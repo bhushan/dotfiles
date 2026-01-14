@@ -38,7 +38,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Formatters**: shfmt, stylua, prettier
 - **System utilities**: htop, btop, tldr, tree
 - **Language runtimes**: php, python, node (via nvm), java, composer
-- **Databases**: mysql, postgresql, sqlite
+- **Databases**: DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, session-manager-plugin
 - **GUI applications**: kitty, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
