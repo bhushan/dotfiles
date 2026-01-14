@@ -49,6 +49,9 @@ brew 'sqlite'
 brew 'nginx'
 brew 'dnsmasq'
 
+# Cloud Tools
+brew 'awscli'
+
 # Performance & Testing
 brew 'k6'
 
