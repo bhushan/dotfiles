@@ -48,8 +48,8 @@ brew 'composer'
 cask 'dbngin'
 
 # Web Services
-# brew 'nginx'
-# brew 'dnsmasq'
+brew 'nginx'
+brew 'dnsmasq'
 
 # Cloud Tools
 brew 'awscli'
