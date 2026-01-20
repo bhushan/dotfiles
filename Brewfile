@@ -15,27 +15,27 @@ brew 'fzf'
 brew 'ripgrep'
 brew 'fd'
 brew 'zoxide'
-brew 'bat'
-brew 'eza'
-brew 'delta'
-brew 'jq'
-brew 'yq'
+# brew 'bat'
+# brew 'eza'
+# brew 'delta'
+# brew 'jq'
+# brew 'yq'
 
 # File Formatters & Linters
-brew 'shfmt'
-brew 'stylua'
-brew 'prettier'
+# brew 'shfmt'
+# brew 'stylua'
+# brew 'prettier'
 
 # System Utilities
-brew 'curl'
-brew 'wget'
-brew 'htop'
-brew 'btop'
-brew 'tldr'
-brew 'tree'
+# brew 'curl'
+# brew 'wget'
+# brew 'htop'
+# brew 'btop'
+# brew 'tldr'
+# brew 'tree'
 
 # Programming Languages & Runtimes
-brew 'python'
+# brew 'python'
 brew 'nvm'
 brew 'php@8.3'
 brew 'composer'
@@ -48,8 +48,8 @@ brew 'composer'
 cask 'dbngin'
 
 # Web Services
-brew 'nginx'
-brew 'dnsmasq'
+# brew 'nginx'
+# brew 'dnsmasq'
 
 # Cloud Tools
 brew 'awscli'
