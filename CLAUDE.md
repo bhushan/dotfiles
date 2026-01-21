@@ -38,7 +38,8 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Modern CLI tools**: fzf, ripgrep, fd, zoxide, bat, eza, delta, jq, yq
 - **Formatters**: shfmt, stylua, prettier
 - **System utilities**: htop, btop, tldr, tree
-- **Language runtimes**: php, python, node (via nvm), java, composer
+- **Language runtimes**: php@8.4, node (via nvm), composer
+- **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, session-manager-plugin
 - **GUI applications**: kitty, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
@@ -50,6 +51,27 @@ Installs all dependencies defined in `Brewfile`, including:
 - oh-my-zsh is automatically installed if not present
 - TPM (Tmux Plugin Manager) is auto-installed
 - Laravel Valet is configured and trusts `~/code` directory
+
+### PHP Extensions (Redis & Swoole)
+
+After installing Homebrew packages, install PHP extensions via PECL:
+
+```bash
+# Install Redis extension
+pecl install redis
+
+# Install Swoole with sockets, openssl, and curl support (for Laravel Octane)
+# Answer: yes, yes, no, yes, no, no, no, no, no, no, no, no, no
+printf 'yes\nyes\nno\nyes\nno\nno\nno\nno\nno\nno\nno\nno\nno\n' | pecl install swoole
+```
+
+Verify extensions are installed:
+
+```bash
+php -m | grep -E "(redis|swoole)"
+```
+
+**Note**: PHP extensions need to be reinstalled after PHP version upgrades via Homebrew.
 
 ### Keeping Software Updated
 

@@ -39,6 +39,10 @@ brew 'zoxide'
 brew 'nvm'
 brew 'php@8.4'
 brew 'composer'
+brew 'pkg-config'         # Required for building PHP extensions
+brew 'openssl'            # Required for Swoole SSL support
+brew 'brotli'             # Required for Swoole brotli compression
+brew 'pcre2'              # Required for Swoole compilation
 # brew 'java'
 
 # Databases
