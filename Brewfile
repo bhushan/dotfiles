@@ -37,7 +37,7 @@ brew 'zoxide'
 # Programming Languages & Runtimes
 # brew 'python'
 brew 'nvm'
-brew 'php@8.3'
+brew 'php@8.4'
 brew 'composer'
 # brew 'java'
 
