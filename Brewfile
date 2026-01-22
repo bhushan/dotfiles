@@ -2,7 +2,7 @@
 brew 'neovim'
 brew 'tmux'
 brew 'git'
-# brew 'gh'
+brew 'gh'
 brew 'lazygit'
 
 # Shell & Terminal Enhancements
