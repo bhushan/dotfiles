@@ -22,7 +22,7 @@ defaultBranch = main
 	process = git-lfs filter-process
 	required = true
 
-# GitHub Dimmed theme for delta (see colors/github-dimmed.md)
+# Catppuccin Mocha theme for delta (see colors/catppuccin-mocha.md)
 [core]
 	pager = delta
 [interactive]
@@ -31,16 +31,16 @@ defaultBranch = main
 	navigate = true
 	side-by-side = false
 	line-numbers = true
-	syntax-theme = GitHub
-	minus-style = syntax "#3d2b2b"
-	minus-emph-style = syntax "#5d3030"
-	plus-style = syntax "#2b3d32"
-	plus-emph-style = syntax "#305d35"
-	line-numbers-minus-style = "#f47067"
-	line-numbers-plus-style = "#57ab5a"
-	line-numbers-zero-style = "#768390"
+	syntax-theme = Catppuccin Mocha
+	minus-style = syntax "#3e2a2e"
+	minus-emph-style = syntax "#5e3a3e"
+	plus-style = syntax "#1e3a2f"
+	plus-emph-style = syntax "#2e5a3f"
+	line-numbers-minus-style = "#f38ba8"
+	line-numbers-plus-style = "#a6e3a1"
+	line-numbers-zero-style = "#6c7086"
 	hunk-header-style = syntax bold
-	hunk-header-decoration-style = "#444c56" box
+	hunk-header-decoration-style = "#45475a" box
 [merge]
 	conflictstyle = diff3
 [diff]

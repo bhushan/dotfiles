@@ -1,24 +1,24 @@
-# GitHub Dimmed theme (see colors/github-dimmed.md)
+# Catppuccin Mocha theme (see colors/catppuccin-mocha.md)
 gui:
   theme:
     activeBorderColor:
-      - '#539bf5' # blue
+      - '#cba6f7' # mauve
       - bold
     inactiveBorderColor:
-      - '#444c56' # border
+      - '#45475a' # surface1
     optionsTextColor:
-      - '#539bf5' # blue
+      - '#89b4fa' # blue
     selectedLineBgColor:
-      - '#2d333b' # bg_highlight
+      - '#313244' # surface0
     selectedRangeBgColor:
-      - '#444c56' # bg_visual
+      - '#45475a' # surface1
     cherryPickedCommitBgColor:
-      - '#76e3ea' # cyan
+      - '#94e2d5' # teal
     cherryPickedCommitFgColor:
-      - '#22272e' # bg
+      - '#1e1e2e' # base
     unstagedChangesColor:
-      - '#f47067' # red
+      - '#f38ba8' # red
     defaultFgColor:
-      - '#adbac7' # fg
+      - '#cdd6f4' # text
     searchingActiveBorderColor:
-      - '#c69026' # yellow
+      - '#f9e2af' # yellow

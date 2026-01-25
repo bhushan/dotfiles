@@ -234,9 +234,9 @@ git submodule update --remote dotbot
 - Custom zsh theme at `zsh/themes/custom.zsh-theme`
 - Git global ignore list at `global_gitignore`
 
-## Theme: GitHub Dimmed
+## Theme: Catppuccin Mocha
 
-All tools use a unified **GitHub Dimmed** color scheme. The central color reference is at `colors/github-dimmed.md`.
+All tools use a unified **Catppuccin Mocha** color scheme. The central color reference is at `colors/catppuccin-mocha.md`.
 
 ### Configured Applications
 
@@ -244,21 +244,21 @@ All tools use a unified **GitHub Dimmed** color scheme. The central color refere
 | ----------- | ------------------------------------ | --------------------------- |
 | Kitty       | `kitty/current-theme.conf`           | Custom colors               |
 | tmux        | `tmux/tmux.conf`                     | Custom status line colors   |
-| Neovim      | `nvim/lua/plugins/ui/theme.lua`      | `github-nvim-theme`         |
+| Neovim      | `nvim/lua/plugins/ui/theme.lua`      | `catppuccin/nvim`           |
 | Lualine     | `nvim/lua/plugins/ui/lualine.lua`    | Custom theme with colors    |
 | lazygit     | `lazygit/config.yml`                 | Custom GUI theme            |
-| delta       | `gitconfig`                          | GitHub syntax theme + colors|
+| delta       | `gitconfig`                          | Catppuccin syntax theme     |
 
 ### Key Colors
 
-- **Background**: `#22272e`
-- **Foreground**: `#adbac7`
-- **Blue (accent)**: `#539bf5`
-- **Green (success)**: `#57ab5a`
-- **Red (error)**: `#f47067`
-- **Purple (keywords)**: `#b083f0`
+- **Background**: `#1e1e2e`
+- **Foreground**: `#cdd6f4`
+- **Blue (accent)**: `#89b4fa`
+- **Green (success)**: `#a6e3a1`
+- **Red (error)**: `#f38ba8`
+- **Mauve (keywords)**: `#cba6f7`
 
-See `colors/github-dimmed.md` for the complete palette.
+See `colors/catppuccin-mocha.md` for the complete palette.
 
 ## Modern CLI Tools
 
