@@ -68,9 +68,12 @@ This is the central color reference for all theme configurations in this dotfile
 ## Configurations Using This Palette
 
 - `kitty/current-theme.conf` - Terminal emulator
-- `tmux/tmux.conf` - Terminal multiplexer status line
-- `nvim/lua/plugins/ui/theme.lua` - Neovim colorscheme
-- `nvim/lua/plugins/ui/lualine.lua` - Neovim status line
-- `nvim/lua/plugins/ui/snacks.lua` - Snacks.nvim highlights
+- `tmux/tmux.conf` - Terminal multiplexer status line (uses variables)
+- `nvim/lua/core/colors.lua` - **Shared Neovim color module** (source of truth for all Neovim plugins)
+- `nvim/lua/plugins/ui/theme.lua` - Neovim colorscheme (`catppuccin/nvim`)
+- `nvim/lua/plugins/ui/lualine.lua` - Neovim status line (uses `core.colors`)
+- `nvim/lua/plugins/ui/snacks.lua` - Snacks.nvim highlights (uses `core.colors`)
+- `vscode/settings.json` - VSCode editor (Catppuccin Mocha theme)
+- `vscode/hide-top-bar.css` - VSCode title bar (base color)
 - `lazygit/config.yml` - Lazygit GUI
 - `gitconfig` - Delta diff viewer

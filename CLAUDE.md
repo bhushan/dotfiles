@@ -146,6 +146,7 @@ Uses lazy.nvim plugin manager with modular structure:
 - `options.lua` - Editor settings (tabs, line numbers, search, etc.)
 - `keymaps.lua` - Global key bindings
 - `autocmds.lua` - Autocommands (file type settings, highlights, etc.)
+- `colors.lua` - Catppuccin Mocha color palette (shared by all UI plugins)
 
 **Plugin organization** (`nvim/lua/plugins/`):
 
@@ -240,14 +241,16 @@ All tools use a unified **Catppuccin Mocha** color scheme. The central color ref
 
 ### Configured Applications
 
-| Application | Config File                          | Theme Plugin/Config         |
-| ----------- | ------------------------------------ | --------------------------- |
-| Kitty       | `kitty/current-theme.conf`           | Custom colors               |
-| tmux        | `tmux/tmux.conf`                     | Custom status line colors   |
-| Neovim      | `nvim/lua/plugins/ui/theme.lua`      | `catppuccin/nvim`           |
-| Lualine     | `nvim/lua/plugins/ui/lualine.lua`    | Custom theme with colors    |
-| lazygit     | `lazygit/config.yml`                 | Custom GUI theme            |
-| delta       | `gitconfig`                          | Catppuccin syntax theme     |
+| Application | Config File                          | Theme Plugin/Config                   |
+| ----------- | ------------------------------------ | ------------------------------------- |
+| Kitty       | `kitty/current-theme.conf`           | Custom colors                         |
+| tmux        | `tmux/tmux.conf`                     | Custom status line colors (variables) |
+| Neovim      | `nvim/lua/plugins/ui/theme.lua`      | `catppuccin/nvim` with integrations   |
+| Lualine     | `nvim/lua/plugins/ui/lualine.lua`    | Uses `core/colors.lua` shared palette |
+| Snacks      | `nvim/lua/plugins/ui/snacks.lua`     | Uses `core/colors.lua` shared palette |
+| VSCode      | `vscode/settings.json`               | Catppuccin Mocha theme                |
+| lazygit     | `lazygit/config.yml`                 | Custom GUI theme                      |
+| delta       | `gitconfig`                          | Catppuccin syntax theme               |
 
 ### Key Colors
 

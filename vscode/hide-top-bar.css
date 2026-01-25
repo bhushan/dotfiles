@@ -1,5 +1,6 @@
+/* Catppuccin Mocha base color - see colors/catppuccin-mocha.md */
 div#workbench\.parts\.titlebar {
-  background-color: #272a36 !important;
+  background-color: #1e1e2e !important;
 }
 
 .title.show-file-icons,

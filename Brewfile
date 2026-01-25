@@ -23,7 +23,7 @@ brew 'git-delta'
 
 # File Formatters & Linters
 # brew 'shfmt'
-# brew 'stylua'
+brew 'stylua'
 # brew 'prettier'
 
 # System Utilities
