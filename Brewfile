@@ -68,6 +68,7 @@ cask 'maccy'
 cask 'clocker'
 cask 'hammerspoon'
 cask 'slack'
+cask 'stats'
 # cask 'discord'
 
 # GUI Applications - Development
