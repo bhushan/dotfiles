@@ -17,7 +17,7 @@ brew 'fd'
 brew 'zoxide'
 # brew 'bat'
 # brew 'eza'
-# brew 'delta'
+brew 'git-delta'
 # brew 'jq'
 # brew 'yq'
 
