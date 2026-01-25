@@ -8,9 +8,8 @@ vendor
 .ccls-cache
 worker.log
 .phpactor.json
-.claude
-.junie
-.ai
+.claude/settings.local.json
+.junie/mcp/mcp.json
 
 # custom format set by me for c and cpp binary outputs using runner.lua
 *.o
