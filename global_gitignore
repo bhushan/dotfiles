@@ -9,6 +9,7 @@ vendor
 worker.log
 .phpactor.json
 .claude/settings.local.json
+.gemini/settings.json
 .junie/mcp/mcp.json
 .ai/mcp/mcp.json
 
