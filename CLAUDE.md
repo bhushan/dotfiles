@@ -170,7 +170,8 @@ Uses lazy.nvim plugin manager with modular structure:
 - Completion via nvim-cmp with multiple sources
 - Formatting via conform.nvim (Pint for PHP, Stylua for Lua, Prettier for JS/TS)
 - Treesitter for syntax highlighting
-- Snacks.nvim for terminal, notifications, dashboard
+- Snacks.nvim for terminal, notifications, dashboard, and vim.ui.select integration
+- PHP refactoring via phprefactoring.nvim (`<C-e>` in PHP files)
 - Custom coderunner.nvim for executing code (`<leader>x`)
 
 ### Hammerspoon Configuration (`hammerspoon/`)
