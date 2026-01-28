@@ -10,6 +10,7 @@ worker.log
 .phpactor.json
 .claude/settings.local.json
 .junie/mcp/mcp.json
+.ai/mcp/mcp.json
 
 # custom format set by me for c and cpp binary outputs using runner.lua
 *.o
