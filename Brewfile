@@ -73,6 +73,7 @@ cask 'stats'
 
 # GUI Applications - Development
 cask 'kitty'
+brew 'gemini-cli'
 cask 'claude-code'
 cask 'docker-desktop'
 cask 'tableplus'
