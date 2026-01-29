@@ -251,7 +251,7 @@ All tools use a unified **Catppuccin Mocha** color scheme. The central color ref
 | Snacks      | `nvim/lua/plugins/ui/snacks.lua`     | Uses `core/colors.lua` shared palette |
 | VSCode      | `vscode/settings.json`               | Catppuccin Mocha theme                |
 | lazygit     | `lazygit/config.yml`                 | Custom GUI theme                      |
-| delta       | `gitconfig`                          | Catppuccin syntax theme               |
+| delta       | `gitconfig`                          | Nord syntax theme                     |
 
 ### Key Colors
 

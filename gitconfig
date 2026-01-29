@@ -22,7 +22,7 @@ defaultBranch = main
 	process = git-lfs filter-process
 	required = true
 
-# Catppuccin Mocha theme for delta (see colors/catppuccin-mocha.md)
+# Delta configuration (Nord syntax theme, Catppuccin-inspired diff colors)
 [core]
 	pager = delta
 [interactive]
@@ -31,7 +31,7 @@ defaultBranch = main
 	navigate = true
 	side-by-side = false
 	line-numbers = true
-	syntax-theme = Catppuccin Mocha
+	syntax-theme = Nord
 	minus-style = syntax "#3e2a2e"
 	minus-emph-style = syntax "#5e3a3e"
 	plus-style = syntax "#1e3a2f"
