@@ -1,5 +1,7 @@
 # Core Development Tools
 brew 'neovim'
+brew 'tree-sitter'
+brew 'tree-sitter-cli'
 brew 'tmux'
 brew 'git'
 brew 'gh'
