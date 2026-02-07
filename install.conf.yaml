@@ -27,7 +27,7 @@
     - description: Validating sudo credentials
       command: "sudo --validate"
     - description: Install Valet
-      command: '[ -x "$(command -v valet)" ] || (composer global require laravel/valet && valet install && valet trust && valet park ~/code)'
+      command: '[ -x "$(command -v valet)" ] || (composer global require laravel/valet && ~/.composer/vendor/bin/valet install && ~/.composer/vendor/bin/valet trust && ~/.composer/vendor/bin/valet park ~/code)'
     - description: Clear sudo credential cache
       command: "sudo --reset-timestamp"
 
