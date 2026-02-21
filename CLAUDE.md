@@ -41,7 +41,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Language runtimes**: php@8.4, node (via nvm), composer
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: DBngin (manages mysql, postgresql, redis)
-- **Cloud tools**: awscli, session-manager-plugin
+- **Cloud tools**: awscli, terraform, session-manager-plugin
 - **GUI applications**: kitty, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
 - **Media**: spotify, obs
