@@ -1,7 +1,4 @@
 {
-  "enabledPlugins": {
-    "claude-mem@thedotmack": true
-  },
   "hooks": {
     "PreToolUse": [
       {
@@ -23,5 +20,11 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "claude-mem@thedotmack": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "frontend-design@claude-code-plugins": true,
+    "laravel-boost@claude-plugins-official": true
   }
 }
