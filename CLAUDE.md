@@ -135,6 +135,22 @@ Symlinks created:
 - `zsh/zshrc` → `~/.zshrc`
 - `zsh/zprofile` → `~/.zprofile`
 - `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
+- `claude/settings.json` → `~/.claude/settings.json`
+- `claude/hooks` → `~/.claude/hooks`
+
+### Claude Code Configuration (`claude/`)
+
+Global Claude Code settings and hooks managed via Dotbot symlinks.
+
+**Hooks** (`claude/hooks/`):
+
+- `prevent-push-protected-branches.sh` - Blocks `git push` to `develop` and `release` branches (use PRs instead)
+- `prevent-read-env.sh` - Blocks reading `.env` files to protect secrets and credentials
+
+**Settings** (`claude/settings.json`):
+
+- Registers PreToolUse hooks (Bash matcher for push protection, Read matcher for .env protection)
+- Manages enabled plugins
 
 ### Neovim Configuration (`nvim/`)
 
