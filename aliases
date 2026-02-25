@@ -21,6 +21,12 @@ alias fetch="git fetch origin "
 alias wpush="git add . && git commit -m 'WIP' && git push"
 alias nah="git reset --hard && git clean -df"
 
+# Git Worktree
+alias gwl="git worktree list"
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
+alias gwp="git worktree prune"
+
 # PHP
 alias dump="composer dump-autoload -o"
 alias ci="composer install"
