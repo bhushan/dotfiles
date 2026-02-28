@@ -19,3 +19,13 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 echo "Syncing Homebrew packages with Brewfile..."
 brew bundle --file="${BASEDIR}/Brewfile"
 brew bundle cleanup --force --file="${BASEDIR}/Brewfile"
+
+# Install Composer via php@8.4 (not brew, to avoid pulling in unversioned php)
+if ! command -v composer &>/dev/null; then
+  echo "Installing Composer via php@8.4..."
+  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  php composer-setup.php
+  php -r "unlink('composer-setup.php');"
+  mv composer.phar /opt/homebrew/bin/composer
+  chmod +x /opt/homebrew/bin/composer
+fi

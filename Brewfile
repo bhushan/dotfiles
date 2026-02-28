@@ -40,7 +40,7 @@ brew 'stylua'
 # brew 'python'
 brew 'nvm'
 brew 'php@8.4'
-brew 'composer'
+# composer installed via php@8.4 directly (not brew, to avoid pulling in unversioned php)
 brew 'pkg-config'         # Required for building PHP extensions
 brew 'openssl'            # Required for Swoole SSL support
 brew 'brotli'             # Required for Swoole brotli compression

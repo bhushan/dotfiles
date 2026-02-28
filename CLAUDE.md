@@ -38,7 +38,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Modern CLI tools**: fzf, ripgrep, fd, zoxide, bat, eza, delta, jq, yq
 - **Formatters**: shfmt, stylua, prettier
 - **System utilities**: htop, btop, tldr, tree
-- **Language runtimes**: php@8.4, node (via nvm), composer
+- **Language runtimes**: php@8.4 (pinned), node (via nvm)
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, terraform, session-manager-plugin
@@ -50,6 +50,7 @@ Installs all dependencies defined in `Brewfile`, including:
 
 - oh-my-zsh is automatically installed if not present
 - TPM (Tmux Plugin Manager) is auto-installed
+- Composer is installed via php@8.4 directly (not brew, to avoid pulling in unversioned php which could upgrade to 8.5+)
 - Laravel Valet is configured and trusts `~/code` directory
 
 ### PHP Extensions (Redis & Swoole)
