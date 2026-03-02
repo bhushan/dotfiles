@@ -23,9 +23,31 @@ alias nah="git reset --hard && git clean -df"
 
 # Git Worktree
 alias gwl="git worktree list"
-alias gwa="git worktree add"
-alias gwr="git worktree remove"
 alias gwp="git worktree prune"
+
+# Bare clone for worktree workflow (usage: gwc git@github.com:org/repo.git [dirname])
+gwc() {
+  local repo_url="$1"
+  local dir_name="${2:-$(basename "$repo_url" .git)}"
+  git clone --bare "$repo_url" "$dir_name" && \
+  cd "$dir_name" && \
+  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && \
+  git fetch origin
+}
+
+# Add worktree with new branch (usage: gwa feature/my-thing [origin/develop])
+gwa() {
+  local branch="$1"
+  local base="${2:-origin/develop}"
+  local folder="${branch//\//-}"
+  git worktree add "./$folder" -b "$branch" "$base"
+}
+
+# Remove worktree by branch name (usage: gwr feature/my-thing)
+gwr() {
+  local folder="${1//\//-}"
+  git worktree remove "./$folder"
+}
 
 # PHP
 alias dump="composer dump-autoload -o"
