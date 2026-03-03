@@ -59,7 +59,7 @@ brew 'dnsmasq'
 
 # Cloud Tools
 brew 'awscli'
-brew 'terraform'
+brew 'tfenv'
 cask 'session-manager-plugin'
 
 # Performance & Testing
