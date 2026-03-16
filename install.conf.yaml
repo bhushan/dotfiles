@@ -51,3 +51,4 @@
     ~/.oh-my-zsh/themes/custom.zsh-theme: zsh/themes/custom.zsh-theme
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/hooks: claude/hooks
+    ~/.claude/commands: claude/commands

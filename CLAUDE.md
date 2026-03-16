@@ -138,20 +138,45 @@ Symlinks created:
 - `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
 - `claude/settings.json` → `~/.claude/settings.json`
 - `claude/hooks` → `~/.claude/hooks`
+- `claude/commands` → `~/.claude/commands`
 
 ### Claude Code Configuration (`claude/`)
 
-Global Claude Code settings and hooks managed via Dotbot symlinks.
+Global Claude Code settings, hooks, and custom commands managed via Dotbot symlinks.
 
 **Hooks** (`claude/hooks/`):
 
-- `prevent-push-protected-branches.sh` - Blocks `git push` to `develop` and `release` branches (use PRs instead)
+- `prevent-push-protected-branches.sh` - Blocks `git push` to `develop`, `main`, and `release` branches (use PRs instead)
+- `prevent-destructive-git.sh` - Blocks `git reset --hard`, `git clean -fd`, `git checkout -- .`, `git push --force`, `git branch -D`
+- `prevent-rm-dangerous.sh` - Blocks `rm -rf` on critical paths (/, ~, node_modules, .git, .ssh, etc.)
 - `prevent-read-env.sh` - Blocks reading `.env` files to protect secrets and credentials
+- `prevent-write-credentials.sh` - Blocks writing to SSH keys, AWS credentials, .env files, kubeconfig, terraform state
+- `prevent-dangerous-sql.sh` - Blocks DROP DATABASE, TRUNCATE TABLE, DELETE without WHERE
+
+**Custom Commands** (`claude/commands/`) - Use with `/` prefix in Claude Code:
+
+| Command | Description |
+|---------|-------------|
+| `/laravel-feature` | Scaffold a complete Laravel feature (model, migration, controller, routes, tests) |
+| `/laravel-api` | Design and implement RESTful API endpoints in Laravel |
+| `/laravel-test` | Write comprehensive Pest tests for Laravel code |
+| `/laravel-migration` | Create database migrations with best practices |
+| `/frontend-design` | Create production-grade frontend interfaces (React, Vue, Tailwind) via plugin |
+| `/terraform-module` | Create Terraform modules with proper structure and security |
+| `/aws-iac` | Design and implement AWS infrastructure (ECS, Lambda, RDS, S3, etc.) |
+| `/docker-service` | Create Docker/Compose configurations with best practices |
+| `/security-audit` | Comprehensive security audit (OWASP, Laravel, frontend, infrastructure) |
+| `/performance-review` | Analyze code for performance issues (N+1, bundle size, caching) |
+| `/refactor` | Systematic code refactoring with SOLID principles |
+| `/debug` | Systematic debugging workflow (reproduce, hypothesize, fix, verify) |
+| `/api-design` | Design RESTful APIs with pagination, filtering, error handling |
+| `/git-worktree` | Set up git worktrees for feature development |
+| `/deploy-checklist` | Pre-deployment verification checklist |
 
 **Settings** (`claude/settings.json`):
 
-- Registers PreToolUse hooks (Bash matcher for push protection, Read matcher for .env protection)
-- Manages enabled plugins
+- Registers PreToolUse hooks (Bash, Read, Write, Edit matchers)
+- Manages enabled plugins (claude-mem, claude-code-setup, frontend-design, laravel-boost, code-review, claude-hud)
 
 ### Neovim Configuration (`nvim/`)
 

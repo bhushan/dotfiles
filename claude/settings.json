@@ -7,6 +7,18 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/prevent-push-protected-branches.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-destructive-git.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-rm-dangerous.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-dangerous-sql.sh"
           }
         ]
       },
@@ -16,6 +28,24 @@
           {
             "type": "command",
             "command": "~/.claude/hooks/prevent-read-env.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-write-credentials.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-write-credentials.sh"
           }
         ]
       }
