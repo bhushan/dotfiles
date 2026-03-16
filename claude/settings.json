@@ -32,5 +32,6 @@
     "laravel-boost@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "claude-hud@claude-hud": true
-  }
+  },
+  "voiceEnabled": true
 }
