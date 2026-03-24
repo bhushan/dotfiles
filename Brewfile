@@ -52,7 +52,7 @@ brew 'pcre2'              # Required for Swoole compilation
 brew 'postgresql@17'
 brew 'pgvector'
 # brew 'sqlite'
-cask 'dbngin'
+# cask 'dbngin'
 
 # Web Services
 brew 'nginx'
@@ -69,21 +69,21 @@ cask 'session-manager-plugin'
 # GUI Applications - Productivity
 cask 'alfred'
 cask 'maccy'
-cask 'clocker'
+# cask 'clocker'
 cask 'hammerspoon'
-cask 'slack'
+# cask 'slack'
 cask 'stats'
 # cask 'discord'
 
 # GUI Applications - Development
 cask 'kitty'
-brew 'gemini-cli'
+# brew 'gemini-cli'
 cask 'claude-code'
 cask 'docker-desktop'
 cask 'tableplus'
 # cask 'visual-studio-code'
 # cask 'webstorm'
-cask 'phpstorm'
+# cask 'phpstorm'
 cask 'postman'
 
 # GUI Applications - Browsers
