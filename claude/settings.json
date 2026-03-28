@@ -58,11 +58,12 @@
   "enabledPlugins": {
     "claude-mem@thedotmack": true,
     "claude-code-setup@claude-plugins-official": false,
-    "frontend-design@claude-code-plugins": false,
+    "frontend-design@claude-code-plugins": true,
     "laravel-boost@claude-plugins-official": true,
-    "code-review@claude-plugins-official": false,
+    "code-review@claude-plugins-official": true,
     "claude-hud@claude-hud": true,
-    "ui-ux-pro-max@ui-ux-pro-max-skill": true
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "ui-ux-pro-max-skill": {
