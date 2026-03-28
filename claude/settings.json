@@ -57,11 +57,20 @@
   },
   "enabledPlugins": {
     "claude-mem@thedotmack": true,
-    "claude-code-setup@claude-plugins-official": true,
-    "frontend-design@claude-code-plugins": true,
+    "claude-code-setup@claude-plugins-official": false,
+    "frontend-design@claude-code-plugins": false,
     "laravel-boost@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "claude-hud@claude-hud": true
+    "code-review@claude-plugins-official": false,
+    "claude-hud@claude-hud": true,
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true
+  },
+  "extraKnownMarketplaces": {
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    }
   },
   "voiceEnabled": true
 }
