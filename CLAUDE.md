@@ -42,7 +42,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: postgresql@17, pgvector, DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, terraform, session-manager-plugin
-- **GUI applications**: kitty, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
+- **GUI applications**: kitty, claude, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
 - **Media**: spotify, obs
 
