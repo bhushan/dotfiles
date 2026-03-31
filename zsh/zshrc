@@ -116,3 +116,6 @@ fi
 #   tmux ls && read tmux_session && tmux attach -t ${tmux_session:-main} || tmux new -s ${tmux_session:-main}
 # fi
 # -------- tmux session config end -------- #
+
+# Added by Antigravity
+export PATH="/Users/rckstrbhushan/.antigravity/antigravity/bin:$PATH"
