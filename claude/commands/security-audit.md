@@ -1,3 +1,10 @@
+---
+description: Comprehensive security audit covering OWASP top 10, injection, auth, data exposure, dependencies, and infrastructure.
+allowed-tools: Read, Grep, Glob, Bash
+argument-hint: [target]
+model: opus
+---
+
 Perform a security audit on: $ARGUMENTS
 
 If no specific target is given, audit the current project.

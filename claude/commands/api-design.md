@@ -1,3 +1,10 @@
+---
+description: Design RESTful APIs with endpoints, pagination, filtering, error handling, auth, and versioning strategy.
+allowed-tools: Read, Write, Edit, Grep, Glob
+argument-hint: [api-description]
+model: opus
+---
+
 Design a RESTful API for: $ARGUMENTS
 
 Provide a comprehensive API design document:

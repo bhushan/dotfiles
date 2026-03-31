@@ -1,3 +1,10 @@
+---
+description: Design and implement AWS infrastructure (ECS, Lambda, RDS, S3, etc.) with security, monitoring, and cost optimization.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: [infrastructure-description]
+model: opus
+---
+
 Design and implement AWS infrastructure for: $ARGUMENTS
 
 Follow this approach:

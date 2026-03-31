@@ -1,3 +1,10 @@
+---
+description: Scaffold a complete Laravel feature including model, migration, controller, routes, policies, resources, and tests.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: [feature-description]
+model: sonnet
+---
+
 Create a complete Laravel feature for: $ARGUMENTS
 
 Follow this systematic approach:

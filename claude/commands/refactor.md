@@ -1,3 +1,10 @@
+---
+description: Systematic code refactoring - analyze, plan, execute, and validate with SOLID principles and PHP 8.4 features.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: [target-code]
+model: sonnet
+---
+
 Refactor the following code: $ARGUMENTS
 
 Follow this systematic approach:

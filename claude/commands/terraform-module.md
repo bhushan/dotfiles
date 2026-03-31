@@ -1,3 +1,10 @@
+---
+description: Create Terraform modules with proper structure, variables, outputs, security controls, and lifecycle management.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: [module-description]
+model: opus
+---
+
 Create a Terraform module for: $ARGUMENTS
 
 Follow this approach:

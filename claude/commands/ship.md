@@ -2,6 +2,7 @@
 description: Create feature branch from staged/unstaged changes, raise a PR against default branch, squash merge it, delete the branch, and return to default branch with latest pull.
 allowed-tools: Bash(git *), Bash(gh *)
 argument-hint: [branch-name] [pr-title]
+model: sonnet
 ---
 
 # Ship PR Workflow

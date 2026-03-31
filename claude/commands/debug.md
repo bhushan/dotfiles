@@ -1,3 +1,10 @@
+---
+description: Systematic debugging workflow - reproduce, gather evidence, hypothesize, investigate, fix, and verify.
+allowed-tools: Read, Grep, Glob, Bash
+argument-hint: [issue-description]
+model: sonnet
+---
+
 Debug the following issue: $ARGUMENTS
 
 Follow a systematic debugging approach:

@@ -1,3 +1,10 @@
+---
+description: Set up git worktrees for isolated feature development, list existing worktrees, or clean up merged ones.
+allowed-tools: Bash(git *), Read, Glob
+argument-hint: [action|branch-name]
+model: haiku
+---
+
 Set up a git worktree for: $ARGUMENTS
 
 This command helps manage git worktree-based feature development.

@@ -1,3 +1,10 @@
+---
+description: Analyze code for performance issues including N+1 queries, bundle size, caching, and infrastructure bottlenecks.
+allowed-tools: Read, Grep, Glob, Bash
+argument-hint: [target]
+model: opus
+---
+
 Analyze code for performance issues: $ARGUMENTS
 
 If no specific target is given, analyze the current project's critical paths.

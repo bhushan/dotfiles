@@ -1,3 +1,10 @@
+---
+description: Design and implement RESTful API endpoints in Laravel with routes, form requests, controllers, resources, and tests.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: [endpoint-description]
+model: sonnet
+---
+
 Design and implement a RESTful API endpoint in Laravel for: $ARGUMENTS
 
 Follow this approach:

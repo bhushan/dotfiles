@@ -1,3 +1,10 @@
+---
+description: Write comprehensive Pest tests covering feature tests, unit tests, edge cases, and integration points.
+allowed-tools: Read, Write, Bash, Grep, Glob
+argument-hint: [class-or-feature]
+model: sonnet
+---
+
 Write comprehensive Pest tests for: $ARGUMENTS
 
 Analyze the code being tested and create thorough test coverage:

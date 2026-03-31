@@ -1,3 +1,10 @@
+---
+description: Create Laravel database migrations with proper schema design, indexes, foreign keys, and rollback support.
+allowed-tools: Read, Write, Bash(php *), Grep, Glob
+argument-hint: [migration-description]
+model: haiku
+---
+
 Create a Laravel database migration for: $ARGUMENTS
 
 Follow this approach:

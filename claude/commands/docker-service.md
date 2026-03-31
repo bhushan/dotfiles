@@ -1,3 +1,10 @@
+---
+description: Create or update Dockerfile and Docker Compose configurations with security and production best practices.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+argument-hint: [service-description]
+model: sonnet
+---
+
 Create or update Docker configuration for: $ARGUMENTS
 
 Follow this approach:

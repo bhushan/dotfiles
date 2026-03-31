@@ -1,3 +1,10 @@
+---
+description: Run a pre-deployment verification checklist covering code quality, database, security, performance, and rollback.
+allowed-tools: Bash, Read, Grep, Glob
+argument-hint: [project-path]
+model: haiku
+---
+
 Run a pre-deployment checklist for: $ARGUMENTS
 
 If no specific context given, analyze the current project.
