@@ -52,3 +52,5 @@
     ~/.claude/settings.json: claude/settings.json
     ~/.claude/hooks: claude/hooks
     ~/.claude/commands: claude/commands
+    ~/.claude/agents: claude/agents
+    ~/.claude/CLAUDE.md: claude/CLAUDE.md

@@ -139,10 +139,12 @@ Symlinks created:
 - `claude/settings.json` → `~/.claude/settings.json`
 - `claude/hooks` → `~/.claude/hooks`
 - `claude/commands` → `~/.claude/commands`
+- `claude/agents` → `~/.claude/agents`
+- `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`
 
 ### Claude Code Configuration (`claude/`)
 
-Global Claude Code settings, hooks, and custom commands managed via Dotbot symlinks.
+Global Claude Code settings, hooks, custom commands, and agents managed via Dotbot symlinks.
 
 **Hooks** (`claude/hooks/`):
 
@@ -172,6 +174,17 @@ Global Claude Code settings, hooks, and custom commands managed via Dotbot symli
 | `/api-design` | Design RESTful APIs with pagination, filtering, error handling |
 | `/git-worktree` | Set up git worktrees for feature development |
 | `/deploy-checklist` | Pre-deployment verification checklist |
+
+**Agents** (`claude/agents/`) - Background agents for automated code quality:
+
+| Agent | Model | Description |
+|-------|-------|-------------|
+| `orchestrator` | opus | Monitors all agents, provides unified status reports |
+| `code-reviewer` | sonnet | Proactive code review after changes |
+| `test-writer` | sonnet | Automatic test writing and execution |
+| `architecture-reviewer` | sonnet | Reviews system design and architectural patterns |
+| `compliance-reviewer` | sonnet | Checks code against compliance requirements (SOC2, HIPAA) |
+| `doc-generator` | haiku | Writes project documentation after code changes |
 
 **Settings** (`claude/settings.json`):
 
