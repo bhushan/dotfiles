@@ -40,7 +40,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **System utilities**: htop, btop, tldr, tree
 - **Language runtimes**: php@8.4 (pinned), node (via nvm)
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
-- **Databases**: postgresql@17, pgvector, DBngin (manages mysql, postgresql, redis)
+- **Databases**: postgresql@17, pgvector, redis, DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, terraform, session-manager-plugin
 - **GUI applications**: kitty, claude, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc

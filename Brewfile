@@ -51,6 +51,7 @@ brew 'pcre2'              # Required for Swoole compilation
 # brew 'mysql'
 brew 'postgresql@17'
 brew 'pgvector'
+brew 'redis'
 # brew 'sqlite'
 # cask 'dbngin'
 
