@@ -186,6 +186,10 @@ Global Claude Code settings, hooks, custom commands, and agents managed via Dotb
 | `compliance-reviewer` | sonnet | Checks code against compliance requirements (SOC2, HIPAA) |
 | `doc-generator` | haiku | Writes project documentation after code changes |
 
+**MCP Servers** (configured in `~/.claude.json`, not managed by dotfiles):
+
+- `codegraph` - Semantic code knowledge graph via `@colbymchenry/codegraph`. Auto-syncs index via PostToolUse/Stop hooks in settings.json. Initialize per-project with `codegraph init -i`.
+
 **Settings** (`claude/settings.json`):
 
 - Registers PreToolUse hooks (Bash, Read, Write, Edit matchers)
