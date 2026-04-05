@@ -189,7 +189,7 @@ Global Claude Code settings, hooks, custom commands, and agents managed via Dotb
 **Settings** (`claude/settings.json`):
 
 - Registers PreToolUse hooks (Bash, Read, Write, Edit matchers)
-- Manages enabled plugins (claude-mem, claude-code-setup, frontend-design, laravel-boost, code-review, claude-hud)
+- Manages enabled plugins (claude-mem, frontend-design, laravel-boost, claude-hud)
 
 ### Neovim Configuration (`nvim/`)
 
