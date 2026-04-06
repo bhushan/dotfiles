@@ -12,6 +12,7 @@ worker.log
 .gemini/settings.json
 .junie/mcp/mcp.json
 .ai/mcp/mcp.json
+.codegraph
 
 # custom format set by me for c and cpp binary outputs using runner.lua
 *.o
