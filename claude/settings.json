@@ -2,7 +2,6 @@
   "permissions": {
     "allow": []
   },
-  "model": "claude-opus-4-6",
   "hooks": {
     "PreToolUse": [
       {
@@ -53,7 +52,7 @@
           }
         ]
       }
-    ],
+    ]
   },
   "statusLine": {
     "type": "command",
@@ -64,8 +63,5 @@
     "frontend-design@claude-code-plugins": true,
     "laravel-boost@claude-plugins-official": true,
     "claude-hud@claude-hud": true
-  },
-  "extraKnownMarketplaces": {},
-  "effortLevel": "high",
-  "voiceEnabled": true
+  }
 }
