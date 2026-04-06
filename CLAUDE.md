@@ -154,7 +154,6 @@ Global Claude Code settings, hooks, custom commands, and agents managed via Dotb
 - `prevent-read-env.sh` - Blocks reading `.env` files to protect secrets and credentials
 - `prevent-write-credentials.sh` - Blocks writing to SSH keys, AWS credentials, .env files, kubeconfig, terraform state
 - `prevent-dangerous-sql.sh` - Blocks DROP DATABASE, TRUNCATE TABLE, DELETE without WHERE
-- `init-codegraph.sh` - Auto-initializes CodeGraph (`codegraph init -i`) on SessionStart in git repos without `.codegraph/`
 
 **Custom Commands** (`claude/commands/`) - Use with `/` prefix in Claude Code:
 
@@ -186,10 +185,6 @@ Global Claude Code settings, hooks, custom commands, and agents managed via Dotb
 | `architecture-reviewer` | sonnet | Reviews system design and architectural patterns |
 | `compliance-reviewer` | sonnet | Checks code against compliance requirements (SOC2, HIPAA) |
 | `doc-generator` | haiku | Writes project documentation after code changes |
-
-**MCP Servers** (configured in `~/.claude.json`, not managed by dotfiles):
-
-- `codegraph` - Semantic code knowledge graph via `@colbymchenry/codegraph`. Auto-syncs index via PostToolUse/Stop hooks in settings.json. Initialize per-project with `codegraph init -i`.
 
 **Settings** (`claude/settings.json`):
 
