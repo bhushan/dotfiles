@@ -29,9 +29,7 @@ Tell the Explore agent to use codegraph tools for faster exploration.
 - Use `codegraph_callers`/`codegraph_callees` to trace code flow
 - Use `codegraph_impact` before making changes to see what's affected
 
-### If `.codegraph/` does NOT exist
+### Auto-initialization
 
-At the start of a session, ask the user if they'd like to initialize CodeGraph:
-
-"I notice this project doesn't have CodeGraph initialized. Would you like me to run `codegraph init -i` to build a code knowledge graph?"
+CodeGraph is automatically initialized via a `SessionStart` hook when entering a git repo without `.codegraph/`. No manual setup needed.
 <!-- CODEGRAPH_END -->
