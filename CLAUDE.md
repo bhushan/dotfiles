@@ -142,6 +142,36 @@ Symlinks created:
 - `claude/agents` → `~/.claude/agents`
 - `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`
 
+### OBS Studio Configuration (`obs/`)
+
+Automated OBS setup via Node.js scripts using `obs-websocket-js`. Creates two production-ready setups, each with YouTube (16:9) and Instagram Reels (9:16) scenes.
+
+**Setup:**
+
+```bash
+cd obs && npm install && node setup.js
+```
+
+Requires OBS Studio running with WebSocket server enabled (Tools > WebSocket Server Settings, port 4455, no auth).
+
+**Profiles:**
+
+| Profile | Prefix | Scenes | Description |
+|---------|--------|--------|-------------|
+| Live Stream | `[LS]` | 6 YouTube + 3 Instagram | Technical YouTube live streaming |
+| Alfred Scholar | `[AS]` | 6 YouTube + 4 Instagram | Product promotion videos |
+
+**Run single profile:**
+
+```bash
+node setup.js --profile live-stream
+node setup.js --profile alfred-scholar
+```
+
+**Assets:** Background videos, camera masks, animated lower thirds, and stinger transitions are in `obs/` directory.
+
+**Dual output:** Record `[LS]`/`[AS]` scenes for YouTube and `[LS-IG]`/`[AS-IG]` scenes for Instagram Reels. Use OBS Source Record plugin for simultaneous output.
+
 ### Claude Code Configuration (`claude/`)
 
 Global Claude Code settings, hooks, custom commands, and agents managed via Dotbot symlinks.

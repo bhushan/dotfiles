@@ -1,0 +1,14 @@
+{
+  "name": "obs-setup",
+  "version": "1.0.0",
+  "description": "OBS Studio setup scripts for Live Streaming and Alfred Scholar product videos",
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.js",
+    "setup:live": "node setup.js --profile live-stream",
+    "setup:scholar": "node setup.js --profile alfred-scholar"
+  },
+  "dependencies": {
+    "obs-websocket-js": "^5.0.6"
+  }
+}
