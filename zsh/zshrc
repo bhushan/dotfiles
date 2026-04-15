@@ -121,3 +121,8 @@ fi
 export PATH="/Users/rckstrbhushan/.antigravity/antigravity/bin:$PATH"
 
 alias claude-mem='/Users/rckstrbhushan/.bun/bin/bun "/Users/rckstrbhushan/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/rckstrbhushan/.lmstudio/bin"
+# End of LM Studio CLI section
+
