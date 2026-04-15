@@ -34,8 +34,8 @@ export async function setup(obs) {
   await createScene(obs, scene1);
 
   // Background video loop
-  await addImageSource(obs, scene1, '[LS] BG - Starting',
-    assetsPath('assets/bg-dark.png'), fillCanvas());
+  await addMediaSource(obs, scene1, '[LS] BG - Starting',
+    assetsPath('assets/bg-dark.mp4'), true, fillCanvas());
 
   // "Starting Soon" title text
   await addTextSource(obs, scene1, '[LS] Text - Starting Soon',
@@ -52,15 +52,6 @@ export async function setup(obs) {
       boundsHeight: 200,
     });
 
-  // Live indicator
-  await addImageSource(obs, scene1, '[LS] Live GIF',
-    assetsPath('assets/live-badge.gif'), {
-      positionX: CANVAS_W - 320,
-      positionY: 20,
-      boundsType: 'OBS_BOUNDS_SCALE_INNER',
-      boundsWidth: 280,
-      boundsHeight: 90,
-    });
 
   // ───────── 2. 2 [LS] Main Camera ─────────
   const scene2 = '2 [LS] Main Camera';
@@ -104,15 +95,6 @@ export async function setup(obs) {
       positionY: CANVAS_H - 35,
     });
 
-  // Live badge — top right
-  await addImageSource(obs, scene2, '[LS] Live Badge',
-    assetsPath('assets/live-badge.gif'), {
-      positionX: CANVAS_W - 320,
-      positionY: 20,
-      boundsType: 'OBS_BOUNDS_SCALE_INNER',
-      boundsWidth: 280,
-      boundsHeight: 90,
-    });
 
   // Chroma key — disabled by default, enable in OBS when using a green screen
   await addFilter(obs, SRC.camera, 'Chroma Key', 'chroma_key_filter_v2', {
@@ -200,8 +182,8 @@ export async function setup(obs) {
   const scene5 = '5 [LS] BRB';
   await createScene(obs, scene5);
 
-  await addImageSource(obs, scene5, '[LS] BG - BRB',
-    assetsPath('assets/bg-green.png'), fillCanvas());
+  await addMediaSource(obs, scene5, '[LS] BG - BRB',
+    assetsPath('assets/bg-green.mp4'), true, fillCanvas());
 
   await addTextSource(obs, scene5, '[LS] Text - BRB',
     'BE RIGHT BACK', 96, colors.green, centered(900, 120));
@@ -216,8 +198,8 @@ export async function setup(obs) {
   const scene6 = '6 [LS] Ending';
   await createScene(obs, scene6);
 
-  await addImageSource(obs, scene6, '[LS] BG - Ending',
-    assetsPath('assets/bg-red.png'), fillCanvas());
+  await addMediaSource(obs, scene6, '[LS] BG - Ending',
+    assetsPath('assets/bg-red.mp4'), true, fillCanvas());
 
   await addTextSource(obs, scene6, '[LS] Text - Thanks',
     'THANKS FOR WATCHING', 72, colors.rosewater, centered(900, 100));

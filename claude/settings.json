@@ -97,5 +97,6 @@
         "OBS_WEBSOCKET_URL": "ws://localhost:4455"
       }
     }
-  }
+  },
+  "model": "sonnet"
 }

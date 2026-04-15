@@ -85,8 +85,8 @@ export async function setup(obs) {
   await createScene(obs, scene2);
 
   // Gradient background video
-  await addImageSource(obs, scene2, '[AS] BG - Talking',
-    assetsPath('assets/bg-warm.png'), fillCanvas());
+  await addMediaSource(obs, scene2, '[AS] BG - Talking',
+    assetsPath('assets/bg-warm.mp4'), true, fillCanvas());
 
   // Camera — FaceTime HD Camera
   const cam = await addSource(obs, scene2, SRC.camera, 'macos-avcapture', {
@@ -221,8 +221,8 @@ export async function setup(obs) {
   const scene5 = 'S5 [AS] Testimonial';
   await createScene(obs, scene5);
 
-  await addImageSource(obs, scene5, '[AS] BG - Testimonial',
-    assetsPath('assets/bg-dark.png'), fillCanvas());
+  await addMediaSource(obs, scene5, '[AS] BG - Testimonial',
+    assetsPath('assets/bg-dark.mp4'), true, fillCanvas());
 
   // Quote marks
   await addTextSource(obs, scene5, '[AS] Text - Quote Mark',
@@ -256,8 +256,8 @@ export async function setup(obs) {
   const scene6 = 'S6 [AS] CTA Slide';
   await createScene(obs, scene6);
 
-  await addImageSource(obs, scene6, '[AS] BG - CTA',
-    assetsPath('assets/bg-red.png'), fillCanvas());
+  await addMediaSource(obs, scene6, '[AS] BG - CTA',
+    assetsPath('assets/bg-red.mp4'), true, fillCanvas());
 
   // Product name
   await addTextSource(obs, scene6, '[AS] Text - CTA Title',
