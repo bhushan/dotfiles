@@ -4,14 +4,13 @@ set -e
 
 DOTFILES="$HOME/code/dotfiles"
 
-step() { echo ""; echo "==> $*"; }
+source "$DOTFILES/scripts/utils.sh"
 
 # ── Xcode Command Line Tools ───────────────────────────────────────────
 if ! xcode-select -p &>/dev/null; then
-  echo "==> Installing Xcode Command Line Tools..."
+  step "Installing Xcode Command Line Tools..."
   xcode-select --install
   echo ""
-  echo "    Xcode Command Line Tools are installing."
   echo "    Re-run this script once they finish."
   exit 1
 fi
@@ -27,17 +26,16 @@ export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
 # ── Dotfiles must be cloned first ─────────────────────────────────────
 if [[ ! -d "$DOTFILES" ]]; then
   echo ""
-  echo "  Dotfiles not found at $DOTFILES."
-  echo "  Clone your repo there first:"
+  echo "  Dotfiles not found at $DOTFILES. Clone your repo there first:"
   echo ""
-  echo "    git clone <your-repo-url> $DOTFILES"
+  echo "    git clone https://github.com/bhushan/dotfiles.git $DOTFILES"
   echo ""
   exit 1
 fi
 
 cd "$DOTFILES"
 
-# ── Run setup scripts ──────────────────────────────────────────────────
+# ── Run setup ─────────────────────────────────────────────────────────
 source "$DOTFILES/scripts/packages.sh"
 source "$DOTFILES/scripts/links.sh"
 source "$DOTFILES/scripts/apps.sh"

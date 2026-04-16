@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Syncs Homebrew packages with Brewfile (installs new, removes unlisted).
+source "$(dirname "$0")/utils.sh"
 
 step "Syncing Homebrew packages (this may take a while on first run)..."
 brew bundle --file="$DOTFILES/Brewfile" --verbose
