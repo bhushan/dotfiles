@@ -87,6 +87,11 @@
     }
   },
   "effortLevel": "medium",
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "mcpServers": {
     "obs": {
       "command": "npx",
@@ -98,10 +103,5 @@
         "OBS_WEBSOCKET_URL": "ws://localhost:4455"
       }
     }
-  },
-  "voiceEnabled": true,
-  "voice": {
-    "enabled": true,
-    "mode": "hold"
   }
 }
