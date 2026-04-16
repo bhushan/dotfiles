@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --base:#1e1e2e; --mantle:#181825; --crust:#11111b;
+    --s0:#313244; --s1:#45475a;
+    --text:#cdd6f4; --blue:#89b4fa; --mauve:#cba6f7;
+    --green:#a6e3a1; --red:#f38ba8; --peach:#fab387;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:transparent;
+    font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* ── Left panel (55% width) ── */
+  .panel {
+    position:absolute; top:0; left:0;
+    width:1056px; height:1080px;
+    background:linear-gradient(135deg,
+      rgba(11,11,19,0.98) 0%,
+      rgba(17,17,27,0.96) 60%,
+      rgba(24,24,37,0.90) 85%,
+      transparent 100%);
+    display:flex; flex-direction:column;
+    justify-content:center;
+    padding:0 96px;
+  }
+
+  /* dot grid accent inside panel */
+  .panel-grid {
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle, rgba(137,180,250,0.08) 1px, transparent 1px);
+    background-size:36px 36px;
+    pointer-events:none;
+  }
+
+  /* vertical accent bar on left edge */
+  .left-bar {
+    position:absolute; left:0; top:0;
+    width:4px; height:100%;
+    background:linear-gradient(to bottom,
+      transparent 0%, var(--blue) 20%,
+      var(--mauve) 50%,
+      var(--blue) 80%, transparent 100%);
+    animation:barShimmer 4s ease-in-out infinite;
+  }
+  @keyframes barShimmer {
+    0%,100% { opacity:0.6; }
+    50%      { opacity:1; }
+  }
+
+  /* rising particles */
+  .particles {
+    position:absolute; inset:0; overflow:hidden; pointer-events:none;
+  }
+  .p {
+    position:absolute; border-radius:50%;
+    background:var(--blue); opacity:0;
+    animation:rise 6s ease-in-out infinite;
+  }
+  @keyframes rise {
+    0%   { opacity:0; transform:translateY(0) scale(1); }
+    20%  { opacity:0.4; }
+    80%  { opacity:0.15; }
+    100% { opacity:0; transform:translateY(-600px) scale(0.3); }
+  }
+
+  .content { position:relative; z-index:2; }
+
+  .pre-label {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:12px; letter-spacing:5px;
+    color:var(--mauve); text-transform:uppercase;
+    margin-bottom:20px;
+    animation:slideIn 0.6s 0.2s both;
+  }
+
+  .thanks {
+    font-size:72px; font-weight:200;
+    color:var(--text); letter-spacing:2px;
+    line-height:1.1;
+    margin-bottom:10px;
+    animation:slideIn 0.7s 0.4s both;
+  }
+  .thanks em { font-style:normal; color:var(--blue); }
+
+  .sub-line {
+    font-size:26px; font-weight:300;
+    color:var(--s1); letter-spacing:1px;
+    margin-bottom:48px;
+    animation:slideIn 0.6s 0.6s both;
+  }
+  .sub-line span { color:var(--green); }
+
+  /* rule */
+  .rule {
+    width:0; height:2px; margin-bottom:44px;
+    background:linear-gradient(to right, var(--blue), var(--mauve));
+    animation:growRule 0.8s 0.7s forwards;
+  }
+  @keyframes growRule { to { width:280px; } }
+
+  /* handle */
+  .handle {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:28px; color:var(--blue); letter-spacing:4px;
+    margin-bottom:40px;
+    animation:slideIn 0.6s 0.9s both;
+  }
+  .handle::before { content:'@'; color:var(--mauve); }
+
+  /* social row */
+  .socials {
+    display:flex; gap:20px;
+    animation:slideIn 0.6s 1.1s both;
+  }
+  .social-btn {
+    display:flex; align-items:center; gap:10px;
+    padding:12px 24px; border-radius:10px;
+    font-size:16px; font-weight:500; letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+  .yt  { background:rgba(243,139,168,0.12); color:var(--red);   border:1px solid rgba(243,139,168,0.3); }
+  .ig  { background:rgba(203,166,247,0.12); color:var(--mauve); border:1px solid rgba(203,166,247,0.3); }
+
+  @keyframes slideIn {
+    from { opacity:0; transform:translateX(-16px); }
+    to   { opacity:1; transform:translateX(0); }
+  }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="panel-grid"></div>
+    <div class="left-bar"></div>
+
+    <!-- floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="content">
+      <div class="pre-label">// stream ended</div>
+      <div class="thanks">Thanks for<br><em>watching!</em></div>
+      <div class="sub-line">↓ Subscribe for more <span>tutorials</span></div>
+      <div class="rule"></div>
+      <div class="handle">rckstrbhushan</div>
+      <div class="socials">
+        <!-- YouTube icon -->
+        <div class="social-btn yt">
+          <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
+            <path d="M21.4 2.5C21.2 1.6 20.5.9 19.6.7 17.9.3 11 .3 11 .3S4.1.3 2.4.7C1.5.9.8 1.6.6 2.5 .2 4.2.2 8 .2 8S.2 11.8.6 13.5c.2.9.9 1.6 1.8 1.8C4.1 15.7 11 15.7 11 15.7s6.9 0 8.6-.4c.9-.2 1.6-.9 1.8-1.8.4-1.7.4-5.5.4-5.5s0-3.8-.4-5.5zM8.8 11.4V4.6L14.5 8 8.8 11.4z" fill="currentColor"/>
+          </svg>
+          YouTube
+        </div>
+        <!-- Instagram icon -->
+        <div class="social-btn ig">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="1" y="1" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="15.5" cy="4.5" r="1.2" fill="currentColor"/>
+          </svg>
+          Instagram
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'p';
+      const size = Math.random() * 4 + 2;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random() * 90}%;
+        bottom:${Math.random() * 20}%;
+        animation-delay:${Math.random() * 6}s;
+        animation-duration:${5 + Math.random() * 4}s;
+        background:${['#89b4fa','#cba6f7','#a6e3a1'][Math.floor(Math.random()*3)]};
+      `;
+      container.appendChild(p);
+    }
+  </script>
+</body>
+</html>

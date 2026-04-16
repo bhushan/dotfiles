@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1920px;
+    height: 80px;
+    background: transparent;
+    overflow: hidden;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Dark bar with top accent line */
+  .bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(17, 17, 27, 0.96);
+    border-top: 3px solid #89b4fa;
+  }
+
+  /* Fade masks on left and right edges */
+  .bar::before,
+  .bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .bar::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(17,17,27,1), transparent);
+  }
+  .bar::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(17,17,27,1), transparent);
+  }
+
+  .ticker-wrap {
+    position: absolute;
+    top: 3px; /* below accent line */
+    left: 0;
+    width: 100%;
+    height: 77px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* The track contains items twice — animation moves by -50% for seamless loop */
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    will-change: transform;
+    animation: ticker 28s linear infinite;
+  }
+
+  @keyframes ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Each item: logo badge + label */
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 40px;
+    white-space: nowrap;
+  }
+
+  .logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+  }
+
+  .label {
+    font-size: 21px;
+    font-weight: 300;
+    color: #cdd6f4;
+    letter-spacing: 0.4px;
+  }
+
+  /* Separator dot */
+  .sep {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #45475a;
+    flex-shrink: 0;
+    margin: 0 4px;
+  }
+
+  /* Logo color variants */
+  .logo-blue   { background: #1e3a5f; color: #89b4fa; border: 1px solid #89b4fa33; }
+  .logo-green  { background: #1a3a2a; color: #a6e3a1; border: 1px solid #a6e3a133; }
+  .logo-yellow { background: #3a2e10; color: #f9e2af; border: 1px solid #f9e2af33; }
+  .logo-mauve  { background: #2e1f3a; color: #cba6f7; border: 1px solid #cba6f733; }
+  .logo-peach  { background: #3a2010; color: #fab387; border: 1px solid #fab38733; }
+  .logo-teal   { background: #103a38; color: #94e2d5; border: 1px solid #94e2d533; }
+  .logo-red    { background: #3a1020; color: #f38ba8; border: 1px solid #f38ba833; }
+  .logo-sky    { background: #102a3a; color: #89dceb; border: 1px solid #89dceb33; }
+</style>
+</head>
+<body>
+  <div class="bar"></div>
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="track"></div>
+  </div>
+
+  <script>
+    const items = [
+      { logo: '⚡',  logoClass: 'logo-blue',   label: '@rckstrbhushan' },
+      { logo: 'JS',  logoClass: 'logo-yellow',  label: 'JavaScript' },
+      { logo: '▶',   logoClass: 'logo-red',     label: 'YouTube' },
+      { logo: 'TS',  logoClass: 'logo-blue',    label: 'TypeScript' },
+      { logo: '📷',  logoClass: 'logo-mauve',   label: 'Instagram' },
+      { logo: 'PY',  logoClass: 'logo-teal',    label: 'Python' },
+      { logo: '🐙',  logoClass: 'logo-sky',     label: 'GitHub' },
+      { logo: 'GO',  logoClass: 'logo-sky',     label: 'Golang' },
+      { logo: '🐳',  logoClass: 'logo-blue',    label: 'Docker' },
+      { logo: 'SH',  logoClass: 'logo-green',   label: 'Shell' },
+      { logo: 'GIT', logoClass: 'logo-peach',   label: 'Git' },
+      { logo: 'LX',  logoClass: 'logo-yellow',  label: 'Linux' },
+    ];
+
+    function buildItem({ logo, logoClass, label }) {
+      return `
+        <div class="item">
+          <div class="logo ${logoClass}">${logo}</div>
+          <span class="label">${label}</span>
+        </div>
+        <div class="sep"></div>
+      `;
+    }
+
+    const track = document.getElementById('track');
+    // Duplicate for seamless loop
+    track.innerHTML = [...items, ...items].map(buildItem).join('');
+  </script>
+</body>
+</html>

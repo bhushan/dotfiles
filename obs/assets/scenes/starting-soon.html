@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --base:    #1e1e2e; --mantle:  #181825; --crust:   #11111b;
+    --s0:      #313244; --s1:      #45475a; --text:    #cdd6f4;
+    --blue:    #89b4fa; --green:   #a6e3a1; --mauve:   #cba6f7;
+    --peach:   #fab387; --yellow:  #f9e2af; --teal:    #94e2d5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:var(--crust);
+    font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* ── Dot grid ── */
+  .grid {
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(137,180,250,0.18) 1.5px, transparent 1.5px);
+    background-size:52px 52px;
+    animation:gridDrift 30s linear infinite;
+  }
+  @keyframes gridDrift {
+    to { background-position:52px 52px; }
+  }
+
+  /* ── Ambient orbs ── */
+  .orb {
+    position:absolute; border-radius:50%;
+    filter:blur(140px); pointer-events:none;
+  }
+  .orb-a {
+    width:700px; height:700px;
+    background:var(--blue); opacity:0.08;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    animation:pulse 7s ease-in-out infinite;
+  }
+  .orb-b {
+    width:500px; height:500px;
+    background:var(--mauve); opacity:0.06;
+    top:10%; right:8%;
+    animation:drift 9s ease-in-out infinite alternate;
+  }
+  .orb-c {
+    width:400px; height:400px;
+    background:var(--teal); opacity:0.05;
+    bottom:5%; left:5%;
+    animation:drift 11s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:0.08; transform:translate(-50%,-50%) scale(1); }
+    50%      { opacity:0.15; transform:translate(-50%,-50%) scale(1.12); }
+  }
+  @keyframes drift {
+    from { transform:translate(0,0); }
+    to   { transform:translate(-50px,40px); }
+  }
+
+  /* ── Scan line ── */
+  .scan {
+    position:absolute; left:0; width:100%; height:2px; z-index:3;
+    background:linear-gradient(to right,
+      transparent 0%, rgba(137,180,250,0.25) 30%,
+      rgba(137,180,250,0.7) 50%,
+      rgba(137,180,250,0.25) 70%, transparent 100%);
+    animation:scan 10s linear infinite;
+  }
+  @keyframes scan {
+    0%   { top:-2px; opacity:0; }
+    3%   { opacity:1; }
+    97%  { opacity:0.6; }
+    100% { top:1082px; opacity:0; }
+  }
+
+  /* ── Corner circuit SVGs ── */
+  .corner {
+    position:absolute;
+    opacity:0.2;
+  }
+  .tl { top:0; left:0; }
+  .tr { top:0; right:0; transform:scaleX(-1); }
+  .bl { bottom:0; left:0; transform:scaleY(-1); }
+  .br { bottom:0; right:0; transform:scale(-1); }
+
+  /* ── Terminal card ── */
+  .card {
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:900px;
+    background:var(--mantle);
+    border:1px solid rgba(137,180,250,0.25);
+    border-radius:14px;
+    box-shadow:
+      0 0 0 1px rgba(137,180,250,0.08),
+      0 60px 160px rgba(0,0,0,0.7),
+      0 0 100px rgba(137,180,250,0.06);
+    animation:cardIn 0.9s cubic-bezier(0.34,1.56,0.64,1) both;
+    z-index:10;
+  }
+  @keyframes cardIn {
+    from { opacity:0; transform:translate(-50%,-47%) scale(0.94); }
+    to   { opacity:1; transform:translate(-50%,-50%) scale(1); }
+  }
+
+  /* title bar */
+  .bar {
+    height:48px; background:var(--s0);
+    border-radius:14px 14px 0 0;
+    display:flex; align-items:center; padding:0 18px; gap:9px;
+    border-bottom:1px solid rgba(137,180,250,0.12);
+  }
+  .dot { width:13px; height:13px; border-radius:50%; }
+  .dr { background:#f38ba8; } .dy { background:#f9e2af; } .dg { background:#a6e3a1; }
+  .bar-title {
+    margin:0 auto;
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:12px; letter-spacing:3px;
+    color:var(--s1); text-transform:uppercase;
+  }
+
+  /* body */
+  .body {
+    padding:56px 72px 60px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+
+  .prompt {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:14px; color:var(--green); letter-spacing:1px;
+    margin-bottom:32px;
+    animation:up 0.5s 0.2s both;
+  }
+  .prompt span { color:var(--mauve); }
+
+  .title {
+    font-size:82px; font-weight:100;
+    color:var(--text); letter-spacing:22px;
+    text-transform:uppercase;
+    animation:up 0.6s 0.4s both;
+  }
+
+  .rule {
+    width:0; height:2px; margin:24px 0 8px;
+    background:linear-gradient(to right, transparent, var(--blue), transparent);
+    animation:expand 0.9s 0.8s forwards;
+  }
+  @keyframes expand {
+    to { width:280px; }
+  }
+
+  .brand {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:20px; color:var(--blue); letter-spacing:5px;
+    margin-bottom:52px;
+    animation:up 0.6s 1s both;
+  }
+  .brand::before { content:'> '; color:var(--mauve); }
+
+  .timer {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:108px; font-weight:100;
+    color:var(--text); letter-spacing:12px;
+    animation:up 0.6s 1.2s both, glow 2.5s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%,100% { text-shadow:0 0 40px rgba(137,180,250,0.25); }
+    50%      { text-shadow:0 0 80px rgba(137,180,250,0.6); }
+  }
+
+  .label {
+    font-size:11px; letter-spacing:5px;
+    color:var(--s1); text-transform:uppercase;
+    margin-top:10px;
+    animation:up 0.5s 1.4s both;
+  }
+
+  @keyframes up {
+    from { opacity:0; transform:translateY(12px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+  <div class="scan"></div>
+
+  <!-- corner circuits -->
+  <svg class="corner tl" width="280" height="280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 72 H72 V0" stroke="#89b4fa" stroke-width="1.5"/>
+    <path d="M0 108 H96 V24 H120" stroke="#89b4fa" stroke-width="1"/>
+    <circle cx="72" cy="72" r="5" fill="#89b4fa"/>
+    <circle cx="96" cy="96" r="3" fill="#cba6f7"/>
+    <path d="M0 144 H140 V72" stroke="#89b4fa" stroke-width="0.5" stroke-dasharray="5 5"/>
+    <path d="M0 180 H60" stroke="#89b4fa" stroke-width="0.5"/>
+    <circle cx="60" cy="180" r="2.5" fill="#89b4fa"/>
+  </svg>
+  <svg class="corner tr" width="280" height="280" fill="none">
+    <path d="M0 72 H72 V0" stroke="#89b4fa" stroke-width="1.5"/>
+    <path d="M0 108 H96 V24 H120" stroke="#89b4fa" stroke-width="1"/>
+    <circle cx="72" cy="72" r="5" fill="#89b4fa"/>
+    <circle cx="96" cy="96" r="3" fill="#cba6f7"/>
+    <path d="M0 144 H140 V72" stroke="#89b4fa" stroke-width="0.5" stroke-dasharray="5 5"/>
+  </svg>
+  <svg class="corner bl" width="280" height="280" fill="none">
+    <path d="M0 72 H72 V0" stroke="#89b4fa" stroke-width="1.5"/>
+    <path d="M0 108 H96 V24" stroke="#89b4fa" stroke-width="1"/>
+    <circle cx="72" cy="72" r="5" fill="#89b4fa"/>
+  </svg>
+  <svg class="corner br" width="280" height="280" fill="none">
+    <path d="M0 72 H72 V0" stroke="#89b4fa" stroke-width="1.5"/>
+    <path d="M0 108 H96 V24" stroke="#89b4fa" stroke-width="1"/>
+    <circle cx="72" cy="72" r="5" fill="#89b4fa"/>
+  </svg>
+
+  <div class="card">
+    <div class="bar">
+      <div class="dot dr"></div>
+      <div class="dot dy"></div>
+      <div class="dot dg"></div>
+      <span class="bar-title">rckstrbhushan — stream.sh</span>
+    </div>
+    <div class="body">
+      <div class="prompt"><span>~/tutorials ❯</span> initializing broadcast session…</div>
+      <div class="title">Starting Soon</div>
+      <div class="rule"></div>
+      <div class="brand">rckstrbhushan</div>
+      <div class="timer" id="t">00:30</div>
+      <div class="label">seconds until stream begins</div>
+    </div>
+  </div>
+
+  <script>
+    let s = 30;
+    const el = document.getElementById('t');
+    const fmt = n => '00:' + String(n).padStart(2,'0');
+    setInterval(() => { s--; if (s < 0) s = 30; el.textContent = fmt(s); }, 1000);
+  </script>
+</body>
+</html>

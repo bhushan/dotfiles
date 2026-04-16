@@ -38,6 +38,7 @@ const SCENE_HOTKEYS = {
   'S1 [TT-IG] Camera Vertical':  { key: 'OBS_KEY_NUM1', shift: true },
   'S2 [TT-IG] Screen Vertical':  { key: 'OBS_KEY_NUM2', shift: true },
   'S3 [TT-IG] Starting Vertical':{ key: 'OBS_KEY_NUM3', shift: true },
+  '7 [TT] Transition':            { key: 'OBS_KEY_NUM7' },
 };
 
 async function main() {

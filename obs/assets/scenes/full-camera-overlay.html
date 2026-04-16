@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --blue:#89b4fa; --mauve:#cba6f7; --text:#cdd6f4;
+    --s0:#313244; --s1:#45475a; --crust:#11111b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:transparent;
+    font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* ── Vignette edges ── */
+  .vignette {
+    position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse 100% 100% at 50% 50%,
+      transparent 50%,
+      rgba(11,11,19,0.5) 85%,
+      rgba(11,11,19,0.85) 100%);
+  }
+
+  /* ── Corner frame elements ── */
+  .frame { position:absolute; }
+  .ftl { top:0; left:0; }
+  .ftr { top:0; right:0; transform:scaleX(-1); }
+  .fbl { bottom:110px; left:0; transform:scaleY(-1); }
+  .fbr { bottom:110px; right:0; transform:scale(-1); }
+
+  /* corner SVG lines animate their stroke-dashoffset on load */
+  .frame path, .frame line {
+    stroke-dasharray:300;
+    stroke-dashoffset:300;
+    animation:drawLine 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  .frame .p2 { animation-delay:0.2s; }
+  .frame .p3 { animation-delay:0.4s; }
+  @keyframes drawLine {
+    to { stroke-dashoffset:0; }
+  }
+
+  /* ── Scanning border: animated SVG rect around the screen ── */
+  .border-svg {
+    position:absolute; top:0; left:0; pointer-events:none;
+  }
+  .border-path {
+    fill:none;
+    stroke:url(#borderGrad);
+    stroke-width:2;
+    stroke-dasharray:60 3840;
+    animation:borderScan 5s linear infinite;
+  }
+  @keyframes borderScan {
+    0%   { stroke-dashoffset:0; }
+    100% { stroke-dashoffset:-3900; }
+  }
+
+  /* ── Lower third ── */
+  .lower {
+    position:absolute; bottom:0; left:0; right:0;
+    height:110px;
+    animation:slideUp 0.8s 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes slideUp {
+    from { transform:translateY(110px); opacity:0; }
+    to   { transform:translateY(0);     opacity:1; }
+  }
+
+  .accent-bar {
+    height:3px;
+    background:linear-gradient(to right, var(--blue), var(--mauve), var(--blue));
+    background-size:200% 100%;
+    animation:shimmer 4s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%,100% { background-position:0% 50%; }
+    50%      { background-position:100% 50%; }
+  }
+
+  .panel {
+    height:107px;
+    background:linear-gradient(to right,
+      rgba(11,11,19,0.97) 0%,
+      rgba(17,17,27,0.93) 65%,
+      transparent 100%);
+    display:flex; align-items:center;
+    padding:0 56px; gap:22px;
+  }
+
+  .mark {
+    width:4px; height:66px; flex-shrink:0;
+    background:linear-gradient(to bottom, var(--blue), var(--mauve));
+    border-radius:2px;
+    animation:markGrow 0.5s 0.9s both;
+  }
+  @keyframes markGrow {
+    from { height:0; }
+    to   { height:66px; }
+  }
+
+  .texts { display:flex; flex-direction:column; gap:7px; }
+
+  .name {
+    font-size:40px; font-weight:500;
+    color:var(--text); letter-spacing:2px;
+    animation:textIn 0.5s 0.8s both;
+  }
+  .sub {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:14px; letter-spacing:4px;
+    color:var(--blue); text-transform:uppercase;
+    animation:textIn 0.5s 1s both;
+  }
+  .sub::before { content:'// '; color:var(--mauve); opacity:0.7; }
+  @keyframes textIn {
+    from { opacity:0; transform:translateX(-12px); }
+    to   { opacity:1; transform:translateX(0); }
+  }
+
+  /* live badge */
+  .live {
+    margin-left:auto;
+    display:flex; align-items:center; gap:8px;
+    padding:8px 18px; border-radius:6px;
+    background:rgba(243,139,168,0.12);
+    border:1px solid rgba(243,139,168,0.3);
+    animation:textIn 0.5s 1.2s both;
+  }
+  .live-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:#f38ba8;
+    animation:livePulse 1.5s ease-in-out infinite;
+  }
+  @keyframes livePulse {
+    0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(243,139,168,0.4); }
+    50%      { opacity:0.7; box-shadow:0 0 0 6px rgba(243,139,168,0); }
+  }
+  .live span {
+    font-size:13px; font-weight:600;
+    letter-spacing:3px; color:#f38ba8;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="vignette"></div>
+
+  <!-- animated border scan -->
+  <svg class="border-svg" width="1920" height="1080">
+    <defs>
+      <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="transparent"/>
+        <stop offset="40%"  stop-color="#89b4fa" stop-opacity="0.3"/>
+        <stop offset="50%"  stop-color="#89b4fa" stop-opacity="1"/>
+        <stop offset="60%"  stop-color="#89b4fa" stop-opacity="0.3"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </linearGradient>
+    </defs>
+    <rect class="border-path" x="1" y="1" width="1918" height="968" rx="0" ry="0"/>
+  </svg>
+
+  <!-- corner frames -->
+  <svg class="frame ftl" width="160" height="160" fill="none">
+    <path d="M4 100 V4 H100" stroke="#89b4fa" stroke-width="2" class="p1"/>
+    <path d="M4 140 V24 H140" stroke="#89b4fa" stroke-width="0.8" opacity="0.4" class="p2"/>
+    <circle cx="4" cy="4" r="4" fill="#89b4fa" opacity="0.8"/>
+    <circle cx="28" cy="28" r="2.5" fill="#cba6f7" opacity="0.6"/>
+  </svg>
+  <svg class="frame ftr" width="160" height="160" fill="none">
+    <path d="M4 100 V4 H100" stroke="#89b4fa" stroke-width="2" class="p1"/>
+    <path d="M4 140 V24 H140" stroke="#89b4fa" stroke-width="0.8" opacity="0.4" class="p2"/>
+    <circle cx="4" cy="4" r="4" fill="#89b4fa" opacity="0.8"/>
+  </svg>
+  <svg class="frame fbl" width="160" height="160" fill="none">
+    <path d="M4 100 V4 H100" stroke="#89b4fa" stroke-width="2" class="p1"/>
+    <circle cx="4" cy="4" r="4" fill="#89b4fa" opacity="0.8"/>
+  </svg>
+  <svg class="frame fbr" width="160" height="160" fill="none">
+    <path d="M4 100 V4 H100" stroke="#89b4fa" stroke-width="2" class="p1"/>
+    <circle cx="4" cy="4" r="4" fill="#89b4fa" opacity="0.8"/>
+  </svg>
+
+  <!-- lower third -->
+  <div class="lower">
+    <div class="accent-bar"></div>
+    <div class="panel">
+      <div class="mark"></div>
+      <div class="texts">
+        <div class="name">rckstrbhushan</div>
+        <div class="sub">Technical Tutorials</div>
+      </div>
+      <div class="live">
+        <div class="live-dot"></div>
+        <span>Live</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

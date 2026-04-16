@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --base:#1e1e2e; --mantle:#181825; --crust:#11111b;
+    --s0:#313244; --s1:#45475a;
+    --text:#cdd6f4; --blue:#89b4fa; --mauve:#cba6f7; --teal:#94e2d5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:var(--crust);
+    font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* ── Hex grid SVG background ── */
+  .hexbg {
+    position:absolute; inset:0; opacity:0.07;
+  }
+
+  /* ── Ambient orbs ── */
+  .orb {
+    position:absolute; border-radius:50%;
+    filter:blur(160px); pointer-events:none;
+  }
+  .o1 { width:600px; height:600px; background:var(--blue);  opacity:0.07; top:30%; left:20%; animation:float 12s ease-in-out infinite; }
+  .o2 { width:500px; height:500px; background:var(--mauve); opacity:0.06; top:20%; right:15%; animation:float 9s ease-in-out infinite reverse; }
+  .o3 { width:400px; height:400px; background:var(--teal);  opacity:0.05; bottom:10%; left:40%; animation:float 14s ease-in-out infinite 2s; }
+  @keyframes float {
+    0%,100% { transform:translate(0,0); }
+    33%      { transform:translate(30px,-30px); }
+    66%      { transform:translate(-20px,20px); }
+  }
+
+  /* ── Pulse rings (centered, behind text) ── */
+  .rings {
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:600px; height:600px;
+  }
+  .ring {
+    position:absolute; inset:0; border-radius:50%;
+    border:1px solid rgba(137,180,250,0.15);
+    animation:expand-ring 4s ease-out infinite;
+  }
+  .ring:nth-child(2) { animation-delay:1.33s; }
+  .ring:nth-child(3) { animation-delay:2.66s; }
+  @keyframes expand-ring {
+    0%   { transform:scale(0.4); opacity:0.7; }
+    100% { transform:scale(1);   opacity:0; }
+  }
+
+  /* ── Center content ── */
+  .center {
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    display:flex; flex-direction:column; align-items:center; gap:0;
+  }
+
+  .status {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:13px; letter-spacing:5px;
+    color:var(--mauve); text-transform:uppercase;
+    margin-bottom:28px;
+    animation:fadeIn 0.6s 0.2s both;
+  }
+
+  .title {
+    font-size:96px; font-weight:100;
+    color:var(--text); letter-spacing:20px;
+    text-transform:uppercase;
+    text-align:center;
+    animation:fadeIn 0.7s 0.4s both;
+  }
+
+  .rule {
+    width:0; height:2px; margin:28px auto;
+    background:linear-gradient(to right, transparent, var(--blue), transparent);
+    animation:grow 0.8s 0.8s forwards;
+  }
+  @keyframes grow { to { width:240px; } }
+
+  .brand {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:20px; color:var(--blue); letter-spacing:5px;
+    margin-bottom:52px;
+    animation:fadeIn 0.6s 1s both;
+  }
+  .brand::before { content:'$ '; color:var(--mauve); }
+
+  /* dot loader */
+  .dots {
+    display:flex; gap:12px;
+    animation:fadeIn 0.5s 1.2s both;
+  }
+  .dot {
+    width:10px; height:10px; border-radius:50%;
+    background:var(--s0);
+    animation:dotPulse 1.6s ease-in-out infinite;
+  }
+  .dot:nth-child(1) { animation-delay:0s; }
+  .dot:nth-child(2) { animation-delay:0.2s; }
+  .dot:nth-child(3) { animation-delay:0.4s; }
+  .dot:nth-child(4) { animation-delay:0.6s; }
+  .dot:nth-child(5) { animation-delay:0.8s; }
+  @keyframes dotPulse {
+    0%,100% { background:var(--s0); transform:scale(1); }
+    50%      { background:var(--blue); transform:scale(1.4); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(10px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <!-- Hex grid background -->
+  <svg class="hexbg" width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="hex" x="0" y="0" width="80" height="92" patternUnits="userSpaceOnUse">
+        <polygon points="40,2 74,21 74,58 40,77 6,58 6,21"
+          fill="none" stroke="#89b4fa" stroke-width="1"/>
+      </pattern>
+    </defs>
+    <rect width="1920" height="1080" fill="url(#hex)"/>
+  </svg>
+
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+
+  <div class="rings">
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+  </div>
+
+  <div class="center">
+    <div class="status">— stream paused —</div>
+    <div class="title">Be Right Back</div>
+    <div class="rule"></div>
+    <div class="brand">rckstrbhushan</div>
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</body>
+</html>

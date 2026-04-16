@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --blue:#89b4fa; --mauve:#cba6f7; --green:#a6e3a1;
+    --yellow:#f9e2af; --peach:#fab387; --teal:#94e2d5;
+    --sky:#89dceb; --red:#f38ba8;
+    --text:#cdd6f4; --s0:#313244; --s1:#45475a; --crust:#11111b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:transparent;
+    font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* ── Watermark ── */
+  .watermark {
+    position:absolute; top:20px; left:24px;
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:13px; letter-spacing:3px;
+    color:rgba(137,180,250,0.28);
+    text-transform:lowercase;
+  }
+  .watermark::before { content:'// '; color:rgba(203,166,247,0.28); }
+
+  /* ── Bottom ticker bar ── */
+  .ticker-wrap {
+    position:absolute; bottom:0; left:0; right:0;
+    height:80px;
+  }
+
+  /* top accent — gradient shimmer */
+  .tick-accent {
+    height:3px;
+    background:linear-gradient(to right,
+      var(--blue), var(--mauve), var(--teal), var(--blue));
+    background-size:300% 100%;
+    animation:shimmer 5s linear infinite;
+  }
+  @keyframes shimmer {
+    0%   { background-position:0% 50%; }
+    100% { background-position:300% 50%; }
+  }
+
+  .tick-bg {
+    height:77px;
+    background:rgba(11,11,19,0.95);
+    overflow:hidden;
+    display:flex; align-items:center;
+    position:relative;
+  }
+
+  /* edge fade masks */
+  .tick-bg::before, .tick-bg::after {
+    content:''; position:absolute; top:0; width:140px; height:100%; z-index:5;
+  }
+  .tick-bg::before { left:0; background:linear-gradient(to right,rgba(11,11,19,1),transparent); }
+  .tick-bg::after  { right:0; background:linear-gradient(to left,rgba(11,11,19,1),transparent); }
+
+  .track {
+    display:flex; align-items:center;
+    animation:scroll 32s linear infinite;
+    will-change:transform;
+    white-space:nowrap;
+  }
+  @keyframes scroll {
+    0%   { transform:translateX(0); }
+    100% { transform:translateX(-50%); }
+  }
+
+  .item {
+    display:flex; align-items:center; gap:14px;
+    padding:0 44px;
+  }
+
+  .badge {
+    height:44px; padding:0 16px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; letter-spacing:1.5px;
+    text-transform:uppercase; flex-shrink:0;
+    font-family:'SF Mono','Fira Code',monospace;
+  }
+
+  .lbl {
+    font-size:20px; font-weight:300;
+    color:var(--text); letter-spacing:0.5px;
+  }
+
+  .sep {
+    width:5px; height:5px; border-radius:50%;
+    background:var(--s1); flex-shrink:0; margin:0 6px;
+  }
+
+  /* badge colors */
+  .b-blue   { background:rgba(137,180,250,0.12); color:var(--blue);   border:1px solid rgba(137,180,250,0.3); }
+  .b-yellow { background:rgba(249,226,175,0.12); color:var(--yellow); border:1px solid rgba(249,226,175,0.3); }
+  .b-sky    { background:rgba(137,220,235,0.12); color:var(--sky);    border:1px solid rgba(137,220,235,0.3); }
+  .b-teal   { background:rgba(148,226,213,0.12); color:var(--teal);   border:1px solid rgba(148,226,213,0.3); }
+  .b-green  { background:rgba(166,227,161,0.12); color:var(--green);  border:1px solid rgba(166,227,161,0.3); }
+  .b-peach  { background:rgba(250,179,135,0.12); color:var(--peach);  border:1px solid rgba(250,179,135,0.3); }
+  .b-mauve  { background:rgba(203,166,247,0.12); color:var(--mauve);  border:1px solid rgba(203,166,247,0.3); }
+  .b-red    { background:rgba(243,139,168,0.12); color:var(--red);    border:1px solid rgba(243,139,168,0.3); }
+</style>
+</head>
+<body>
+  <div class="watermark">rckstrbhushan</div>
+
+  <div class="ticker-wrap">
+    <div class="tick-accent"></div>
+    <div class="tick-bg">
+      <div class="track" id="track"></div>
+    </div>
+  </div>
+
+  <script>
+    const items = [
+      { badge:'⚡ @rckstrbhushan', cls:'b-blue',   lbl:'' },
+      { badge:'JS',  cls:'b-yellow', lbl:'JavaScript' },
+      { badge:'TS',  cls:'b-sky',    lbl:'TypeScript' },
+      { badge:'PY',  cls:'b-teal',   lbl:'Python' },
+      { badge:'GO',  cls:'b-sky',    lbl:'Golang' },
+      { badge:'🐳',  cls:'b-blue',   lbl:'Docker' },
+      { badge:'GIT', cls:'b-peach',  lbl:'Git' },
+      { badge:'🐙',  cls:'b-mauve',  lbl:'GitHub' },
+      { badge:'LX',  cls:'b-green',  lbl:'Linux' },
+      { badge:'SH',  cls:'b-green',  lbl:'Shell' },
+      { badge:'▶',   cls:'b-red',    lbl:'YouTube' },
+      { badge:'📷',  cls:'b-mauve',  lbl:'Instagram' },
+    ];
+
+    function mk({ badge, cls, lbl }) {
+      return `
+        <div class="item">
+          <div class="badge ${cls}">${badge}</div>
+          ${lbl ? `<span class="lbl">${lbl}</span>` : ''}
+        </div>
+        <div class="sep"></div>
+      `;
+    }
+
+    const track = document.getElementById('track');
+    track.innerHTML = [...items, ...items].map(mk).join('');
+  </script>
+</body>
+</html>

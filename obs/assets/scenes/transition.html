@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --blue:#89b4fa; --mauve:#cba6f7; --crust:#11111b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:var(--crust);
+    font-family:'SF Mono','Fira Code',monospace;
+  }
+
+  /* ── Full flash base ── */
+  .flash {
+    position:absolute; inset:0;
+    background:var(--crust);
+    animation:flashCycle 2.4s ease-in-out infinite;
+  }
+  @keyframes flashCycle {
+    0%,100% { opacity:1; }
+    45%      { opacity:0.95; }
+    50%      { opacity:0; }
+    55%      { opacity:0.95; }
+  }
+
+  /* ── Diagonal wipe overlay ── */
+  .wipe {
+    position:absolute; inset:0;
+    background:linear-gradient(105deg,
+      transparent 0%,
+      transparent 40%,
+      var(--blue) 48%,
+      var(--mauve) 50%,
+      var(--blue) 52%,
+      transparent 60%,
+      transparent 100%);
+    animation:wipe 2.4s ease-in-out infinite;
+    opacity:0.9;
+  }
+  @keyframes wipe {
+    0%   { transform:translateX(-100%); }
+    40%  { transform:translateX(-100%); }
+    60%  { transform:translateX(100%); opacity:0.9; }
+    100% { transform:translateX(100%); opacity:0; }
+  }
+
+  /* ── Circuit trace lines ── */
+  .lines {
+    position:absolute; inset:0;
+  }
+
+  /* ── Center logo/brand ── */
+  .center {
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    display:flex; flex-direction:column;
+    align-items:center; gap:16px;
+    animation:logoPulse 2.4s ease-in-out infinite;
+    z-index:10;
+  }
+  @keyframes logoPulse {
+    0%,100% { opacity:0; transform:translate(-50%,-50%) scale(0.8); }
+    45%,55% { opacity:1; transform:translate(-50%,-50%) scale(1); }
+  }
+
+  .logo-box {
+    width:120px; height:120px;
+    border:2px solid var(--blue);
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    box-shadow:0 0 60px rgba(137,180,250,0.6), inset 0 0 30px rgba(137,180,250,0.1);
+  }
+  .logo-box::before, .logo-box::after {
+    content:''; position:absolute;
+    width:20px; height:20px;
+    border-color:var(--mauve);
+    border-style:solid;
+  }
+  .logo-box::before { top:-4px; left:-4px; border-width:3px 0 0 3px; border-radius:4px 0 0 0; }
+  .logo-box::after  { bottom:-4px; right:-4px; border-width:0 3px 3px 0; border-radius:0 0 4px 0; }
+
+  .logo-text {
+    font-size:48px; font-weight:700;
+    color:var(--blue); letter-spacing:2px;
+  }
+
+  .brand-name {
+    font-size:18px; letter-spacing:6px;
+    color:rgba(205,214,244,0.8);
+    text-transform:lowercase;
+  }
+
+  /* ── Horizontal scan bars ── */
+  .scanbar {
+    position:absolute; left:0; width:100%; height:3px;
+    background:linear-gradient(to right,
+      transparent 0%, var(--blue) 40%, rgba(137,180,250,0.8) 50%, var(--blue) 60%, transparent 100%);
+    animation:scanV 2.4s ease-in-out infinite;
+    opacity:0;
+  }
+  .scanbar:nth-child(1) { animation-delay:0s; }
+  .scanbar:nth-child(2) { animation-delay:0.15s; background:linear-gradient(to right, transparent 0%, var(--mauve) 40%, rgba(203,166,247,0.8) 50%, var(--mauve) 60%, transparent 100%); }
+  .scanbar:nth-child(3) { animation-delay:0.05s; top:30%; }
+
+  @keyframes scanV {
+    0%   { top:0; opacity:0; }
+    35%  { opacity:0; }
+    45%  { opacity:1; }
+    55%  { opacity:1; }
+    65%  { opacity:0; }
+    100% { top:1080px; opacity:0; }
+  }
+
+  /* ── Glitch lines ── */
+  .glitch {
+    position:absolute; left:0; width:100%; height:2px;
+    background:var(--blue); opacity:0;
+    animation:glitch 2.4s steps(1) infinite;
+  }
+  @keyframes glitch {
+    0%,100% { opacity:0; top:200px; }
+    47%      { opacity:0; }
+    48%      { opacity:0.8; top:350px; width:80%; }
+    49%      { opacity:0.6; top:700px; width:60%; left:20%; }
+    50%      { opacity:0.9; top:150px; width:100%; left:0; }
+    51%      { opacity:0; }
+  }
+  .glitch2 {
+    position:absolute; left:0; width:100%; height:1px;
+    background:var(--mauve); opacity:0;
+    animation:glitch2 2.4s steps(1) infinite;
+  }
+  @keyframes glitch2 {
+    0%,100% { opacity:0; }
+    48%      { opacity:0; }
+    48.5%    { opacity:0.7; top:500px; width:40%; left:30%; }
+    49.5%    { opacity:0.5; top:800px; width:70%; left:5%; }
+    50%      { opacity:0; }
+  }
+</style>
+</head>
+<body>
+  <div class="flash"></div>
+  <div class="wipe"></div>
+
+  <div class="lines">
+    <div class="scanbar"></div>
+    <div class="scanbar"></div>
+    <div class="scanbar"></div>
+  </div>
+
+  <div class="glitch"></div>
+  <div class="glitch2"></div>
+
+  <div class="center">
+    <div class="logo-box">
+      <span class="logo-text">R</span>
+    </div>
+    <div class="brand-name">rckstrbhushan</div>
+  </div>
+</body>
+</html>

@@ -8,28 +8,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a personal dotfiles repository for macOS systems. It uses [Dotbot](https://github.com/anishathalye/dotbot) for installation and symlink management, configuring Neovim, Hammerspoon, Kitty, tmux, zsh, and various development tools.
+This is a personal dotfiles repository for macOS systems. A single `install` script handles everything — Homebrew, symlinks, packages, and dev tooling — for both fresh and existing machines.
 
 ## Installation & Setup
 
 ### Full Installation
 
 ```bash
-bash install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/bhushan/dotfiles/master/install)"
 ```
 
-This runs the `install` script which:
-
-- Executes Dotbot with `install.conf.yaml` as the configuration
-- Updates git submodules (Dotbot itself is a submodule)
-- Creates symlinks from this repo to home directory locations
-- Syncs Homebrew packages with Brewfile (Terraform-style: installs new packages AND removes unlisted ones)
-
-### Brewfile Installation
+Works on a fresh Mac or an existing one. If the repo is already cloned:
 
 ```bash
-brew bundle
+bash ~/code/dotfiles/install
 ```
+
+The `install` script:
+
+1. Installs Xcode CLT if missing (re-run after)
+2. Installs Homebrew if missing
+3. Clones this repo to `~/code/dotfiles` if missing
+4. Runs `scripts/packages.sh` — syncs Brewfile (install new, remove unlisted)
+5. Runs `scripts/links.sh` — creates all symlinks
+6. Runs `scripts/apps.sh` — installs oh-my-zsh, TPM, Composer, Valet
+
+### Brewfile
 
 Installs all dependencies defined in `Brewfile`, including:
 
@@ -84,7 +88,6 @@ Runs the `update` script which automatically updates:
 
 - Homebrew itself and all installed packages
 - Brewfile bundle (installs any newly added packages)
-- Dotbot (via git submodules)
 - oh-my-zsh
 - Tmux plugins (via TPM)
 - Neovim plugins (via lazy.nvim)
@@ -110,15 +113,15 @@ shfmt -w <file>
 
 ## Repository Architecture
 
-### Dotbot Configuration (`install.conf.yaml`)
+### Install Scripts (`scripts/`)
 
-The central configuration file that defines:
+| Script | Purpose |
+|--------|---------|
+| `scripts/packages.sh` | Syncs Homebrew packages from `Brewfile` (installs new, removes unlisted) |
+| `scripts/links.sh` | Creates all symlinks from dotfiles repo to their target locations |
+| `scripts/apps.sh` | Installs oh-my-zsh, TPM, Composer, and Laravel Valet |
 
-- Which files/directories get symlinked where
-- Shell commands to run during installation
-- Directory creation tasks
-
-Symlinks created:
+**Symlinks** (managed in `scripts/links.sh`):
 
 - `nvim/` → `~/.config/nvim`
 - `karabiner/` → `~/.config/karabiner`
@@ -165,7 +168,7 @@ Requires OBS Studio running with WebSocket server enabled (Tools > WebSocket Ser
 
 ### Claude Code Configuration (`claude/`)
 
-Global Claude Code settings, hooks, custom commands, and agents managed via Dotbot symlinks.
+Global Claude Code settings, hooks, custom commands, and agents managed via symlinks in `scripts/links.sh`.
 
 **Hooks** (`claude/hooks/`):
 
@@ -296,14 +299,8 @@ For Laravel projects, use:
 
 ### Modifying Symlinks
 
-1. Edit `install.conf.yaml`
-2. Run `bash install` to update symlinks
-
-### Updating Dotbot
-
-```bash
-git submodule update --remote dotbot
-```
+1. Edit `scripts/links.sh`
+2. Run `bash install` to re-apply
 
 ## Key Customizations
 

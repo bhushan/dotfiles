@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  :root {
+    --blue:#89b4fa; --mauve:#cba6f7; --text:#cdd6f4;
+    --s0:#313244; --s1:#45475a; --crust:#11111b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width:1920px; height:1080px; overflow:hidden;
+    background:transparent;
+    font-family:'SF Pro Display',-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  /* ── Corner circuit accents ── */
+  .corner { position:absolute; opacity:0.18; }
+  .tl { top:0; left:0; }
+  .tr { top:0; right:0; transform:scaleX(-1); }
+
+  /* ── Lower third ── */
+  .lower {
+    position:absolute; bottom:0; left:0; right:0;
+    height:110px;
+    animation:slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes slideUp {
+    from { transform:translateY(110px); opacity:0; }
+    to   { transform:translateY(0);     opacity:1; }
+  }
+
+  /* top accent bar — animated grow */
+  .accent-bar {
+    height:3px;
+    background:linear-gradient(to right, var(--blue), var(--mauve), var(--blue));
+    background-size:200% 100%;
+    animation:shimmer 4s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%   { background-position:0% 50%; }
+    50%  { background-position:100% 50%; }
+    100% { background-position:0% 50%; }
+  }
+
+  .panel {
+    height:107px;
+    background:linear-gradient(to right,
+      rgba(17,17,27,0.96) 0%,
+      rgba(24,24,37,0.94) 70%,
+      rgba(24,24,37,0.0) 100%);
+    display:flex; align-items:center;
+    padding:0 56px;
+    gap:24px;
+    position:relative;
+  }
+
+  /* left blue bar */
+  .bar-mark {
+    width:4px; height:68px; flex-shrink:0;
+    background:linear-gradient(to bottom, var(--blue), var(--mauve));
+    border-radius:2px;
+    animation:barGrow 0.5s 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes barGrow {
+    from { height:0; opacity:0; }
+    to   { height:68px; opacity:1; }
+  }
+
+  .text-block {
+    display:flex; flex-direction:column; justify-content:center; gap:6px;
+  }
+
+  .name {
+    font-size:42px; font-weight:500;
+    color:var(--text); letter-spacing:2px;
+    animation:textIn 0.5s 0.3s both;
+  }
+  .sub {
+    font-family:'SF Mono','Fira Code',monospace;
+    font-size:15px; letter-spacing:4px;
+    color:var(--blue); text-transform:uppercase;
+    animation:textIn 0.5s 0.5s both;
+  }
+  .sub::before { content:'// '; color:var(--mauve); opacity:0.7; }
+  @keyframes textIn {
+    from { opacity:0; transform:translateX(-10px); }
+    to   { opacity:1; transform:translateX(0); }
+  }
+
+  /* platform tags */
+  .tags {
+    margin-left:auto;
+    display:flex; gap:10px;
+    animation:textIn 0.5s 0.7s both;
+  }
+  .tag {
+    padding:6px 16px; border-radius:6px;
+    font-size:13px; font-weight:500; letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  .tag-yt  { background:rgba(243,139,168,0.15); color:#f38ba8; border:1px solid rgba(243,139,168,0.3); }
+  .tag-ig  { background:rgba(203,166,247,0.15); color:var(--mauve); border:1px solid rgba(203,166,247,0.3); }
+</style>
+</head>
+<body>
+  <!-- Corner circuit traces -->
+  <svg class="corner tl" width="240" height="180" fill="none">
+    <path d="M0 56 H56 V0" stroke="#89b4fa" stroke-width="1.5"/>
+    <path d="M0 88 H72 V16 H96" stroke="#89b4fa" stroke-width="1"/>
+    <circle cx="56" cy="56" r="4" fill="#89b4fa"/>
+    <circle cx="72" cy="72" r="2.5" fill="#cba6f7"/>
+    <path d="M0 120 H110 V56" stroke="#89b4fa" stroke-width="0.5" stroke-dasharray="4 4"/>
+  </svg>
+  <svg class="corner tr" width="240" height="180" fill="none">
+    <path d="M0 56 H56 V0" stroke="#89b4fa" stroke-width="1.5"/>
+    <path d="M0 88 H72 V16 H96" stroke="#89b4fa" stroke-width="1"/>
+    <circle cx="56" cy="56" r="4" fill="#89b4fa"/>
+    <circle cx="72" cy="72" r="2.5" fill="#cba6f7"/>
+    <path d="M0 120 H110 V56" stroke="#89b4fa" stroke-width="0.5" stroke-dasharray="4 4"/>
+  </svg>
+
+  <div class="lower">
+    <div class="accent-bar"></div>
+    <div class="panel">
+      <div class="bar-mark"></div>
+      <div class="text-block">
+        <div class="name">rckstrbhushan</div>
+        <div class="sub">Technical Tutorials</div>
+      </div>
+      <div class="tags">
+        <div class="tag tag-yt">YouTube</div>
+        <div class="tag tag-ig">Instagram</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
