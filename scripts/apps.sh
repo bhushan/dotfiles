@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-source "$(dirname "$0")/utils.sh"
-
 step "Setting up apps..."
 
 [ -f "$HOME/.hushlogin" ] || touch "$HOME/.hushlogin"
