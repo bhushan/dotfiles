@@ -6,7 +6,10 @@ link() {
   local src="$DOTFILES/$1"
   local dst="$2"
   mkdir -p "$(dirname "$dst")"
-  ln -sf "$src" "$dst"
+  # If destination is a real directory (not already a symlink), remove it first
+  # so ln doesn't place the symlink inside it
+  [[ -d "$dst" && ! -L "$dst" ]] && rm -rf "$dst"
+  ln -sfn "$src" "$dst"
   echo "  $dst"
 }
 
@@ -46,7 +49,7 @@ link claude/agents        "$HOME/.claude/agents"
 link claude/CLAUDE.md     "$HOME/.claude/CLAUDE.md"
 
 # Self-reference
-ln -sf "$DOTFILES" "$HOME/.dotfiles"
+ln -sfn "$DOTFILES" "$HOME/.dotfiles"
 
 # Clean up broken symlinks in home dir
 find "$HOME" -maxdepth 1 -type l ! -exec test -e {} \; -delete
