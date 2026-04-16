@@ -2,6 +2,7 @@
   "permissions": {
     "allow": []
   },
+  "model": "sonnet",
   "hooks": {
     "PreToolUse": [
       {
@@ -98,5 +99,9 @@
       }
     }
   },
-  "model": "sonnet"
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  }
 }
