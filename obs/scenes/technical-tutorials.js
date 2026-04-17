@@ -170,17 +170,6 @@ export async function setup(obs) {
     CANVAS_W, CANVAS_H, '', fillCanvas());
 
   // ─────────────────────────────────────────────────────────────────────────
-  // Scene 7: Transition
-  // Full-canvas HTML animation — used as a manual cut-through scene
-  // ─────────────────────────────────────────────────────────────────────────
-  const s7 = '7 [TT] Transition';
-  await createScene(obs, s7);
-
-  await addBrowserSource(obs, s7, '[TT] Transition FX',
-    sceneURL('transition.html'),
-    CANVAS_W, CANVAS_H, '', fillCanvas());
-
-  // ─────────────────────────────────────────────────────────────────────────
   // Instagram Scene S1: Camera Vertical
   // ─────────────────────────────────────────────────────────────────────────
   const ig1 = 'S1 [TT-IG] Camera Vertical';
@@ -289,9 +278,12 @@ export async function setup(obs) {
   // ─────────────────────────────────────────────────────────────────────────
   // Lock all items
   // ─────────────────────────────────────────────────────────────────────────
-  for (const scene of [s1, s2, s3, s4, s5, s6, s7, ig1, ig2, ig3]) {
+  for (const scene of [s1, s2, s3, s4, s5, s6, ig1, ig2, ig3]) {
     await lockAllItems(obs, scene);
   }
+
+  // Scene transitions are applied in Phase 2 (JSON patching) via setup.js
+  // so that the Stinger transition can be injected into the OBS config file.
 
   await obs.call('SetCurrentProgramScene', { sceneName: s2 });
   console.log('\nTechnical Tutorials scenes created successfully!');

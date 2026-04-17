@@ -38,7 +38,6 @@ const SCENE_HOTKEYS = {
   'S1 [TT-IG] Camera Vertical':  { key: 'OBS_KEY_NUM1', shift: true },
   'S2 [TT-IG] Screen Vertical':  { key: 'OBS_KEY_NUM2', shift: true },
   'S3 [TT-IG] Starting Vertical':{ key: 'OBS_KEY_NUM3', shift: true },
-  '7 [TT] Transition':            { key: 'OBS_KEY_NUM7' },
 };
 
 async function main() {
@@ -196,10 +195,44 @@ async function main() {
   const data = JSON.parse(fs.readFileSync(SCENE_FILE, "utf8"));
   let patchCount = 0;
 
-  // ── Fade transition (default) ──
-  data.current_transition = "Fade";
-  data.transition_duration = 300;
-  console.log("  Transition: Fade (300ms)");
+  // ── Stinger transition (uses transition.webm if present, else Fade) ──
+  const stingerVideoPath = assetsPath("assets/transition.webm");
+  const hasStinger = fs.existsSync(stingerVideoPath);
+
+  // YouTube scenes that should use the stinger (switching away from them triggers it)
+  const STINGER_SCENES = new Set([
+    '1 [TT] Starting Soon',
+    '2 [TT] Intro',
+    '3 [TT] Screen Share',
+    '4 [TT] Full Camera',
+    '5 [TT] BRB/Pause',
+    '6 [TT] Outro',
+  ]);
+  const CUT_SCENES = new Set(); // no cut-only scenes
+
+  if (hasStinger) {
+    // Inject Stinger transition into transitions array (replace if already present)
+    if (!data.transitions) data.transitions = [];
+    data.transitions = data.transitions.filter(t => t.name !== 'Stinger');
+    data.transitions.push({
+      id: 'obs_stinger_transition',
+      name: 'Stinger',
+      settings: {
+        path: stingerVideoPath,
+        transition_point_type: 0, // 0 = Time (ms)
+        transition_point: 500,    // cut at 500ms — adjust if clip is longer/shorter
+        audio_fade_style: 0,
+        monitor_audio: false,
+      },
+    });
+    data.current_transition = 'Stinger';
+    data.transition_duration = 1000;
+    console.log(`  Transition: Stinger (1000ms, cut @ 500ms) → ${stingerVideoPath}`);
+  } else {
+    data.current_transition = 'Fade';
+    data.transition_duration = 300;
+    console.log('  Transition: Fade (300ms) — add transition.webm to enable Stinger');
+  }
   patchCount++;
 
   // ── Numpad hotkeys ──
@@ -220,6 +253,30 @@ async function main() {
         (hotkey.shift ? "Shift+" : "") + hotkey.key.replace("OBS_KEY_", "");
       console.log(`  Hotkey: ${label} → "${source.name}"`);
       patchCount++;
+    }
+  }
+
+  // ── Per-scene transition overrides ──
+  if (hasStinger) {
+    for (const source of data.sources) {
+      if (source.id !== 'scene') continue;
+      if (STINGER_SCENES.has(source.name)) {
+        source.private_settings = {
+          ...source.private_settings,
+          transition: 'Stinger',
+          transition_duration: 1000,
+        };
+        console.log(`  Scene override: "${source.name}" → Stinger`);
+        patchCount++;
+      } else if (CUT_SCENES.has(source.name)) {
+        source.private_settings = {
+          ...source.private_settings,
+          transition: 'Cut',
+          transition_duration: 50,
+        };
+        console.log(`  Scene override: "${source.name}" → Cut`);
+        patchCount++;
+      }
     }
   }
 

@@ -166,6 +166,8 @@ Requires OBS Studio running with WebSocket server enabled (Tools > WebSocket Ser
 
 **Assets:** Background videos, camera masks, animated lower thirds, and stinger transitions are in `obs/assets/` directory.
 
+**Scene transitions:** The setup script auto-configures per-scene transition overrides using `SetSceneSceneTransitionOverride`. If `obs/assets/transition.webm` exists, a Stinger transition is wired to all YouTube scenes; otherwise it falls back to Fade (500ms). Scene 7 (the visual transition) always uses a Cut override. To enable the Stinger: screen-record `assets/scenes/transition.html` with transparency and save as `obs/assets/transition.webm`.
+
 ### Claude Code Configuration (`claude/`)
 
 Global Claude Code settings, hooks, custom commands, and agents managed via symlinks in `scripts/links.sh`.

@@ -395,3 +395,40 @@ export async function removeTemp(obs) {
     // ignore if already removed
   }
 }
+
+// Set per-scene transition override (what plays when switching FROM this scene)
+export async function setSceneTransitionOverride(obs, sceneName, transitionName, transitionDuration = 300) {
+  await obs.call('SetSceneSceneTransitionOverride', {
+    sceneName,
+    transitionName,
+    transitionDuration,
+  });
+  console.log(`  ↪ transition override: "${sceneName}" → ${transitionName} (${transitionDuration}ms)`);
+}
+
+// Configure a Stinger transition with a video file and set it as the current transition.
+// Creates the transition if it doesn't already exist.
+// transitionPoint is the ms offset at which the scene swap happens (typically half the clip length).
+export async function configureStingerTransition(obs, transitionName, videoPath, transitionPoint = 500) {
+  // Check if it already exists; create it if not
+  const { transitions } = await obs.call('GetSceneTransitionList');
+  const exists = transitions.some(t => t.transitionName === transitionName);
+  if (!exists) {
+    await obs.call('CreateSceneTransition', {
+      transitionName,
+      transitionKind: 'obs_stinger_transition',
+    });
+    console.log(`  ↪ created stinger transition: "${transitionName}"`);
+  }
+  await obs.call('SetCurrentSceneTransition', { transitionName });
+  await obs.call('SetCurrentSceneTransitionSettings', {
+    transitionSettings: {
+      path: videoPath,
+      transition_point_type: 0, // 0 = Time (ms), 1 = Frame
+      transition_point: transitionPoint,
+      audio_fade_style: 0,      // 0 = Fade Out/In
+      monitor_audio: false,
+    },
+  });
+  console.log(`  ↪ stinger configured: "${transitionName}" → ${videoPath} (cut @ ${transitionPoint}ms)`);
+}
