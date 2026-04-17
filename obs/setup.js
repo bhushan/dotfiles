@@ -316,8 +316,8 @@ Mode=Advanced
 
 [AdvOut]
 RecType=Standard
-RecEncoder=com.apple.videotoolbox.videoencoder.ave.hevc
-RecFormat=mkv
+RecEncoder=com.apple.videotoolbox.videoencoder.ave.avc
+RecFormat=mp4
 RecFilePath=${process.env.HOME}/Downloads/recordings
 RecTracks=1
 RecMuxerCustom=
@@ -352,7 +352,7 @@ ColorRange=2
 `;
 
     fs.writeFileSync(profileFile, profile);
-    console.log("  Recording: Apple VT H.265, MKV, 1080p60, quality-based encoding");
+    console.log("  Recording: Apple VT H.264, MP4, 1080p60, quality-based encoding");
     console.log("  Streaming: Apple VT H.265, 6000kbps");
     patchCount++;
   }
@@ -362,12 +362,12 @@ ColorRange=2
   fs.writeFileSync(recEncoderFile, JSON.stringify({
     rate_control: "CRF",
     quality: 18,         // CRF 18 = visually lossless, great for YT upload
-    profile: "main",
+    profile: "high",
     bf: 2,
     prio_speed: false,   // prioritize quality over speed
     max_bitrate: 40000,  // cap at 40Mbps (more than enough for 1080p60)
   }, null, 2));
-  console.log("  Recording encoder: CRF 18 (near-lossless quality)");
+  console.log("  Recording encoder: H.264 CRF 18 (near-lossless quality)");
 
   // ── Write encoder settings for streaming ──
   const streamEncoderFile = path.join(profileDir, "streamEncoder.json");

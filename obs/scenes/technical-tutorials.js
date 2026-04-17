@@ -70,9 +70,8 @@ export async function setup(obs) {
   const camIntro = await addSource(obs, s2, SRC.camera, 'macos-avcapture', {
     device: cameraUUID,
     device_name: 'FaceTime HD Camera',
-    use_preset: false,
-    width: 1920,
-    height: 1080,
+    use_preset: true,
+    preset: 11,
   }, fillCanvas());
   await flipHorizontal(obs, s2, camIntro.sceneItemId);
 
