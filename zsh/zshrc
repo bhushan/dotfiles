@@ -43,7 +43,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 [ -f ~/.aliases ] && source ~/.aliases
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
 
 # -------- For Office specific settings -------- #
 local FILE=~/.org_zshrc
