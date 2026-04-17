@@ -62,12 +62,17 @@ export async function setup(obs) {
   await addSource(obs, s2, SRC.screen, 'screen_capture', {
     show_cursor: true, type: 0, hide_obs: true,
     display_uuid: displayUUID,
+    show_empty_names: false,
+    show_hidden_windows: false,
   }, { ...fillCanvas(), cropTop: display.menuBar });
 
-  // Camera — full canvas
+  // Camera — full canvas, request highest resolution
   const camIntro = await addSource(obs, s2, SRC.camera, 'macos-avcapture', {
     device: cameraUUID,
     device_name: 'FaceTime HD Camera',
+    use_preset: false,
+    width: 1920,
+    height: 1080,
   }, fillCanvas());
   await flipHorizontal(obs, s2, camIntro.sceneItemId);
 

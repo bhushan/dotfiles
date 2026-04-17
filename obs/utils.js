@@ -11,9 +11,10 @@ export function getDisplayInfo() {
       '  let id = screen.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as! UInt32',
       '  let uuid = CFUUIDCreateString(nil, CGDisplayCreateUUIDFromDisplayID(id).takeRetainedValue()) as String',
       '  let isMain = CGDisplayIsMain(id) != 0',
-      '  let w = Int(screen.frame.width)',
-      '  let h = Int(screen.frame.height)',
-      '  let menuBar = Int(screen.frame.height - screen.visibleFrame.height - screen.visibleFrame.origin.y)',
+      '  let scale = Int(screen.backingScaleFactor)',
+      '  let w = Int(screen.frame.width) * scale',
+      '  let h = Int(screen.frame.height) * scale',
+      '  let menuBar = Int(screen.frame.maxY - screen.visibleFrame.maxY) * scale',
       '  let label = isMain ? "main" : "external"',
       '  print("\\(label)|\\(uuid)|\\(w)|\\(h)|\\(menuBar)")',
       '}',
@@ -313,7 +314,7 @@ export function fillCanvas() {
   return {
     positionX: 0,
     positionY: 0,
-    boundsType: 'OBS_BOUNDS_STRETCH',
+    boundsType: 'OBS_BOUNDS_SCALE_OUTER',
     boundsWidth: CANVAS_W,
     boundsHeight: CANVAS_H,
   };

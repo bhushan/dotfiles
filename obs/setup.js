@@ -345,6 +345,10 @@ OutputCX=1920
 OutputCY=1080
 FPSType=0
 FPSCommon=60
+ScaleType=lanczos
+ColorFormat=NV12
+ColorSpace=709
+ColorRange=2
 `;
 
     fs.writeFileSync(profileFile, profile);
