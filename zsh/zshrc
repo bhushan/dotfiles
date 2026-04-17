@@ -126,3 +126,10 @@ alias claude-mem='/Users/rckstrbhushan/.bun/bin/bun "/Users/rckstrbhushan/.claud
 export PATH="$PATH:/Users/rckstrbhushan/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# bun completions
+[ -s "/Users/rckstrbhushan/.bun/_bun" ] && source "/Users/rckstrbhushan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
