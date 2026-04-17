@@ -1,109 +1,106 @@
 {
-    "permissions": {
-        "allow": []
-    },
-    "model": "sonnet",
-    "hooks": {
-        "PreToolUse": [
-            {
-                "matcher": "Bash",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-push-protected-branches.sh"
-                    },
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-destructive-git.sh"
-                    },
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-rm-dangerous.sh"
-                    },
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-dangerous-sql.sh"
-                    }
-                ]
-            },
-            {
-                "matcher": "Read",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-read-env.sh"
-                    }
-                ]
-            },
-            {
-                "matcher": "Write",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-write-credentials.sh"
-                    }
-                ]
-            },
-            {
-                "matcher": "Edit",
-                "hooks": [
-                    {
-                        "type": "command",
-                        "command": "~/.claude/hooks/prevent-write-credentials.sh"
-                    }
-                ]
-            }
+  "permissions": {
+    "allow": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-push-protected-branches.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-destructive-git.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-rm-dangerous.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-dangerous-sql.sh"
+          }
         ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-read-env.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-write-credentials.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-write-credentials.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash -c '\"$(~/.nvm/nvm-exec which node 2>/dev/null || which node)\" \"$(ls -td ~/.claude/plugins/cache/claude-hud/claude-hud/*/ 2>/dev/null | head -1)dist/index.js\"'"
+  },
+  "enabledPlugins": {
+    "claude-mem@thedotmack": true,
+    "laravel-boost@claude-plugins-official": true,
+    "claude-hud@claude-hud": true,
+    "frontend-design@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "cloudflare@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
     },
-    "statusLine": {
-        "type": "command",
-        "command": "bash -c '\"$(~/.nvm/nvm-exec which node 2>/dev/null || which node)\" \"$(ls -td ~/.claude/plugins/cache/claude-hud/claude-hud/*/ 2>/dev/null | head -1)dist/index.js\"'"
+    "claude-hud": {
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud"
+      }
     },
-    "enabledPlugins": {
-        "claude-mem@thedotmack": true,
-        "laravel-boost@claude-plugins-official": true,
-        "claude-hud@claude-hud": true,
-        "frontend-design@claude-plugins-official": true,
-        "superpowers@claude-plugins-official": true,
-        "code-simplifier@claude-plugins-official": true,
-        "cloudflare@claude-plugins-official": true
-    },
-    "extraKnownMarketplaces": {
-        "thedotmack": {
-            "source": {
-                "source": "github",
-                "repo": "thedotmack/claude-mem"
-            }
-        },
-        "claude-hud": {
-            "source": {
-                "source": "github",
-                "repo": "jarrodwatts/claude-hud"
-            }
-        },
-        "claude-code-plugins": {
-            "source": {
-                "source": "github",
-                "repo": "anthropics/claude-code"
-            }
-        }
-    },
-    "effortLevel": "medium",
-    "voiceEnabled": true,
-    "voice": {
-        "enabled": true,
-        "mode": "hold"
-    },
-    "mcpServers": {
-        "obs": {
-            "command": "npx",
-            "args": [
-                "-y",
-                "obs-mcp@latest"
-            ],
-            "env": {
-                "OBS_WEBSOCKET_URL": "ws://localhost:4455"
-            }
-        }
+    "claude-code-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-code"
+      }
     }
+  },
+  "effortLevel": "medium",
+  "voiceEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "mcpServers": {
+    "obs": {
+      "command": "npx",
+      "args": ["-y", "obs-mcp@latest"],
+      "env": {
+        "OBS_WEBSOCKET_URL": "ws://localhost:4455"
+      }
+    }
+  },
+  "model": "opusplan"
 }
