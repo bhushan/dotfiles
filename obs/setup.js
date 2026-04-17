@@ -69,10 +69,10 @@ async function main() {
       baseHeight: CANVAS_H,
       outputWidth: CANVAS_W,
       outputHeight: CANVAS_H,
-      fpsNumerator: 30,
+      fpsNumerator: 60,
       fpsDenominator: 1,
     });
-    console.log(`Canvas: ${CANVAS_W}x${CANVAS_H} @ 30fps\n`);
+    console.log(`Canvas: ${CANVAS_W}x${CANVAS_H} @ 60fps\n`);
 
     await cleanSlate(obs);
 
@@ -284,7 +284,7 @@ async function main() {
   fs.writeFileSync(SCENE_FILE, JSON.stringify(data, null, 2));
   console.log(`\n  ${patchCount} patches applied`);
 
-  // ── Set global audio devices in profile ──
+  // ── Set global audio devices + recording/streaming output in profile ──
   const profileDir = path.join(
     process.env.HOME,
     "Library/Application Support/obs-studio/basic/profiles/Untitled",
@@ -294,16 +294,87 @@ async function main() {
     let profile = fs.readFileSync(profileFile, "utf8");
     // Add global audio devices if not present
     if (!profile.includes("AuxAudioDevice1")) {
-      // Add after [Audio] section
       profile = profile.replace(
         "[Audio]\n",
         "[Audio]\nAuxAudioDevice1=BuiltInMicrophoneDevice\nDesktopAudioDevice1=default\n",
       );
-      fs.writeFileSync(profileFile, profile);
       console.log("  Global audio: Mic + Desktop Audio set in profile");
       patchCount++;
     }
+
+    // ── Recording output settings (priority: recording quality for YT/IG) ──
+    // Remove existing output sections to rewrite them cleanly
+    profile = profile.replace(/\[Output\][\s\S]*?(?=\n\[|$)/, '');
+    profile = profile.replace(/\[AdvOut\][\s\S]*?(?=\n\[|$)/, '');
+    profile = profile.replace(/\[Video\][\s\S]*?(?=\n\[|$)/, '');
+
+    // Use Advanced output mode with Apple VT H.265 hardware encoder
+    // CRF/quality-based encoding = sharp at any bitrate, small files
+    profile += `
+[Output]
+Mode=Advanced
+
+[AdvOut]
+RecType=Standard
+RecEncoder=com.apple.videotoolbox.videoencoder.ave.hevc
+RecFormat=mkv
+RecFilePath=${process.env.HOME}/Downloads/recordings
+RecTracks=1
+RecMuxerCustom=
+Rescale=false
+RecRescaleRes=1920x1080
+FFOutputToFile=true
+StreamEncoder=com.apple.videotoolbox.videoencoder.ave.hevc
+FFVBitrate=6000
+FFABitrate=320
+TrackIndex=0
+StreamTrack=1
+VodTrackIndex=2
+VodTrackEnabled=false
+Track1Bitrate=320
+Track2Bitrate=160
+Track3Bitrate=160
+Track4Bitrate=160
+Track5Bitrate=160
+Track6Bitrate=160
+
+[Video]
+BaseCX=1920
+BaseCY=1080
+OutputCX=1920
+OutputCY=1080
+FPSType=0
+FPSCommon=60
+`;
+
+    fs.writeFileSync(profileFile, profile);
+    console.log("  Recording: Apple VT H.265, MKV, 1080p60, quality-based encoding");
+    console.log("  Streaming: Apple VT H.265, 6000kbps");
+    patchCount++;
   }
+
+  // ── Write encoder settings for recording (high quality CRF) ──
+  const recEncoderFile = path.join(profileDir, "recordEncoder.json");
+  fs.writeFileSync(recEncoderFile, JSON.stringify({
+    rate_control: "CRF",
+    quality: 18,         // CRF 18 = visually lossless, great for YT upload
+    profile: "main",
+    bf: 2,
+    prio_speed: false,   // prioritize quality over speed
+    max_bitrate: 40000,  // cap at 40Mbps (more than enough for 1080p60)
+  }, null, 2));
+  console.log("  Recording encoder: CRF 18 (near-lossless quality)");
+
+  // ── Write encoder settings for streaming ──
+  const streamEncoderFile = path.join(profileDir, "streamEncoder.json");
+  fs.writeFileSync(streamEncoderFile, JSON.stringify({
+    rate_control: "CBR",
+    bitrate: 6000,       // 6Mbps CBR for YouTube live
+    profile: "main",
+    bf: 2,
+    prio_speed: true,    // prioritize speed for real-time streaming
+  }, null, 2));
+  console.log("  Stream encoder: CBR 6000kbps (YouTube recommended)");
 
   // ── Ensure WebSocket stays enabled after restart ──
   const wsConfigDir = path.join(
