@@ -65,7 +65,8 @@
     "frontend-design@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true
+    "cloudflare@claude-plugins-official": true,
+    "frontend-slides@frontend-slides": true
   },
   "extraKnownMarketplaces": {
     "thedotmack": {
@@ -84,6 +85,12 @@
       "source": {
         "source": "github",
         "repo": "anthropics/claude-code"
+      }
+    },
+    "frontend-slides": {
+      "source": {
+        "source": "github",
+        "repo": "zarazhangrui/frontend-slides"
       }
     }
   },
