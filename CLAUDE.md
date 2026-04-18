@@ -228,13 +228,13 @@ Uses lazy.nvim plugin manager with modular structure:
 - `options.lua` - Editor settings (tabs, line numbers, search, etc.)
 - `keymaps.lua` - Global key bindings
 - `autocmds.lua` - Autocommands (file type settings, highlights, etc.)
-- `colors.lua` - Catppuccin Mocha color palette (shared by all UI plugins)
+- `colors.lua` - Catppuccin Mocha + Arctic Blue color palette (shared by all UI plugins)
 
 **Plugin organization** (`nvim/lua/plugins/`):
 
 - `init.lua` - Main plugin specifications with inline configs
-- `editor/` - Editing enhancements (treesitter, cmp, autopairs, present)
-- `ui/` - UI plugins (lualine, snacks, theme)
+- `editor/` - Editing enhancements (treesitter, treesitter-context, cmp, autopairs, present)
+- `ui/` - UI plugins (lualine, snacks, theme, bufferline, barbecue, animate, noice, grug-far)
 - `lsp/` - LSP configuration (language servers, formatters)
 - `git/` - Git integration (gitsigns)
 - `tools/` - Utility plugins (which-key)
@@ -251,8 +251,13 @@ Uses lazy.nvim plugin manager with modular structure:
 - LSP via nvim-lspconfig with Mason for auto-installation
 - Completion via nvim-cmp with multiple sources
 - Formatting via conform.nvim (Pint for PHP, Stylua for Lua, Prettier for JS/TS)
-- Treesitter for syntax highlighting
-- Snacks.nvim for terminal, notifications, dashboard, and vim.ui.select integration
+- Treesitter for syntax highlighting + treesitter-context for sticky function headers
+- Snacks.nvim for terminal, dashboard (branded RB + quote), zen mode, and pickers
+- Bufferline.nvim for visual buffer tabs (`<Tab>`/`<S-Tab>` to switch)
+- Barbecue.nvim + nvim-navic for winbar breadcrumbs (file > class > method)
+- mini.animate for smooth cursor/scroll/resize animations
+- mini.indentscope for animated active indent scope (teal)
+- indent-blankline.nvim for static indent guides
 - PHP refactoring via phprefactoring.nvim (`<C-e>` in PHP files)
 - Custom coderunner.nvim for executing code (`<leader>x`)
 
