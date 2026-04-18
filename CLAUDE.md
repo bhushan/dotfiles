@@ -340,6 +340,23 @@ All tools use a unified **Catppuccin Mocha** color scheme. The central color ref
 
 See `colors/catppuccin-mocha.md` for the complete palette.
 
+### Arctic Blue Accent Palette
+
+For streaming and content creation, Neovim includes an **Arctic Blue** palette in `nvim/lua/core/colors.lua` under the `arctic` table. This provides custom color overrides for syntax highlighting optimized for 1080p video:
+
+- `ice` (`#7dcfff`) - keywords (local, return, function, if, for)
+- `purple` (`#bb9af7`) - functions and method calls
+- `amber` (`#e0af68`) - strings
+- `teal` (`#73daca`) - types and classes
+- `mint` (`#9ece6a`) - built-in functions, require
+- `rose` (`#f7768e`) - constants, numbers, booleans
+- `comment` (`#7a80a3`) - comments (brighter than default)
+- `cursorline` (`#292e42`) - cursor line background
+- `visual` (`#33467c`) - visual selection
+- `gutter` (`#3b4261`) - active line numbers
+
+Access via `require('core.colors').arctic` in Neovim plugin configs.
+
 ## Modern CLI Tools
 
 The Brewfile includes modern replacements for traditional Unix tools:
