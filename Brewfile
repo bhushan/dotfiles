@@ -91,6 +91,10 @@ cask 'postman'
 # GUI Applications - Browsers
 cask 'arc'
 
+# Media Processing
+brew 'ffmpeg'
+cask 'blackhole-2ch'            # Virtual audio driver for capturing system audio in OBS
+
 # GUI Applications - Media & Entertainment
 cask 'spotify'
 cask 'obs'
