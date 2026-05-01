@@ -92,7 +92,8 @@ cask 'postman'
 cask 'arc'
 
 # Media Processing
-brew 'ffmpeg'
+brew 'ffmpeg-full'              # FFmpeg with libass, freetype, whisper - needed for captions/text overlays
+brew 'whisper-cpp'              # Local speech-to-text (Whisper) for video transcription & captions
 cask 'blackhole-2ch'            # Virtual audio driver for capturing system audio in OBS
 
 # GUI Applications - Media & Entertainment
