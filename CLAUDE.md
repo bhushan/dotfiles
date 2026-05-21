@@ -48,7 +48,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Cloud tools**: awscli, terraform, session-manager-plugin
 - **GUI applications**: kitty, claude, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
-- **Media**: spotify, obs
+- **Media**: spotify, obs, drawpen (on-screen annotation)
 
 ### Post-Installation
 

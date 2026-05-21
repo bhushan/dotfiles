@@ -95,6 +95,7 @@ cask 'arc'
 brew 'ffmpeg-full'              # FFmpeg with libass, freetype, whisper - needed for captions/text overlays
 brew 'whisper-cpp'              # Local speech-to-text (Whisper) for video transcription & captions
 cask 'blackhole-2ch'            # Virtual audio driver for capturing system audio in OBS
+cask 'drawpen'                  # On-screen annotation tool for presentations and screen recordings
 
 # GUI Applications - Media & Entertainment
 cask 'spotify'
