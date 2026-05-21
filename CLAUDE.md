@@ -129,8 +129,6 @@ shfmt -w <file>
 - `hammerspoon/` → `~/.hammerspoon`
 - `tmux/tmux.conf` → `~/.tmux.conf`
 - `aliases` → `~/.aliases`
-- `vimrc` → `~/.vimrc`
-- `ideavimrc` → `~/.ideavimrc`
 - `gitconfig` → `~/.gitconfig`
 - `global_gitignore` → `~/.global_gitignore`
 - `vscode/keybindings.json` → `~/Library/Application Support/Code/User/keybindings.json`
@@ -142,7 +140,6 @@ shfmt -w <file>
 - `claude/settings.json` → `~/.claude/settings.json`
 - `claude/hooks` → `~/.claude/hooks`
 - `claude/commands` → `~/.claude/commands`
-- `claude/agents` → `~/.claude/agents`
 - `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`
 
 ### OBS Studio Configuration (`obs/`)
@@ -213,33 +210,10 @@ Global Claude Code settings, hooks, custom commands, and agents managed via syml
 
 | Command | Description |
 |---------|-------------|
-| `/laravel-feature` | Scaffold a complete Laravel feature (model, migration, controller, routes, tests) |
-| `/laravel-api` | Design and implement RESTful API endpoints in Laravel |
-| `/laravel-test` | Write comprehensive Pest tests for Laravel code |
-| `/laravel-migration` | Create database migrations with best practices |
-| `/frontend-design` | Create production-grade frontend interfaces (React, Vue, Tailwind) via plugin |
-| `/terraform-module` | Create Terraform modules with proper structure and security |
-| `/aws-iac` | Design and implement AWS infrastructure (ECS, Lambda, RDS, S3, etc.) |
-| `/docker-service` | Create Docker/Compose configurations with best practices |
 | `/security-audit` | Comprehensive security audit (OWASP, Laravel, frontend, infrastructure) |
 | `/performance-review` | Analyze code for performance issues (N+1, bundle size, caching) |
-| `/refactor` | Systematic code refactoring with SOLID principles |
-| `/debug` | Systematic debugging workflow (reproduce, hypothesize, fix, verify) |
-| `/api-design` | Design RESTful APIs with pagination, filtering, error handling |
-| `/git-worktree` | Set up git worktrees for feature development |
-| `/deploy-checklist` | Pre-deployment verification checklist |
+| `/ship` | Pre-ship checklist and release workflow |
 | `/obs-setup` | Research a content niche, generate OBS scenes/hotkeys/audio tailored to top creators in that field, and run setup |
-
-**Agents** (`claude/agents/`) - Background agents for automated code quality:
-
-| Agent | Model | Description |
-|-------|-------|-------------|
-| `orchestrator` | opus | Monitors all agents, provides unified status reports |
-| `code-reviewer` | sonnet | Proactive code review after changes |
-| `test-writer` | sonnet | Automatic test writing and execution |
-| `architecture-reviewer` | sonnet | Reviews system design and architectural patterns |
-| `compliance-reviewer` | sonnet | Checks code against compliance requirements (SOC2, HIPAA) |
-| `doc-generator` | haiku | Writes project documentation after code changes |
 
 **Settings** (`claude/settings.json`):
 
@@ -309,13 +283,6 @@ Loaded by zsh, defines shortcuts for:
 - **Database**: `db` function - opens database in TablePlus from .env
 
 ### Testing
-
-Neovim includes vim-test integration with keybindings:
-
-- `<C-t>` - Run nearest test
-- `<C-S-t>` - Run last test
-- `<Leader>rf` - Run test file
-- `<Leader>rs` - Run test suite
 
 For Laravel projects, use:
 

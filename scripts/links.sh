@@ -12,8 +12,6 @@ link gitconfig                    "$HOME/.gitconfig"
 link global_gitignore             "$HOME/.global_gitignore"
 
 # Editors
-link vimrc                        "$HOME/.vimrc"
-link ideavimrc                    "$HOME/.ideavimrc"
 link nvim                         "$HOME/.config/nvim"
 link vscode/keybindings.json      "$HOME/Library/Application Support/Code/User/keybindings.json"
 link vscode/settings.json         "$HOME/Library/Application Support/Code/User/settings.json"
@@ -31,7 +29,6 @@ link lazygit/config.yml           "$HOME/Library/Application Support/lazygit/con
 link claude/settings.json         "$HOME/.claude/settings.json"
 link claude/hooks                 "$HOME/.claude/hooks"
 link claude/commands              "$HOME/.claude/commands"
-link claude/agents                "$HOME/.claude/agents"
 link claude/CLAUDE.md             "$HOME/.claude/CLAUDE.md"
 
 # Self-reference
