@@ -87,6 +87,14 @@
       "env": {
         "OBS_WEBSOCKET_URL": "ws://localhost:4455"
       }
+    },
+    "omnisocials": {
+      "type": "local",
+      "command": ["npx", "-y", "@omnisocials/mcp-server"],
+      "enabled": true,
+      "env": {
+        "OMNISOCIALS_API_KEY": "${OMNISOCIALS_API_KEY}"
+      }
     }
   }
 }
