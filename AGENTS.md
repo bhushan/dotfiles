@@ -1,10 +1,10 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Code Style
 
-- Always update CLAUDE.md after each change to the dotfiles (new tools, config changes, etc.)
+- Always update AGENTS.md after each change to the dotfiles (new tools, config changes, etc.)
 
 ## Overview
 
@@ -46,7 +46,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: postgresql@17, pgvector, redis, DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, terraform, session-manager-plugin
-- **GUI applications**: kitty, claude, claude-code, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
+- **GUI applications**: kitty, Codex, Codex, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
 - **Media**: spotify, obs, drawpen (on-screen annotation)
 
@@ -138,10 +138,10 @@ shfmt -w <file>
 - `zsh/zshrc` → `~/.zshrc`
 - `zsh/zprofile` → `~/.zprofile`
 - `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
-- `claude/settings.json` → `~/.claude/settings.json`
-- `claude/hooks` → `~/.claude/hooks`
-- `claude/commands` → `~/.claude/commands`
-- `claude/CLAUDE.md` → `~/.claude/CLAUDE.md`
+- `Codex/settings.json` → `~/.Codex/settings.json`
+- `Codex/hooks` → `~/.Codex/hooks`
+- `Codex/commands` → `~/.Codex/commands`
+- `Codex/AGENTS.md` → `~/.Codex/AGENTS.md`
 - `opencode/opencode.jsonc` → `~/.config/opencode/opencode.jsonc`
 - `opencode/tui.json` → `~/.config/opencode/tui.json`
 - `opencode/themes/catppuccin-mocha.json` → `~/.config/opencode/themes/catppuccin-mocha.json`
@@ -207,7 +207,7 @@ Installed from the Anomaly Homebrew tap via `brew 'anomalyco/tap/opencode'` in `
 
 - **Model**: `anthropic/claude-sonnet-4-5` (full) / `anthropic/claude-haiku-4-5` (small)
 - **Instructions**: Loads `AGENTS.md` for repo context
-- **Permissions**: Declarative allow/deny/ask rules replacing the old Claude Code hooks
+- **Permissions**: Declarative allow/deny/ask rules replacing the old Codex hooks
 
 **Custom Commands** — Use with `/` prefix in OpenCode:
 
@@ -224,7 +224,7 @@ Installed from the Anomaly Homebrew tap via `brew 'anomalyco/tap/opencode'` in `
 |--------|-------------|
 | `obs` | OBS Studio WebSocket connection (port 4455, no auth) |
 
-**Permissions** (replaces Claude Code hooks):
+**Permissions** (replaces Codex hooks):
 
 | Category | Rules |
 |----------|-------|
@@ -234,11 +234,11 @@ Installed from the Anomaly Homebrew tap via `brew 'anomalyco/tap/opencode'` in `
 | Read | Allow all, except deny `.env*`, `.aws/credentials`, `.ssh/*`, `kubeconfig`, `terraform.tfstate*` |
 | Edit | Allow all, except deny `.env*`, `.aws/credentials/config`, `.ssh/id_*`, `kubeconfig`, `terraform.tfstate*` |
 
-### Claude Code Configuration (`claude/`)
+### Codex Configuration (`Codex/`)
 
-Legacy Claude Code settings, hooks, custom commands, and agents managed via symlinks in `scripts/links.sh`. Kept for reference when Claude Code is used directly.
+Legacy Codex settings, hooks, custom commands, and agents managed via symlinks in `scripts/links.sh`. Kept for reference when Codex is used directly.
 
-**Hooks** (`claude/hooks/`):
+**Hooks** (`Codex/hooks/`):
 
 - `prevent-push-protected-branches.sh` - Blocks `git push` to `develop`, `main`, and `release` branches (use PRs instead)
 - `prevent-destructive-git.sh` - Blocks `git reset --hard`, `git clean -fd`, `git checkout -- .`, `git push --force`, `git branch -D`
@@ -247,7 +247,7 @@ Legacy Claude Code settings, hooks, custom commands, and agents managed via syml
 - `prevent-write-credentials.sh` - Blocks writing to SSH keys, AWS credentials, .env files, kubeconfig, terraform state
 - `prevent-dangerous-sql.sh` - Blocks DROP DATABASE, TRUNCATE TABLE, DELETE without WHERE
 
-**Custom Commands** (`claude/commands/`) - Use with `/` prefix in Claude Code:
+**Custom Commands** (`Codex/commands/`) - Use with `/` prefix in Codex:
 
 | Command | Description |
 |---------|-------------|
@@ -256,10 +256,10 @@ Legacy Claude Code settings, hooks, custom commands, and agents managed via syml
 | `/ship` | Pre-ship checklist and release workflow |
 | `/obs-setup` | Research a content niche, generate OBS scenes/hotkeys/audio tailored to top creators in that field, and run setup |
 
-**Settings** (`claude/settings.json`):
+**Settings** (`Codex/settings.json`):
 
 - Registers PreToolUse hooks (Bash, Read, Write, Edit matchers)
-- Manages enabled plugins (claude-mem, frontend-design, laravel-boost, claude-hud)
+- Manages enabled plugins (Codex-mem, frontend-design, laravel-boost, Codex-hud)
 
 ### Neovim Configuration (`nvim/`)
 
@@ -431,3 +431,12 @@ git diff
 # Quick command examples
 tldr git
 ```
+
+
+<claude-mem-context>
+# Memory Context
+
+# [dotfiles] recent context, 2026-05-25 4:55pm GMT+5:30
+
+No previous sessions found.
+</claude-mem-context>

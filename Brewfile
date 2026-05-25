@@ -6,6 +6,7 @@ brew 'tmux'
 brew 'git'
 brew 'gh'
 brew 'lazygit'
+brew 'anomalyco/tap/opencode'
 
 # Shell & Terminal Enhancements
 brew 'zsh-syntax-highlighting'

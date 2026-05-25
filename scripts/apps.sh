@@ -30,4 +30,8 @@ ensure "Valet" \
    $HOME/.composer/vendor/bin/valet trust &&
    $HOME/.composer/vendor/bin/valet park $HOME/code"
 
-valet use php@8.4 --force
+if [[ -t 0 ]]; then
+  valet use php@8.4 --force
+else
+  echo "  skipping Valet PHP switch (requires interactive sudo)"
+fi

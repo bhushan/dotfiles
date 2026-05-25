@@ -31,6 +31,11 @@ link claude/hooks                 "$HOME/.claude/hooks"
 link claude/commands              "$HOME/.claude/commands"
 link claude/CLAUDE.md             "$HOME/.claude/CLAUDE.md"
 
+# OpenCode
+link opencode/opencode.jsonc       "$HOME/.config/opencode/opencode.jsonc"
+link opencode/tui.json             "$HOME/.config/opencode/tui.json"
+link opencode/themes/catppuccin-mocha.json  "$HOME/.config/opencode/themes/catppuccin-mocha.json"
+
 # Self-reference
 ln -sfn "$DOTFILES" "$HOME/.dotfiles"
 
