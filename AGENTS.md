@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+This file provides guidance to OpenCode when working with code in this repository.
 
 ## Code Style
 
@@ -37,7 +37,7 @@ The `install` script:
 
 Installs all dependencies defined in `Brewfile`, including:
 
-- **Core development tools**: neovim, tmux, git, gh, lazygit, OpenCode
+- **Core development tools**: neovim, tmux, git, gh, lazygit, gemini-cli, OpenCode
 - **Shell enhancements**: zsh-syntax-highlighting, zsh-autosuggestions, starship
 - **Modern CLI tools**: fzf, ripgrep, fd, zoxide, bat, eza, delta, jq, yq
 - **Formatters**: shfmt, stylua, prettier
@@ -46,7 +46,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: postgresql@17, pgvector, redis, DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, terraform, session-manager-plugin
-- **GUI applications**: kitty, Codex, Codex, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
+- **GUI applications**: kitty, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
 - **Browsers**: arc
 - **Media**: spotify, obs, drawpen (on-screen annotation)
 
@@ -138,10 +138,6 @@ shfmt -w <file>
 - `zsh/zshrc` → `~/.zshrc`
 - `zsh/zprofile` → `~/.zprofile`
 - `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
-- `Codex/settings.json` → `~/.Codex/settings.json`
-- `Codex/hooks` → `~/.Codex/hooks`
-- `Codex/commands` → `~/.Codex/commands`
-- `Codex/AGENTS.md` → `~/.Codex/AGENTS.md`
 - `opencode/opencode.jsonc` → `~/.config/opencode/opencode.jsonc`
 - `opencode/tui.json` → `~/.config/opencode/tui.json`
 - `opencode/themes/catppuccin-mocha.json` → `~/.config/opencode/themes/catppuccin-mocha.json`
@@ -234,32 +230,9 @@ Installed from the Anomaly Homebrew tap via `brew 'anomalyco/tap/opencode'` in `
 | Read | Allow all, except deny `.env*`, `.aws/credentials`, `.ssh/*`, `kubeconfig`, `terraform.tfstate*` |
 | Edit | Allow all, except deny `.env*`, `.aws/credentials/config`, `.ssh/id_*`, `kubeconfig`, `terraform.tfstate*` |
 
-### Codex Configuration (`Codex/`)
+### Codex Configuration (`Codex/`) (archived - no longer used)
 
-Legacy Codex settings, hooks, custom commands, and agents managed via symlinks in `scripts/links.sh`. Kept for reference when Codex is used directly.
-
-**Hooks** (`Codex/hooks/`):
-
-- `prevent-push-protected-branches.sh` - Blocks `git push` to `develop`, `main`, and `release` branches (use PRs instead)
-- `prevent-destructive-git.sh` - Blocks `git reset --hard`, `git clean -fd`, `git checkout -- .`, `git push --force`, `git branch -D`
-- `prevent-rm-dangerous.sh` - Blocks `rm -rf` on critical paths (/, ~, node_modules, .git, .ssh, etc.)
-- `prevent-read-env.sh` - Blocks reading `.env` files to protect secrets and credentials
-- `prevent-write-credentials.sh` - Blocks writing to SSH keys, AWS credentials, .env files, kubeconfig, terraform state
-- `prevent-dangerous-sql.sh` - Blocks DROP DATABASE, TRUNCATE TABLE, DELETE without WHERE
-
-**Custom Commands** (`Codex/commands/`) - Use with `/` prefix in Codex:
-
-| Command | Description |
-|---------|-------------|
-| `/security-audit` | Comprehensive security audit (OWASP, Laravel, frontend, infrastructure) |
-| `/performance-review` | Analyze code for performance issues (N+1, bundle size, caching) |
-| `/ship` | Pre-ship checklist and release workflow |
-| `/obs-setup` | Research a content niche, generate OBS scenes/hotkeys/audio tailored to top creators in that field, and run setup |
-
-**Settings** (`Codex/settings.json`):
-
-- Registers PreToolUse hooks (Bash, Read, Write, Edit matchers)
-- Manages enabled plugins (Codex-mem, frontend-design, laravel-boost, Codex-hud)
+Legacy Codex settings, hooks, custom commands, and agents. Replaced by OpenCode.
 
 ### Neovim Configuration (`nvim/`)
 

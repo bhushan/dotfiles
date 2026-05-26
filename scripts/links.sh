@@ -25,11 +25,11 @@ link karabiner                    "$HOME/.config/karabiner"
 link hammerspoon                  "$HOME/.hammerspoon"
 link lazygit/config.yml           "$HOME/Library/Application Support/lazygit/config.yml"
 
-# Claude Code
-link claude/settings.json         "$HOME/.claude/settings.json"
-link claude/hooks                 "$HOME/.claude/hooks"
-link claude/commands              "$HOME/.claude/commands"
-link claude/CLAUDE.md             "$HOME/.claude/CLAUDE.md"
+# Claude Code (commented out - no longer used)
+# link claude/settings.json         "$HOME/.claude/settings.json"
+# link claude/hooks                 "$HOME/.claude/hooks"
+# link claude/commands              "$HOME/.claude/commands"
+# link claude/CLAUDE.md             "$HOME/.claude/CLAUDE.md"
 
 # OpenCode
 link opencode/opencode.jsonc       "$HOME/.config/opencode/opencode.jsonc"
