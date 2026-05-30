@@ -17,6 +17,7 @@ It is symlinked into Claude Code, Gemini CLI, OpenCode, OpenAI/Codex-style confi
 
 ## Operating Principles
 
+- Non-negotiable: when implementing a feature or fixing a bug, write the relevant test cases first, then implement the feature or fix a bug.
 - Prefer the instructions in the current project when a repository provides `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, or tool-specific guidance.
 - Keep changes minimal, focused, and consistent with the existing codebase.
 - Do not read or modify secrets such as `.env*`, SSH keys, cloud credentials, kubeconfig files, or Terraform state unless explicitly requested and safe.

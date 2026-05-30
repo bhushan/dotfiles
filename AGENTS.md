@@ -221,7 +221,7 @@ Canvas: 1920x1080 @ 30fps. Zero frame drops on M2 Pro.
 | `agents/codex/` | OpenAI Codex CLI settings |
 | `agents/openai/` | Generic OpenAI agent settings |
 
-Edit files under `agents/` first; the home-directory locations are generated symlinks. Use `~/.dotfiles` in docs and commands instead of machine-specific absolute paths so the repo remains portable and safe to publish. When the user asks any agent to store something in memory, save it in `agents/learnings/` so Claude Code, Gemini, OpenCode, Codex, OpenAI agents, and Zed share the same learnings. Current durable preferences include avoiding em dashes, asking for clarification instead of assuming unclear requirements, researching current information before presenting solutions, and using parallel subagents for independent parts of bigger tasks when available. Product memory includes AlfredScholar context in `agents/learnings/alfred-scholar.md`.
+Edit files under `agents/` first; the home-directory locations are generated symlinks. Use `~/.dotfiles` in docs and commands instead of machine-specific absolute paths so the repo remains portable and safe to publish. When the user asks any agent to store something in memory, save it in `agents/learnings/` so Claude Code, Gemini, OpenCode, Codex, OpenAI agents, and Zed share the same learnings. Current durable preferences include avoiding em dashes, asking for clarification instead of assuming unclear requirements, researching current information before presenting solutions, using parallel subagents for independent parts of bigger tasks when available, and writing test cases before implementing features. Product memory includes AlfredScholar context in `agents/learnings/alfred-scholar.md`.
 
 **Installed shared skills:**
 
