@@ -118,17 +118,18 @@ fi
 # -------- tmux session config end -------- #
 
 # Added by Antigravity
-export PATH="/Users/rckstrbhushan/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
-alias claude-mem='/Users/rckstrbhushan/.bun/bin/bun "/Users/rckstrbhushan/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+claude-mem() {
+  "$HOME/.bun/bin/bun" "$HOME/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs" "$@"
+}
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/rckstrbhushan/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
-
 # bun completions
-[ -s "/Users/rckstrbhushan/.bun/_bun" ] && source "/Users/rckstrbhushan/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

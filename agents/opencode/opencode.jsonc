@@ -3,7 +3,7 @@
   "model": "anthropic/claude-sonnet-4-5",
   "small_model": "anthropic/claude-haiku-4-5",
   "instructions": [
-    "/Users/rckstrbhushan/code/dotfiles/AGENTS.md"
+    "~/.config/opencode/AGENTS.md"
   ],
   "permission": {
     "bash": {
@@ -61,28 +61,32 @@
     "security-audit": {
       "description": "Comprehensive security audit covering OWASP top 10, injection, auth, data exposure, dependencies, and infrastructure.",
       "model": "anthropic/claude-opus-4-5",
-      "template": "Perform a comprehensive security audit. Check OWASP Top 10, injection vulnerabilities, auth patterns, data exposure, dependency security, and infrastructure configuration. Provide severity ratings and remediation steps for each finding."
+      "template": "Perform a comprehensive security audit. Check OWASP Top 10, injection vulnerabilities, auth patterns, data exposure, dependency security, and infrastructure configuration. Provide severity ratings and remediation steps for each finding. Full reference: ~/.config/opencode/commands/security-audit.md"
     },
     "performance-review": {
       "description": "Analyze code for performance issues including N+1 queries, bundle size, caching, and infrastructure bottlenecks.",
       "model": "anthropic/claude-opus-4-5",
-      "template": "Analyze code for performance issues. Check for: N+1 queries, bundle size, caching strategy, infrastructure bottlenecks, memory leaks, slow queries, unnecessary re-renders, large file transfers, concurrency issues, and API response times. Provide concrete before/after optimization suggestions."
+      "template": "Analyze code for performance issues. Check for: N+1 queries, bundle size, caching strategy, infrastructure bottlenecks, memory leaks, slow queries, unnecessary re-renders, large file transfers, concurrency issues, and API response times. Provide concrete before/after optimization suggestions. Full reference: ~/.config/opencode/commands/performance-review.md"
     },
     "ship": {
       "description": "Create feature branch from staged/unstaged changes, raise a PR against default branch, squash merge it, delete the branch, and return to default branch with latest pull.",
       "model": "anthropic/claude-haiku-4-5",
-      "template": "Complete git workflow: branch, commit, PR, squash merge, cleanup. Validate working state, create feature branch from changes, commit conventionally, push, create PR via gh, squash merge, delete branch, pull latest. Print success summary with PR URL and commit SHA."
+      "template": "Complete git workflow: branch, commit, PR, squash merge, cleanup. Validate working state, create feature branch from changes, commit conventionally, push, create PR via gh, squash merge, delete branch, pull latest. Print success summary with PR URL and commit SHA. Full reference: ~/.config/opencode/commands/ship.md"
     },
     "obs-setup": {
       "description": "Research a content niche and generate a fully wired OBS scene collection with scenes, hotkeys, mic/camera/audio setup tailored to top creators in that field, then run the setup.",
       "model": "anthropic/claude-sonnet-4-5",
-      "template": "Set up OBS for a content niche. Gather niche/platform/brand from user, research top creators for color palettes and scene layouts, generate a scene JS file at obs/scenes/<slug>.js using the obs/utils.js API, wire dynamic loading in obs/setup.js, add hotkeys, then run: cd obs && node setup.js --profile <slug>. Full reference: /Users/rckstrbhushan/code/dotfiles/claude/commands/obs-setup.md"
+      "template": "Set up OBS for a content niche. Gather niche/platform/brand from user, research top creators for color palettes and scene layouts, generate a scene JS file at obs/scenes/<slug>.js using the obs/utils.js API, wire dynamic loading in obs/setup.js, add hotkeys, then run: cd obs && node setup.js --profile <slug>. Full reference: ~/.config/opencode/commands/obs-setup.md"
     }
   },
   "mcp": {
     "obs": {
       "type": "local",
-      "command": ["npx", "-y", "obs-mcp@latest"],
+      "command": [
+        "npx",
+        "-y",
+        "obs-mcp@latest"
+      ],
       "enabled": true,
       "env": {
         "OBS_WEBSOCKET_URL": "ws://localhost:4455"
@@ -90,7 +94,11 @@
     },
     "omnisocials": {
       "type": "local",
-      "command": ["npx", "-y", "@omnisocials/mcp-server"],
+      "command": [
+        "npx",
+        "-y",
+        "@omnisocials/mcp-server"
+      ],
       "enabled": true,
       "env": {
         "OMNISOCIALS_API_KEY": "${OMNISOCIALS_API_KEY}"

@@ -11,13 +11,8 @@
   "terminal.integrated.fontSize": 15,
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
     }
   ],
   "diffEditor.renderSideBySide": false,
@@ -27,7 +22,7 @@
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "vim.handleKeys": {
     "<C-a>": false,
-    "<C-f>": false,
+    "<C-f>": false
   },
   "php-cs-fixer.config": "~/.php_cs",
   "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
@@ -115,7 +110,7 @@
   "breadcrumbs.enabled": false,
   "window.title": " ${dirty}",
   "vscode_custom_css.imports": [
-    "file:///Users/rb/.dotfiles/vscode/hide-top-bar.css"
+    "file://${env:HOME}/.dotfiles/vscode/hide-top-bar.css"
   ],
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"

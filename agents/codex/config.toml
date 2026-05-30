@@ -1,0 +1,3 @@
+# Global OpenAI Codex CLI configuration.
+# Shared instructions are symlinked to ~/.codex/AGENTS.md.
+# Shared prompts are symlinked to ~/.codex/prompts.

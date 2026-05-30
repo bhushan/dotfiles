@@ -1,0 +1,8 @@
+{
+  "contextFileName": "GEMINI.md",
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  }
+}

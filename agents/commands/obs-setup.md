@@ -73,7 +73,7 @@ From the results, extract and document:
 
 ## Phase 2 — Generate Scene File
 
-Write the file to `/Users/rckstrbhushan/code/dotfiles/obs/scenes/$SLUG.js`.
+Write the file to `obs/scenes/$SLUG.js` from the dotfiles repository root.
 
 ### Module structure
 
@@ -297,7 +297,7 @@ Use `nichePalette` for niche-specific colors, fall back to `colors.*` for standa
 Check if dynamic loading is already installed:
 
 ```bash
-grep -c "await import(" /Users/rckstrbhushan/code/dotfiles/obs/setup.js
+grep -c "await import(" obs/setup.js
 ```
 
 If output is `0`, apply this edit to `obs/setup.js`. Find this block:
@@ -361,7 +361,7 @@ pgrep -x OBS > /dev/null 2>&1 || (open -a OBS && sleep 6)
 
 Run setup:
 ```bash
-cd /Users/rckstrbhushan/code/dotfiles/obs && node setup.js --profile $SLUG
+cd ~/.dotfiles/obs && node setup.js --profile $SLUG
 ```
 
 If it exits non-zero, show the full stderr output and stop.

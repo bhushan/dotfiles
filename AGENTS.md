@@ -8,7 +8,7 @@ This file provides guidance to OpenCode when working with code in this repositor
 
 ## Overview
 
-This is a personal dotfiles repository for macOS systems. A single `install` script handles everything — Homebrew, symlinks, packages, and dev tooling — for both fresh and existing machines.
+This is a personal dotfiles repository for macOS systems. A single `install` script handles everything: Homebrew, symlinks, packages, and dev tooling for both fresh and existing machines.
 
 ## Installation & Setup
 
@@ -29,9 +29,9 @@ The `install` script:
 1. Installs Xcode CLT if missing (re-run after)
 2. Installs Homebrew if missing
 3. Clones this repo to `~/code/dotfiles` if missing
-4. Runs `scripts/packages.sh` — syncs Brewfile (install new, remove unlisted)
-5. Runs `scripts/links.sh` — creates all symlinks
-6. Runs `scripts/apps.sh` — installs oh-my-zsh, TPM, Composer, Valet
+4. Runs `scripts/packages.sh`, which syncs Brewfile (install new, remove unlisted)
+5. Runs `scripts/links.sh`, which creates all symlinks
+6. Runs `scripts/apps.sh`, which installs oh-my-zsh, TPM, Composer, Valet
 
 ### Brewfile
 
@@ -138,9 +138,18 @@ shfmt -w <file>
 - `zsh/zshrc` → `~/.zshrc`
 - `zsh/zprofile` → `~/.zprofile`
 - `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
-- `opencode/opencode.jsonc` → `~/.config/opencode/opencode.jsonc`
-- `opencode/tui.json` → `~/.config/opencode/tui.json`
-- `opencode/themes/catppuccin-mocha.json` → `~/.config/opencode/themes/catppuccin-mocha.json`
+- `agents/` → `~/.config/agents`
+- `agents/skills` → `~/.agents/skills`
+- `agents/learnings` → `~/.agents/learnings`, `~/.claude/learnings`, `~/.gemini/learnings`, `~/.config/opencode/learnings`, `~/.codex/learnings`, `~/.openai/learnings`
+- `agents/claude/settings.json` → `~/.claude/settings.json`
+- `agents/instructions/AGENTS.md` → `~/.claude/CLAUDE.md`, `~/.claude/AGENTS.md`, `~/.gemini/GEMINI.md`, `~/.config/opencode/AGENTS.md`, `~/.codex/AGENTS.md`, `~/.openai/AGENTS.md`
+- `agents/commands` → Claude, Gemini, OpenCode, Codex, and OpenAI prompt/command directories
+- `agents/hooks` → `~/.claude/hooks`
+- `agents/opencode/opencode.jsonc` → `~/.config/opencode/opencode.jsonc`
+- `agents/opencode/tui.json` → `~/.config/opencode/tui.json`
+- `agents/opencode/themes/catppuccin-mocha.json` → `~/.config/opencode/themes/catppuccin-mocha.json`
+- `agents/codex/config.toml` → `~/.codex/config.toml`
+- `agents/openai/settings.json` → `~/.openai/settings.json`
 
 ### OBS Studio Configuration (`obs/`)
 
@@ -155,7 +164,7 @@ node setup.js --profile technical-tutorials
 
 Requires OBS Studio running with WebSocket server enabled (Tools > WebSocket Server Settings, port 4455, no auth).
 
-**What it creates:** A single recording scene with screen capture, camera, mic (with noise suppression/gate/compressor), and system audio. No overlays, no transitions, no cropping — just clean source capture.
+**What it creates:** A single recording scene with screen capture, camera, mic (with noise suppression/gate/compressor), and system audio. No overlays, no transitions, no cropping, just clean source capture.
 
 **ISO recordings (obs-source-record):** Each recording session produces isolated files alongside the main combined output. Install the plugin first:
 
@@ -173,11 +182,11 @@ This produces a clean session folder:
 
 ```
 ~/Downloads/recordings/2026-04-24_15-25-17/
-  ├── combined.mov   — ProRes 422 main recording (all sources)
-  ├── screen.mkv     — screen capture only (H.264 hw, 10Mbps)
-  ├── camera.mkv     — camera only (x264 sw, 8Mbps)
-  ├── mic.wav        — microphone (extracted from main Track 2)
-  └── system.wav     — system audio (extracted from main Track 3)
+  ├── combined.mov   - ProRes 422 main recording (all sources)
+  ├── screen.mkv     - screen capture only (H.264 hw, 10Mbps)
+  ├── camera.mkv     - camera only (x264 sw, 8Mbps)
+  ├── mic.wav        - microphone (extracted from main Track 2)
+  └── system.wav     - system audio (extracted from main Track 3)
 ```
 
 **System audio** requires BlackHole virtual audio driver (`brew install --cask blackhole-2ch`) and a Multi-Output Device in Audio MIDI Setup. Run `bash obs/setup-multi-output.sh` to configure.
@@ -193,46 +202,33 @@ This produces a clean session folder:
 
 Canvas: 1920x1080 @ 30fps. Zero frame drops on M2 Pro.
 
-### OpenCode Configuration (`opencode/`)
+### Shared Agent Configuration (`agents/`)
 
-Global OpenCode settings, permissions, commands, and MCP servers managed via symlinks in `scripts/links.sh`.
+`agents/` is the single source of truth for global AI-agent configuration across Claude Code, Gemini CLI, OpenCode, OpenAI Codex CLI, generic OpenAI agents, and Zed/global skills.
 
-Installed from the Anomaly Homebrew tap via `brew 'anomalyco/tap/opencode'` in `Brewfile`.
+**Canonical files:**
 
-**Main Config** (`opencode/opencode.jsonc`):
+| Path | Purpose |
+|------|---------|
+| `agents/instructions/AGENTS.md` | Global instructions symlinked into each agent-specific config directory |
+| `agents/commands/` | Shared slash-command prompts, including `/security-audit`, `/performance-review`, `/ship`, and `/obs-setup` |
+| `agents/skills/` | Shared skill packages, limited to `code-reviewer` and `frontend-designer`; Gemini uses `~/.agents/skills` directly to avoid duplicate skill warnings |
+| `agents/learnings/` | Shared cross-agent memory for durable user preferences and learnings |
+| `agents/hooks/` | Claude Code safety hooks for destructive commands, secret reads/writes, and dangerous SQL |
+| `agents/claude/` | Claude Code settings |
+| `agents/gemini/` | Gemini CLI settings |
+| `agents/opencode/` | OpenCode settings, TUI config, MCP servers, and themes |
+| `agents/codex/` | OpenAI Codex CLI settings |
+| `agents/openai/` | Generic OpenAI agent settings |
 
-- **Model**: `anthropic/claude-sonnet-4-5` (full) / `anthropic/claude-haiku-4-5` (small)
-- **Instructions**: Loads `AGENTS.md` for repo context
-- **Permissions**: Declarative allow/deny/ask rules replacing the old Codex hooks
+Edit files under `agents/` first; the home-directory locations are generated symlinks. Use `~/.dotfiles` in docs and commands instead of machine-specific absolute paths so the repo remains portable and safe to publish. When the user asks any agent to store something in memory, save it in `agents/learnings/` so Claude Code, Gemini, OpenCode, Codex, OpenAI agents, and Zed share the same learnings. Current durable preferences include avoiding em dashes, asking for clarification instead of assuming unclear requirements, researching current information before presenting solutions, and using parallel subagents for independent parts of bigger tasks when available. Product memory includes AlfredScholar context in `agents/learnings/alfred-scholar.md`.
 
-**Custom Commands** — Use with `/` prefix in OpenCode:
+**Installed shared skills:**
 
-| Command | Description |
-|---------|-------------|
-| `/security-audit` | Comprehensive security audit (OWASP, Laravel, frontend, infrastructure) |
-| `/performance-review` | Analyze code for performance issues (N+1, bundle size, caching) |
-| `/ship` | Pre-ship checklist and release workflow |
-| `/obs-setup` | Research a content niche, generate OBS scenes/hotkeys/audio tailored to top creators in that field, and run setup |
-
-**MCP Servers**:
-
-| Server | Description |
-|--------|-------------|
-| `obs` | OBS Studio WebSocket connection (port 4455, no auth) |
-
-**Permissions** (replaces Codex hooks):
-
-| Category | Rules |
-|----------|-------|
-| Bash (dangerous) | Deny: `git push` to main/master/develop, `git reset --hard`, `git clean -fd/fx`, `git push --force`, `git branch -D`, `rm -rf /`, `rm -rf ~`, `rm -rf .git`. Ask: `rm -rf node_modules/vendor`, `DELETE FROM *` without WHERE |
-| Bash (safe) | Allow: all other `git *` commands |
-| Bash (other) | Default: ask (user prompted) |
-| Read | Allow all, except deny `.env*`, `.aws/credentials`, `.ssh/*`, `kubeconfig`, `terraform.tfstate*` |
-| Edit | Allow all, except deny `.env*`, `.aws/credentials/config`, `.ssh/id_*`, `kubeconfig`, `terraform.tfstate*` |
-
-### Codex Configuration (`Codex/`) (archived - no longer used)
-
-Legacy Codex settings, hooks, custom commands, and agents. Replaced by OpenCode.
+| Skill | Path | Purpose |
+|-------|------|---------|
+| `code-reviewer` | `agents/skills/code-reviewer/SKILL.md` | Strict maintainability and code-quality review skill based on Cursor's thermo-nuclear review skill |
+| `frontend-designer` | `agents/skills/frontend-designer/SKILL.md` | Production-grade frontend UI design skill based on Anthropic's frontend-design skill |
 
 ### Neovim Configuration (`nvim/`)
 
