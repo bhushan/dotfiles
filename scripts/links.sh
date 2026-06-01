@@ -6,8 +6,8 @@ link_learnings() {
   mkdir -p "$(dirname "$dst")"
 
   if [[ -e "$dst" && ! -L "$dst" ]]; then
-    echo "  $dst exists and was not replaced. Move any local learnings into $DOTFILES/agents/learnings, then remove $dst to enable the shared symlink."
-    return
+    echo "  $dst exists as a real directory. Backing up to ${dst}.bak and replacing with symlink."
+    mv "$dst" "${dst}.bak"
   fi
 
   ln -sfn "$DOTFILES/agents/learnings" "$dst"
