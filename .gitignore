@@ -2,4 +2,3 @@ Brewfile.lock.json
 obs/node_modules/
 obs/package-lock.json
 agents/skills/.system/
-agents/skills/frontend-design/

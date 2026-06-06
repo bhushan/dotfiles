@@ -212,7 +212,7 @@ Canvas: 1920x1080 @ 30fps. Zero frame drops on M2 Pro.
 |------|---------|
 | `agents/instructions/AGENTS.md` | Global instructions symlinked into each agent-specific config directory |
 | `agents/commands/` | Shared slash-command prompts, including `/security-audit`, `/performance-review`, `/ship`, and `/obs-setup` |
-| `agents/skills/` | Shared skill packages, limited to `code-reviewer` and `frontend-designer`; Gemini uses `~/.agents/skills` directly to avoid duplicate skill warnings |
+| `agents/skills/` | Shared skill packages, including `code-reviewer`, `frontend-design`, and `frontend-designer`; Gemini uses `~/.agents/skills` directly |
 | `agents/learnings/` | Shared cross-agent memory for durable user preferences and learnings |
 | `agents/hooks/` | Claude Code safety hooks for destructive commands, secret reads/writes, and dangerous SQL |
 | `agents/claude/` | Claude Code settings |
@@ -228,6 +228,7 @@ Edit files under `agents/` first; the home-directory locations are generated sym
 | Skill | Path | Purpose |
 |-------|------|---------|
 | `code-reviewer` | `agents/skills/code-reviewer/SKILL.md` | Strict maintainability and code-quality review skill based on Cursor's thermo-nuclear review skill |
+| `frontend-design` | `agents/skills/frontend-design/SKILL.md` | Production-grade frontend UI design skill based on Anthropic's frontend-design skill |
 | `frontend-designer` | `agents/skills/frontend-designer/SKILL.md` | Production-grade frontend UI design skill based on Anthropic's frontend-design skill |
 
 ### Neovim Configuration (`nvim/`)
