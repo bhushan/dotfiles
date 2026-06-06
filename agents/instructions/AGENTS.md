@@ -29,7 +29,7 @@ It is symlinked into Claude Code, Gemini CLI, OpenCode, OpenAI/Codex-style confi
 ## Shared Resources
 
 - Shared slash-command prompts live in `~/.dotfiles/agents/commands`.
-- Shared Claude/Zed-style skills live in `~/.dotfiles/agents/skills`; current shared skills are `code-reviewer`, `frontend-design`, and `frontend-designer`.
+- Shared Claude/Zed-style skills live in `~/.dotfiles/agents/skills`; keep this directory limited to `code-reviewer` and `frontend-designer`.
 - Shared cross-agent learnings live in `~/.dotfiles/agents/learnings`.
 - Tool-specific settings live under `~/.dotfiles/agents/<tool>`.
 
