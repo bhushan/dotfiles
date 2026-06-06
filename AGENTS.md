@@ -153,54 +153,33 @@ shfmt -w <file>
 
 ### OBS Studio Configuration (`obs/`)
 
-Minimal, high-quality recording setup via Node.js scripts using `obs-websocket-js`. Designed to capture isolated source files for post-production in DaVinci Resolve.
+Minimal OBS automation via Node.js scripts using `obs-websocket-js`. The default setup is intentionally simple for recording raw green-screen camera footage for DaVinci Resolve.
 
-**Setup:**
+**Simple camera setup:**
 
 ```bash
 cd obs && npm install  # first time only
-node setup.js --profile technical-tutorials
+npm run setup:camera
 ```
 
 Requires OBS Studio running with WebSocket server enabled (Tools > WebSocket Server Settings, port 4455, no auth).
 
-**What it creates:** A single recording scene with screen capture, camera, mic (with noise suppression/gate/compressor), and system audio. No overlays, no transitions, no cropping, just clean source capture.
+**What it creates:** One scene named `1 [YS] Camera Only` with a full-canvas camera source and a mic source. The canvas is rectangular 4K (`3840x2160`) at 60fps, recording to Apple ProRes 422 Hardware MOV files in `~/Downloads/recordings`. Chroma Key is added to the camera source but disabled by default so DaVinci receives raw green-screen footage for cleaner keying.
 
-**ISO recordings (obs-source-record):** Each recording session produces isolated files alongside the main combined output. Install the plugin first:
+Camera selection prefers an iPhone Continuity Camera when macOS exposes one, otherwise it falls back to the built-in camera. Mic input uses OBS's default input device.
 
-```bash
-bash obs/install-source-record.sh
-```
-
-Screen and camera ISOs are created automatically when recording starts. Audio is extracted automatically when recording stops (via auto-extract watcher). Manual extraction:
+For screen recording, the older technical profile is still available:
 
 ```bash
-bash obs/extract-audio.sh
+npm run setup:technical
 ```
-
-This produces a clean session folder:
-
-```
-~/Downloads/recordings/2026-04-24_15-25-17/
-  ├── combined.mov   - ProRes 422 main recording (all sources)
-  ├── screen.mkv     - screen capture only (H.264 hw, 10Mbps)
-  ├── camera.mkv     - camera only (x264 sw, 8Mbps)
-  ├── mic.wav        - microphone (extracted from main Track 2)
-  └── system.wav     - system audio (extracted from main Track 3)
-```
-
-**System audio** requires BlackHole virtual audio driver (`brew install --cask blackhole-2ch`) and a Multi-Output Device in Audio MIDI Setup. Run `bash obs/setup-multi-output.sh` to configure.
 
 **Recording quality:**
 
-| Output | Encoder | Bitrate | Format |
-|--------|---------|---------|--------|
-| Main (combined) | Apple ProRes 422 Hardware | ~150 Mbps | MOV |
-| Screen ISO | Apple VT H.264 Hardware | 10 Mbps CBR | MKV |
-| Camera ISO | x264 Software | 8 Mbps CBR | MKV |
-| Audio | PCM 16-bit | lossless | WAV |
-
-Canvas: 1920x1080 @ 30fps. Zero frame drops on M2 Pro.
+| Output | Encoder | Format |
+|--------|---------|--------|
+| Camera recording | Apple ProRes 422 Hardware | MOV |
+| Audio | 48kHz mic on tracks 1 and 2 | MOV audio tracks |
 
 ### Shared Agent Configuration (`agents/`)
 

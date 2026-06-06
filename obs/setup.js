@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
 import { connect, cleanSlate, removeTemp } from "./utils.js";
+import { buildBasicIni, buildRecordEncoderSettings } from "./config.js";
 
 const SCENE_COLLECTION_DIR = path.join(
   process.env.HOME,
@@ -82,6 +83,8 @@ async function main() {
     const videoSettings = await obs.call("GetVideoSettings");
     const W = videoSettings.baseWidth;
     const H = videoSettings.baseHeight;
+    const fpsNumerator = videoSettings.fpsNumerator || 30;
+    const fpsDenominator = videoSettings.fpsDenominator || 1;
 
     await obs.call("SetCurrentSceneTransition", { transitionName: "Fade" });
     await obs.call("SetCurrentSceneTransitionDuration", {
@@ -114,9 +117,9 @@ async function main() {
     if (fs.existsSync(SCENE_FILE)) {
       const data = JSON.parse(fs.readFileSync(SCENE_FILE, "utf8"));
       for (const source of data.sources) {
-        if (source.name === "[TT] Screen Capture") {
+        if (["[TT] Screen Capture", "[YS] Screen Capture"].includes(source.name)) {
           source.mixers = 0; // hides from Audio Mixer entirely
-          console.log('  Patched: "[TT] Screen Capture" hidden from Audio Mixer');
+          console.log(`  Patched: "${source.name}" hidden from Audio Mixer`);
         }
       }
       fs.writeFileSync(SCENE_FILE, JSON.stringify(data, null, 2));
@@ -129,57 +132,16 @@ async function main() {
     );
     const profileFile = path.join(profileDir, "basic.ini");
     if (fs.existsSync(profileFile)) {
-      let profile = fs.readFileSync(profileFile, "utf8");
-
-      // Remove existing sections to rewrite cleanly
-      profile = profile.replace(/\[Output\][\s\S]*?(?=\n\[|$)/, "");
-      profile = profile.replace(/\[AdvOut\][\s\S]*?(?=\n\[|$)/, "");
-      profile = profile.replace(/\[Video\][\s\S]*?(?=\n\[|$)/, "");
-      profile = profile.replace(/\[Audio\][\s\S]*?(?=\n\[|$)/, "");
-
-      // Remove stale audio device entries and let OBS use what the profile sets
-      profile = profile.replace(/AuxAudioDevice1=.*/g, "");
-      profile = profile.replace(/DesktopAudioDevice1=.*/g, "");
-
-      profile += `
-[Output]
-Mode=Advanced
-
-[AdvOut]
-RecType=Standard
-RecEncoder=com.apple.videotoolbox.videoencoder.appleproreshw.422
-RecFormat=mov
-RecFilePath=${process.env.HOME}/Downloads/recordings
-RecTracks=3
-Rescale=false
-RecRescaleRes=${W}x${H}
-FFOutputToFile=true
-Track1Bitrate=320
-Track2Bitrate=320
-Track3Bitrate=320
-Track1Name=Combined
-Track2Name=Mic
-Track3Name=System
-
-[Audio]
-SampleRate=48000
-ChannelSetup=Stereo
-
-[Video]
-BaseCX=${W}
-BaseCY=${H}
-OutputCX=${W}
-OutputCY=${H}
-FPSType=0
-FPSCommon=30
-ScaleType=lanczos
-ColorFormat=NV12
-ColorSpace=709
-ColorRange=2
-`;
+      const profile = buildBasicIni(fs.readFileSync(profileFile, "utf8"), {
+        width: W,
+        height: H,
+        fpsNumerator,
+        fpsDenominator,
+        recordingPath: `${process.env.HOME}/Downloads/recordings`,
+      });
 
       fs.writeFileSync(profileFile, profile);
-      console.log(`  Recording: ProRes 422 HW → ${W}x${H} MOV`);
+      console.log(`  Recording: ProRes 422 HW → ${W}x${H} ${fpsNumerator / fpsDenominator}fps MOV`);
       console.log("  Audio: 48kHz Stereo, 3 tracks @ 320kbps");
     }
 
@@ -187,7 +149,7 @@ ColorRange=2
     const recEncoderFile = path.join(profileDir, "recordEncoder.json");
     fs.writeFileSync(
       recEncoderFile,
-      JSON.stringify({ codec_type: 1634755438 }, null, 2),
+      JSON.stringify(buildRecordEncoderSettings(), null, 2),
     );
     console.log("  Encoder: ProRes 422 Hardware");
 
@@ -214,22 +176,23 @@ ColorRange=2
     );
     console.log("  WebSocket preserved (port 4455, no auth)");
 
-    // Kill existing auto-extract
+    // Stop old auto-extract helpers. The simple setup records one clean file.
     execSync(
       "kill $(cat /tmp/obs-auto-extract.pid 2>/dev/null) 2>/dev/null || true",
     );
+    const launchAgentFile = path.join(
+      process.env.HOME,
+      "Library/LaunchAgents/com.bhushan.obs-auto-extract.plist",
+    );
+    execSync(`launchctl bootout gui/$(id -u) "${launchAgentFile}" 2>/dev/null || true`, {
+      shell: "/bin/zsh",
+    });
+    fs.rmSync(launchAgentFile, { force: true });
 
     // Restart OBS
     console.log("\n  Restarting OBS...");
     execSync("open -a OBS");
     await sleep(5000);
-
-    // Start auto-extract watcher
-    const autoExtract = new URL("./auto-extract.js", import.meta.url).pathname;
-    execSync(`node "${autoExtract}" &>/tmp/obs-auto-extract.log &`, {
-      shell: "/bin/zsh",
-    });
-    console.log("  Auto-extract watcher started");
 
     // Done
     console.log("\n══════════════════════════════════════════");
@@ -238,10 +201,7 @@ ColorRange=2
     console.log(" Recording outputs:");
     console.log(" ┌──────────────────────────────────────────────────┐");
     console.log(` │ Combined      ProRes 422 HW      ${W}x${H}  .mov   │`);
-    console.log(` │ Screen ISO    H.264 HW 30Mbps    ${W}x${H}  .mkv   │`);
-    console.log(` │ Camera ISO    H.264 HW 15Mbps    ${W}x${H}  .mkv   │`);
-    console.log(" │ Mic           PCM 16-bit         48kHz   .wav   │");
-    console.log(" │ System Audio  PCM 16-bit         48kHz   .wav   │");
+    console.log(" │ Audio         Mic on tracks 1-2  48kHz          │");
     console.log(" └──────────────────────────────────────────────────┘");
     console.log("");
     console.log(" Files: ~/Downloads/recordings/<timestamp>/");

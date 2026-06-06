@@ -20,7 +20,7 @@ export function detectDisplays() {
     ].join('\n');
     const tmpFile = '/tmp/obs-display-detect.swift';
     fs.writeFileSync(tmpFile, swiftCode);
-    const output = execSync(`swift ${tmpFile}`, { timeout: 10000 }).toString().trim();
+    const output = execSync(`swift -suppress-warnings ${tmpFile} 2>/dev/null`, { timeout: 10000 }).toString().trim();
 
     const displays = [];
     for (const line of output.split('\n')) {
@@ -38,48 +38,20 @@ export function detectDisplays() {
   return [];
 }
 
-// Detect the default audio input device (mic)
+// Use OBS's current default input device. This keeps the setup simple and avoids
+// brittle CoreAudio probing during recording prep.
 export function getDefaultMicDevice() {
-  try {
-    const swiftCode = `
-import CoreAudio
-import AudioToolbox
-var propertyAddress = AudioObjectPropertyAddress(
-  mSelector: kAudioHardwarePropertyDefaultInputDevice,
-  mScope: kAudioObjectPropertyScopeGlobal,
-  mElement: kAudioObjectPropertyElementMain
-)
-var deviceID: AudioDeviceID = 0
-var size = UInt32(MemoryLayout<AudioDeviceID>.size)
-AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &propertyAddress, 0, nil, &size, &deviceID)
-
-var nameAddress = AudioObjectPropertyAddress(mSelector: kAudioObjectPropertyName, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMain)
-var name: CFString = "" as CFString
-var nameSize = UInt32(MemoryLayout<CFString>.size)
-AudioObjectGetPropertyData(deviceID, &nameAddress, 0, nil, &nameSize, &name)
-
-var uidAddress = AudioObjectPropertyAddress(mSelector: kAudioDevicePropertyDeviceUID, mScope: kAudioObjectPropertyScopeGlobal, mElement: kAudioObjectPropertyElementMain)
-var uid: CFString = "" as CFString
-var uidSize = UInt32(MemoryLayout<CFString>.size)
-AudioObjectGetPropertyData(deviceID, &uidAddress, 0, nil, &uidSize, &uid)
-
-print("\\(name as String)|\\(uid as String)")
-`;
-    const tmpFile = '/tmp/obs-mic-detect.swift';
-    fs.writeFileSync(tmpFile, swiftCode);
-    const output = execSync(`swift ${tmpFile}`, { timeout: 10000 }).toString().trim();
-    const [name, uid] = output.split('|');
-    console.log(`  Mic: ${name} (${uid})`);
-    return { name, uid };
-  } catch {}
-  console.log('  Mic: using system default');
   return { name: 'Default', uid: 'default' };
 }
 
-// Detect FaceTime HD Camera device UUID
+// Detect the best available camera device UUID.
 export function getFaceTimeCameraUUID() {
+  return getBestCameraUUID();
+}
+
+export function getBestCameraUUID() {
   try {
-    const output = execSync(`swift -e '
+    const output = execSync(`swift -suppress-warnings -e '
 import AVFoundation
 for device in AVCaptureDevice.DiscoverySession(
   deviceTypes: [.builtInWideAngleCamera, .externalUnknown],
@@ -88,18 +60,37 @@ for device in AVCaptureDevice.DiscoverySession(
 ).devices {
   print("\\(device.localizedName)|\\(device.uniqueID)")
 }
-'`, { timeout: 10000 }).toString().trim();
+' 2>/dev/null`, { timeout: 10000 }).toString().trim();
     if (output) {
-      for (const line of output.split('\n')) {
-        const [name, uuid] = line.split('|');
+      const devices = parseCameraDevices(output);
+      for (const { name, uuid } of devices) {
         console.log(`  Camera: ${name} (${uuid})`);
       }
-      // Return first camera found
-      return output.split('\n')[0].split('|')[1];
+
+      const best = chooseBestCameraDevice(devices);
+      console.log(`  Camera selected: ${best.name}`);
+      return best.uuid;
     }
   } catch {}
   console.log('  No camera detected');
   return '';
+}
+
+export function chooseBestCameraDevice(devices) {
+  return devices.find(device => /iphone|continuity/i.test(device.name))
+    || devices.find(device => !/facetime|built.?in/i.test(device.name))
+    || devices[0]
+    || { name: '', uuid: '' };
+}
+
+function parseCameraDevices(output) {
+  return output
+    .split('\n')
+    .map(line => {
+      const [name, uuid] = line.split('|');
+      return { name, uuid };
+    })
+    .filter(device => device.name && device.uuid);
 }
 
 export async function connect() {
@@ -227,8 +218,12 @@ export async function addSourceRecordFilter(obs, sourceName, filterName, outputP
     resolution,
   };
 
-  await addFilter(obs, sourceName, filterName, 'source_record_filter', settings);
-  console.log(`    Source Record: "${sourceName}" → ${outputPath} (${format}, ${resolution}, ${bitrate}kbps)`);
+  try {
+    await addFilter(obs, sourceName, filterName, 'source_record_filter', settings);
+    console.log(`    Source Record: "${sourceName}" → ${outputPath} (${format}, ${resolution}, ${bitrate}kbps)`);
+  } catch (e) {
+    console.warn(`    Source Record skipped for "${sourceName}": ${e.message}`);
+  }
 }
 
 export async function addColorSource(obs, sceneName, name, color, width, height, transform = {}) {

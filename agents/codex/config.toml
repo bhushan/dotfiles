@@ -8,7 +8,7 @@ model_reasoning_effort = "high"
 service_tier = "default"
 
 [marketplaces.openai-bundled]
-last_updated = "2026-06-06T10:12:17Z"
+last_updated = "2026-06-06T10:26:53Z"
 source_type = "local"
 source = "/Users/rckstrbhushan/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
