@@ -13,8 +13,16 @@ Last researched: 2026-05-31
 - Common compact spelling used by the user: AlfredScholar
 - Website: https://www.alfredscholar.com
 - Public site title found in search results: Alfred Scholar | Free AI Research Assistant
-- Homepage headline: The AI research workspace for PhD scholars.
-- Primary positioning: An AI research workspace for PhD scholars, especially built for Indian PhD workflows.
+- Homepage headline: The calm research workspace for scholars who would rather be thinking.
+- Primary positioning (since June 2026): "The calm research workspace for scholars who would rather be thinking." This replaces the older "AI research workspace" framing. Lead with calm, focus, and thinking; AI is the quiet machinery underneath, not the headline.
+- Retired positioning: "An AI research workspace for PhD scholars." Do not use "AI research workspace" as the primary label in new marketing copy.
+
+## Founder mission
+
+- The founder's mission, in his own words: "I want to make world class research workflow and provide it to every researcher on planet in affordable price."
+- Marketing-ready phrasing: a world-class research workflow, affordable for every researcher on the planet.
+- Two pillars to weave into copy: (1) world-class research workflow quality, (2) affordability and accessibility for every researcher globally.
+- Tone implications: calm over hype, thinking over tooling, substance over AI buzzwords. The product removes busywork so scholars can think.
 - Visible brand mark in public product mockups: a simple `A` mark paired with the Alfred Scholar name. Recheck the website assets before using or recreating the official logo.
 
 ## What AlfredScholar does

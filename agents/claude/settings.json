@@ -2,6 +2,7 @@
   "permissions": {
     "allow": []
   },
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -95,10 +96,12 @@
       }
     }
   },
+  "effortLevel": "high",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
+  "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
   "mcpServers": {
     "obs": {
@@ -112,5 +115,5 @@
       }
     }
   },
-  "skipAutoPermissionPrompt": true
+  "skipWorkflowUsageWarning": true
 }
