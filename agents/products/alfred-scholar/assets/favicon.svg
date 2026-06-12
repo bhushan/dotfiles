@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="alfFav" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6366F1"></stop>
+      <stop offset="1" stop-color="#4F46E5"></stop>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="32" height="32" rx="7" fill="url(#alfFav)"></rect>
+  <g stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M8 23 L16 9 L24 23" stroke-width="1.9"></path>
+    <path d="M8 23 Q12 20 16 19 Q20 20 24 23" stroke-width="1.5"></path>
+  </g>
+</svg>

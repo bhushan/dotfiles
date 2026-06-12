@@ -50,10 +50,8 @@ link agents/instructions/AGENTS.md "$HOME/.claude/AGENTS.md"
 link agents/commands             "$HOME/.claude/commands"
 link agents/hooks                "$HOME/.claude/hooks"
 link agents/skills               "$HOME/.claude/skills"
+link agents/subagents            "$HOME/.claude/agents"
 link_learnings                   "$HOME/.claude/learnings"
-if [[ -L "$HOME/.claude/agents" ]]; then
-  rm "$HOME/.claude/agents"
-fi
 
 # Gemini CLI
 link agents/gemini/settings.json "$HOME/.gemini/settings.json"
@@ -72,6 +70,7 @@ link agents/opencode/themes/catppuccin-mocha.json "$HOME/.config/opencode/themes
 link agents/instructions/AGENTS.md  "$HOME/.config/opencode/AGENTS.md"
 link agents/commands                "$HOME/.config/opencode/commands"
 link agents/skills                  "$HOME/.config/opencode/skills"
+link agents/subagents               "$HOME/.config/opencode/agent"
 link_learnings                      "$HOME/.config/opencode/learnings"
 if [[ -L "$HOME/.config/opencode/agents" ]]; then
   rm "$HOME/.config/opencode/agents"

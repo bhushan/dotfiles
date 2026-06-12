@@ -3,7 +3,8 @@
   "model": "anthropic/claude-sonnet-4-5",
   "small_model": "anthropic/claude-haiku-4-5",
   "instructions": [
-    "~/.config/opencode/AGENTS.md"
+    "~/.config/opencode/AGENTS.md",
+    "~/.config/opencode/learnings/*.md"
   ],
   "permission": {
     "bash": {

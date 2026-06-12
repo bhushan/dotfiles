@@ -141,6 +141,7 @@ shfmt -w <file>
 - `agents/` → `~/.config/agents`
 - `agents/skills` → `~/.agents/skills`
 - `agents/learnings` → `~/.agents/learnings`, `~/.claude/learnings`, `~/.gemini/learnings`, `~/.config/opencode/learnings`, `~/.codex/learnings`, `~/.openai/learnings`
+- `agents/subagents` → `~/.claude/agents`, `~/.config/opencode/agent` (founder role subagents)
 - `agents/claude/settings.json` → `~/.claude/settings.json`
 - `agents/instructions/AGENTS.md` → `~/.claude/CLAUDE.md`, `~/.claude/AGENTS.md`, `~/.gemini/GEMINI.md`, `~/.config/opencode/AGENTS.md`, `~/.codex/AGENTS.md`, `~/.openai/AGENTS.md`
 - `agents/commands` → Claude, Gemini, OpenCode, Codex, and OpenAI prompt/command directories
@@ -202,18 +203,20 @@ This produces a clean session folder:
 
 Canvas: 1920x1080 @ 30fps. Zero frame drops on M2 Pro.
 
-### Shared Agent Configuration (`agents/`)
+### Shared Agent Configuration (`agents/`): the AI OS
 
-`agents/` is the single source of truth for global AI-agent configuration across Claude Code, Gemini CLI, OpenCode, OpenAI Codex CLI, generic OpenAI agents, and Zed/global skills.
+`agents/` is the single source of truth for global AI-agent configuration across Claude Code, Gemini CLI, OpenCode, OpenAI Codex CLI, generic OpenAI agents, and Zed/global skills. Full system map: `agents/README.md`.
 
 **Canonical files:**
 
 | Path | Purpose |
 |------|---------|
-| `agents/instructions/AGENTS.md` | Global instructions symlinked into each agent-specific config directory |
+| `agents/instructions/AGENTS.md` | The kernel: founder context, learnings import, product/role registries, operating principles. Symlinked into each agent's config dir |
+| `agents/learnings/` | Always-on cross-agent memory; `preferences.md` is auto-loaded into every agent's context (Claude/Gemini via `@./learnings/preferences.md` import, OpenCode via `instructions` glob, others via read directive) |
+| `agents/products/` | Product context packs: `alfred-scholar/` and `austa/`, each with `PRODUCT.md` plus `assets/` (logos, og-images, favicons) |
+| `agents/subagents/` | Founder role subagents: product-strategist, ux-reviewer, tech-lead, growth-marketer, copywriter, data-analyst. Frontmatter is Claude + OpenCode compatible |
 | `agents/commands/` | Shared slash-command prompts, including `/security-audit`, `/performance-review`, `/ship`, and `/obs-setup` |
-| `agents/skills/` | Shared skill packages, limited to `code-reviewer` and `frontend-designer`; Gemini uses `~/.agents/skills` directly to avoid duplicate skill warnings |
-| `agents/learnings/` | Shared cross-agent memory for durable user preferences and learnings |
+| `agents/skills/` | Shared skill packages, limited to `code-reviewer` and `frontend-designer`, each under 300 lines; `skills/.system/` is Codex-managed. Gemini uses `~/.agents/skills` directly to avoid duplicate skill warnings |
 | `agents/hooks/` | Claude Code safety hooks for destructive commands, secret reads/writes, and dangerous SQL |
 | `agents/claude/` | Claude Code settings |
 | `agents/gemini/` | Gemini CLI settings |
@@ -221,7 +224,9 @@ Canvas: 1920x1080 @ 30fps. Zero frame drops on M2 Pro.
 | `agents/codex/` | OpenAI Codex CLI settings |
 | `agents/openai/` | Generic OpenAI agent settings |
 
-Edit files under `agents/` first; the home-directory locations are generated symlinks. Use `~/.dotfiles` in docs and commands instead of machine-specific absolute paths so the repo remains portable and safe to publish. When the user asks any agent to store something in memory, save it in `agents/learnings/` so Claude Code, Gemini, OpenCode, Codex, OpenAI agents, and Zed share the same learnings.
+`agents/instructions/learnings` is a repo-relative symlink to `../learnings` so the `@./learnings/...` import resolves whether tools follow the home symlink or the real path.
+
+Edit files under `agents/` first; the home-directory locations are generated symlinks. Use `~/.dotfiles` in docs and commands instead of machine-specific absolute paths so the repo remains portable and safe to publish. When the user asks any agent to store something in memory, save it in `agents/learnings/` so all agents share the same learnings. Product facts (positioning, pricing, features, brand) belong in `agents/products/<product>/PRODUCT.md`, not in learnings.
 
 **Installed shared skills:**
 
