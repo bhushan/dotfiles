@@ -27,6 +27,8 @@
 
 `instructions/learnings` is a repo-relative symlink to `../learnings`, so the `@./learnings/...` import resolves correctly whether a tool follows the home-directory symlink or the real file path.
 
+Exception: `codex/config.toml` is a portable seed that `links.sh` copies (once, if missing) to `~/.codex/config.toml` instead of symlinking. Codex writes machine-specific state into that file (project trust levels, marketplace sources, notify hooks), which must never land in the repo. Put shared Codex defaults in the seed; machine state stays local.
+
 ## How to extend
 
 - New durable preference: append to `learnings/preferences.md`.
@@ -40,6 +42,6 @@
 ## Rules
 
 - Edit files here, never the home-directory symlinks.
-- Portable paths only (`~/.dotfiles`, `~/.config/agents`). No machine-specific usernames, absolute home paths, or keys.
+- Portable paths only (`~/.dotfiles`, `~/.config/agents`). No machine-specific usernames, absolute home paths, or keys. These dotfiles run on multiple Macs with different account names; anything under `/Users/<name>/` breaks the other machine.
 - No secrets anywhere in this tree.
 - Do not add a `~/.gemini/skills` symlink; Gemini already loads `~/.agents/skills` and would warn about duplicates.

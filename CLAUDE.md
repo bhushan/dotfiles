@@ -149,7 +149,7 @@ shfmt -w <file>
 - `agents/opencode/opencode.jsonc` → `~/.config/opencode/opencode.jsonc`
 - `agents/opencode/tui.json` → `~/.config/opencode/tui.json`
 - `agents/opencode/themes/catppuccin-mocha.json` → `~/.config/opencode/themes/catppuccin-mocha.json`
-- `agents/codex/config.toml` → `~/.codex/config.toml`
+- `agents/codex/config.toml` → seeded (copied once, not symlinked) to `~/.codex/config.toml`; Codex writes machine-specific state there
 - `agents/openai/settings.json` → `~/.openai/settings.json`
 
 ### OBS Studio Configuration (`obs/`)
