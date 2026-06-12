@@ -77,7 +77,16 @@ if [[ -L "$HOME/.config/opencode/agents" ]]; then
 fi
 
 # OpenAI Codex CLI
-link agents/codex/config.toml      "$HOME/.codex/config.toml"
+# config.toml is seeded as a real file, not symlinked: Codex writes
+# machine-specific state into it (project trust, marketplaces, notify hooks).
+if [[ -L "$HOME/.codex/config.toml" ]]; then
+  rm "$HOME/.codex/config.toml"
+fi
+if [[ ! -e "$HOME/.codex/config.toml" ]]; then
+  mkdir -p "$HOME/.codex"
+  cp "$DOTFILES/agents/codex/config.toml" "$HOME/.codex/config.toml"
+fi
+echo "  $HOME/.codex/config.toml (seeded, machine-local)"
 link agents/instructions/AGENTS.md "$HOME/.codex/AGENTS.md"
 link agents/commands               "$HOME/.codex/prompts"
 link agents/skills                 "$HOME/.codex/skills"
