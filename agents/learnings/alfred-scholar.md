@@ -135,3 +135,10 @@ AlfredScholar has comparison pages or navigation entries for:
 - Prefer clear, founder-aware product language.
 - Do not invent product capabilities, pricing, policies, or roadmap items. Recheck the website for current details before public copy, pricing, announcements, or marketing claims.
 - Avoid em dashes in all AlfredScholar content.
+
+## Engineering conventions
+
+- Dev-seed data lives in env-guarded migrations, not just seeders. Example: `seed_demo_accounts` creates owner@alfredscholar.com / colleague / reviewer plus "Bhushan's Workspace"; `seed_demo_owner_pro_plan` (added 2026-06-12) puts that owner's workspace on an active Pro subscription. The latter is guarded `if (app()->isProduction()) return;` so production billing state only ever comes from a real Razorpay subscription.
+- These dev-seed migrations intentionally run in every non-production env, including the `testing` env (RefreshDatabase migrates all migrations). That is fine and accepted: the test suite does not rely on the demo accounts having a particular plan or on subscription row counts, so seeding them into tests does not pollute anything. Do not add the demo seeds to tests manually, and do not assume a clean/empty subscriptions table in tests.
+- Subscriptions are workspace-level. `Workspace::subscription()` is a `hasOne(...)->ofMany(['created_at' => 'max'], status in active/trialing/cancelled and not expired)`. To grant a plan, insert a `subscriptions` row for the workspace (plan/billing_cycle/status enums, amount_inr from `config/subscription.php`). Plans: none, pro, lab. Pricing source of truth is `config/subscription.php`.
+- Idempotent data migrations use a fixed ULID in the demo `01knk0000000000000000000NN` series with `updateOrInsert`, and a `down()` that deletes by that id.
