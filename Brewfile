@@ -41,6 +41,7 @@ brew 'stylua'
 
 # Programming Languages & Runtimes
 # brew 'python'
+brew 'go'
 brew 'nvm'
 brew 'php@8.4'
 # composer installed via php@8.4 directly (not brew, to avoid pulling in unversioned php)

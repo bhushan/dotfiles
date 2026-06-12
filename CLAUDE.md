@@ -42,7 +42,7 @@ Installs all dependencies defined in `Brewfile`, including:
 - **Modern CLI tools**: fzf, ripgrep, fd, zoxide, bat, eza, delta, jq, yq
 - **Formatters**: shfmt, stylua, prettier
 - **System utilities**: htop, btop, tldr, tree
-- **Language runtimes**: php@8.4 (pinned), node (via nvm)
+- **Language runtimes**: php@8.4 (pinned), node (via nvm), go
 - **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
 - **Databases**: postgresql@17, pgvector, redis, DBngin (manages mysql, postgresql, redis)
 - **Cloud tools**: awscli, terraform, session-manager-plugin
@@ -255,7 +255,7 @@ Uses lazy.nvim plugin manager with modular structure:
 - `lsp/` - LSP configuration (language servers, formatters)
 - `git/` - Git integration (gitsigns)
 - `tools/` - Utility plugins (which-key)
-- `lang/` - Language-specific tooling (php)
+- `lang/` - Language-specific tooling (php, go)
 
 **Plugin management commands**:
 
@@ -265,9 +265,10 @@ Uses lazy.nvim plugin manager with modular structure:
 
 **Key plugins**:
 
-- LSP via nvim-lspconfig with Mason for auto-installation
-- Completion via nvim-cmp with multiple sources
-- Formatting via conform.nvim (Pint for PHP, Stylua for Lua, Prettier for JS/TS)
+- LSP via nvim-lspconfig with Mason for auto-installation (intelephense, vtsls + eslint, gopls, basedpyright + ruff, lua_ls, and web servers)
+- Completion via blink.cmp (fast Rust-based engine) with LSP, path, snippets, and buffer sources
+- Formatting via conform.nvim (Pint for PHP, Stylua for Lua, Prettier for JS/TS, goimports + gofumpt for Go, Ruff for Python)
+- Go tooling via gopher.nvim (`:GoTagAdd`, `:GoImpl`, `:GoIfErr`), command-driven with no keybindings
 - Treesitter for syntax highlighting + treesitter-context for sticky function headers
 - Snacks.nvim for terminal, dashboard (branded RB + quote), zen mode, and pickers
 - Bufferline.nvim for visual buffer tabs (`<Tab>`/`<S-Tab>` to switch)
