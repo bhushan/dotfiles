@@ -1,17 +1,17 @@
 # Cross-Agent Learnings
 
-This folder is shared memory for all configured agents.
+Shared always-on memory for all agents (Claude Code, Gemini CLI, OpenCode, Codex, OpenAI agents, Zed).
 
-When the user says to store something in memory, remember it, save it for later, or add it to learnings, update files in this folder instead of a tool-specific memory store. These learnings should be treated as global preferences across Claude Code, Gemini CLI, OpenCode, Codex, OpenAI agents, and Zed.
+How it loads: `../instructions/AGENTS.md` imports `preferences.md` via an `@./learnings/preferences.md` line. Claude Code and Gemini CLI inline it natively; OpenCode loads it through the `instructions` array in `opencode.jsonc`; every other agent is instructed to read this folder at session start.
 
 ## Files
 
-- `preferences.md` stores durable user preferences and writing/style rules.
-- `alfred-scholar.md` stores public product context for AlfredScholar.
+- `preferences.md`: durable user preferences and working rules. This is the default place for new learnings.
 
 ## Rules
 
-- Keep learnings concise and actionable.
-- Do not store secrets, credentials, private infrastructure details, or sensitive personal data.
-- Prefer updating an existing learning over adding duplicates.
-- Use portable paths like `~/.dotfiles`; never store machine-specific absolute home paths.
+- When the user says remember this, save this, or add to learnings, write it here, never to a tool-specific store.
+- Product knowledge belongs in `../products/<product>/PRODUCT.md`, not here. Keep learnings for preferences and cross-product working rules.
+- If you add a new file here, add a matching `@./learnings/<file>.md` line in `../instructions/AGENTS.md` so it stays in every agent's context.
+- Keep entries concise and actionable. Prefer updating an existing entry over adding duplicates.
+- No secrets, credentials, or machine-specific absolute paths. Use `~/.dotfiles` style paths.
