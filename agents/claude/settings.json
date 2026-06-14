@@ -59,23 +59,14 @@
     "command": "bash -c '\"$(~/.nvm/nvm-exec which node 2>/dev/null || which node)\" \"$(ls -td ~/.claude/plugins/cache/claude-hud/claude-hud/*/ 2>/dev/null | head -1)dist/index.js\"'"
   },
   "enabledPlugins": {
-    "claude-mem@thedotmack": true,
     "laravel-boost@claude-plugins-official": true,
     "claude-hud@claude-hud": true,
     "frontend-design@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": false,
-    "code-simplifier@claude-plugins-official": true,
     "cloudflare@claude-plugins-official": true,
     "frontend-slides@frontend-slides": true,
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "aws-startup-advisor@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "thedotmack": {
-      "source": {
-        "source": "github",
-        "repo": "thedotmack/claude-mem"
-      }
-    },
     "claude-hud": {
       "source": {
         "source": "github",
@@ -106,10 +97,7 @@
   "mcpServers": {
     "obs": {
       "command": "npx",
-      "args": [
-        "-y",
-        "obs-mcp@latest"
-      ],
+      "args": ["-y", "obs-mcp@latest"],
       "env": {
         "OBS_WEBSOCKET_URL": "ws://localhost:4455"
       }
