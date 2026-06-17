@@ -8,9 +8,9 @@ Last verified: 2026-05-31 (site), 2026-06-12 (engineering notes). Recheck alfred
 - Website: https://www.alfredscholar.com
 - One-liner: The calm research workspace for scholars who would rather be thinking.
 - Founder relationship: the user is the founder; treat this as primary product context.
-- Local repo: `~/code/alfredscholar` (Laravel; follow its own AGENTS.md/CLAUDE.md for code work)
-- Analytics: PostHog, organization "Alfred Scholar"
-- Billing: Razorpay subscriptions, workspace-level
+- Local repo: `~/code/alfredscholar` (follow its own AGENTS.md/CLAUDE.md for stack and code work)
+- Analytics: PostHog
+- Billing: subscriptions, workspace-level
 
 ## Mission and positioning
 
@@ -66,7 +66,7 @@ PhD candidates and graduate students, postdoctoral researchers, research teams a
 
 ## Pricing (observed publicly, recheck before publishing)
 
-- Free: ₹0/month, free forever, no card needed. 10 documents, 100 AI messages/month, Standard AI model, unlimited citations and manuscripts, 1 plagiarism check/month, BibTeX and RIS import, 1 peer reviewer, colleague invites, Zotero and Mendeley sync.
+- No free-forever tier (confirmed by founder 2026-06-17). Every workspace starts with a 7-day Pro trial (full Pro features, no credit card); after it ends, users choose Pro or Lab. Do not describe Alfred Scholar's own tools as "free" in marketing copy; "free 7-day trial" is the only accurate free claim.
 - Pro: ₹499/month or ₹4,999/year (₹417/month billed annually). Unlimited documents and AI messages, Advanced AI model, 5 plagiarism checks/month, all citation styles, 3 peer reviewers, Zotero and Mendeley sync, email support.
 - Lab: ₹2,499/month or ₹24,999/year, flat rate for up to 10 seats (1 owner plus 9 colleagues). Everything in Pro, unlimited peer reviewers and plagiarism checks, Frontier AI model, shared workspaces, role-based access control, supervisor review workflow, WhatsApp priority support.
 
@@ -81,10 +81,7 @@ Anara, Paperguide, SciSpace, NotebookLM, Humata, Jenni AI, Zotero, Mendeley, Eli
 
 ## Engineering conventions
 
-- Dev-seed data lives in env-guarded migrations, not just seeders. Example: `seed_demo_accounts` creates owner@alfredscholar.com / colleague / reviewer plus "Bhushan's Workspace"; `seed_demo_owner_pro_plan` (added 2026-06-12) puts that owner's workspace on an active Pro subscription, guarded with `if (app()->isProduction()) return;` so production billing state only ever comes from a real Razorpay subscription.
-- These dev-seed migrations intentionally run in every non-production env, including `testing` (RefreshDatabase migrates all migrations). The test suite does not rely on demo accounts having a particular plan or on subscription row counts. Do not add the demo seeds to tests manually, and do not assume a clean subscriptions table in tests.
-- Subscriptions are workspace-level. `Workspace::subscription()` is a `hasOne(...)->ofMany(['created_at' => 'max'], status in active/trialing/cancelled and not expired)`. To grant a plan, insert a `subscriptions` row for the workspace (plan/billing_cycle/status enums, amount_inr from `config/subscription.php`). Plans: none, pro, lab. Pricing source of truth is `config/subscription.php`.
-- Idempotent data migrations use a fixed ULID in the demo `01knk0000000000000000000NN` series with `updateOrInsert`, and a `down()` that deletes by that id.
+Stack, schema, seed-data, and migration conventions are not documented in this public pack. They live in the `~/code/alfredscholar` repo's own `AGENTS.md`/`CLAUDE.md`. Read those before any code work. Keep subscriptions workspace-level and treat the repo's subscription config as the pricing source of truth.
 
 ## Brand and assets
 

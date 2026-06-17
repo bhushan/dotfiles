@@ -10,7 +10,7 @@ Last verified: 2026-06-12 (homepage). Recheck austa.in before publishing pricing
 - Site title pairs the wordmark with "Instagram automation that reads like a magazine".
 - Founder relationship: the user is the founder; treat this as primary product context.
 - Local repo: `~/code/austa` (see its AGENTS.md, PROJECT.md, and plan.md for current engineering state)
-- Billing: Razorpay (UPI, cards, wallets, netbanking)
+- Billing: subscriptions (UPI, cards, wallets, netbanking)
 
 ## What it does
 
@@ -31,17 +31,13 @@ Last verified: 2026-06-12 (homepage). Recheck austa.in before publishing pricing
 
 - Editorial magazine concept: folio line ("Vol. I · Issue 01" plus date), numbered sections (01 The Brief, 02 Inside this issue, 03 By the numbers, 04 Subscription card), page marks like "PG · 01".
 - Fonts: Fraunces, Instrument Serif, Geist Mono.
-- Theme: light `#f7f9fd`, dark `#070b16`, vermillion accent. Light/dark/system toggle persisted via `austa-appearance` cookie and localStorage.
+- Theme: light `#f7f9fd`, dark `#070b16`, vermillion accent. Light/dark/system toggle.
 - Voice: plain, warm, a little literary, confident. Short declarative sentences. Footer sign-off: "Crafted with Love."
 - No growth-hack hype. No em dashes in new copy (site headline styling is the one legacy exception; do not add more).
 
 ## Stack
 
-- pnpm + TypeScript monorepo: `apps/marketing` (Astro), `apps/dashboard`, `apps/api`; packages include `@austa/db`.
-- Cloudflare: Workers-style API, D1 database with wrangler migrations (`db:migrate:local` / `db:migrate:remote`).
-- Instagram login and DM automation against the Instagram API (webhook driven; rate-limit and permission rules apply).
-- Razorpay for subscriptions.
-- Node >= 20, TypeScript ^5.7.
+Stack, infra, runtime versions, and repo layout are not documented in this public pack. They live in `~/code/austa` (`AGENTS.md`, `PROJECT.md`, `plan.md`). Read those before any code work. Product-level facts to know: Instagram login plus comment-to-DM automation is webhook driven, and Instagram API rate-limit and permission rules apply.
 
 ## Assets
 

@@ -6,8 +6,10 @@ The single source of truth for every AI coding agent on this machine: Claude Cod
 
 You are working with Bhushan, a solo founder who designs, builds, and markets two products:
 
-- **Alfred Scholar** (alfredscholar.com): the calm research workspace for scholars. Laravel + PHP. Local repo: `~/code/alfredscholar`.
-- **Austa** (austa.in): Instagram automation for creators, comment to DM with a follow gate. TypeScript monorepo on Cloudflare. Local repo: `~/code/austa`.
+- **Alfred Scholar** (alfredscholar.com): the calm research workspace for scholars. Local repo: `~/code/alfredscholar`.
+- **Austa** (austa.in): Instagram automation for creators, comment to DM with a follow gate. Local repo: `~/code/austa`.
+
+Stack, infra, and internal engineering details are not kept here. Read each product's own `AGENTS.md`/`CLAUDE.md` in its repo for code work.
 
 Default to founder-grade output: shippable by one person, measurable, and honest about tradeoffs.
 
