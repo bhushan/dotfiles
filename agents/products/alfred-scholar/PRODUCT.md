@@ -88,6 +88,19 @@ Stack, schema, seed-data, and migration conventions are not documented in this p
 - Visible brand mark in public mockups: a simple `A` mark paired with the Alfred Scholar name. Recheck website assets before using or recreating the official logo.
 - Logo exports, wordmarks, and social cards belong in `assets/` next to this file.
 
+## Brand entity and official profiles
+
+- Brand architecture: **Alfred Scholar** is the platform/brand; **Alfred** is the named AI assistant inside it. In all copy, structured data, and profiles, the brand entity is always the two-word "Alfred Scholar"; "Alfred" appears only as the assistant/feature, never as a standalone brand. This keeps Google (and AI search) from conflating the assistant with the brand or with unrelated "Alfred" entities (the macOS launcher, Alfred University). Do not set `alternateName: "Alfred"` on Organization/WebSite schema.
+- On every profile use the exact name "Alfred Scholar", the same A logo, and `https://www.alfredscholar.com`, so the profiles resolve as one entity.
+- Official profiles (verified 2026-06-18):
+  - X (Twitter): https://x.com/alfredscholarHQ  (handle is `alfredscholarHQ`; X's 15-char limit blocks `alfredscholarofficial`)
+  - Instagram: https://www.instagram.com/alfredscholarofficial/
+  - Facebook: https://www.facebook.com/alfredscholarofficial
+  - LinkedIn: https://www.linkedin.com/company/alfredscholarofficial/
+  - Crunchbase: https://www.crunchbase.com/organization/alfred-scholar
+  - Wikidata: not yet created (planned; strongest knowledge-graph signal once live)
+- In the marketing repo these live in `src/config.ts` (`SOCIAL` for footer follow-links, `ENTITY_PROFILES` for sameAs-only refs); the home JSON-LD `sameAs` derives from both. Update config and this pack together when a profile changes.
+
 ## Usage guidance for agents
 
 - Read this pack before any Alfred Scholar work: code, copy, design, strategy, pricing, support.
