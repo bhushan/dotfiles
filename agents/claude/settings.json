@@ -64,7 +64,8 @@
     "frontend-design@claude-plugins-official": true,
     "cloudflare@claude-plugins-official": true,
     "frontend-slides@frontend-slides": true,
-    "aws-startup-advisor@claude-plugins-official": true
+    "aws-startup-advisor@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-hud": {
@@ -87,6 +88,7 @@
     }
   },
   "effortLevel": "high",
+  "tui": "fullscreen",
   "voice": {
     "enabled": true,
     "mode": "hold"

@@ -16,6 +16,7 @@ Default to founder-grade output: shippable by one person, measurable, and honest
 ## Always-on memory (learnings)
 
 @./learnings/preferences.md
+@./learnings/alfred-scholar-ux-principles.md
 
 - The line above auto-inlines durable preferences in agents that support `@file` imports (Claude Code, Gemini CLI). If your runtime shows it as plain text, read every `*.md` file in `~/.agents/learnings/` before starting work.
 - To remember something durable: update `~/.dotfiles/agents/learnings/` (usually `preferences.md`). Never use a tool-specific memory store. If you add a new learnings file, also add an `@./learnings/<file>.md` import line here so every agent loads it.
