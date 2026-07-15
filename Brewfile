@@ -8,7 +8,11 @@ brew 'libgit2'
 brew 'llhttp'
 brew 'gh'
 brew 'lazygit'
-brew 'anomalyco/tap/opencode'
+# trusted: Homebrew gates third-party taps behind `brew trust`, and `brew bundle
+# cleanup` untrusts formulae whose old kegs it removes, so a manual `brew trust`
+# survives exactly one install. This re-grants it on every run. Scoped to this
+# formula: the tap's others (sst, torpedo) stay untrusted.
+brew 'anomalyco/tap/opencode', trusted: true
 
 # Shell & Terminal Enhancements
 brew 'zsh-syntax-highlighting'
