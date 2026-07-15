@@ -1,6 +1,6 @@
 # AI OS: Global Agent Instructions
 
-The single source of truth for every AI coding agent on this machine: Claude Code, Gemini CLI, OpenCode, Codex CLI, OpenAI agents, Zed, and any future tool. Canonical file: `~/.dotfiles/agents/instructions/AGENTS.md`, symlinked into each tool's config directory. Edit the canonical file only.
+The single source of truth for every AI coding agent on this machine: Claude Code, Gemini CLI, OpenCode, Codex CLI, and OpenAI agents. Canonical file: `~/.dotfiles/agents/instructions/AGENTS.md`, symlinked into each tool's config directory. Edit the canonical file only. Any other harness that reads a global `AGENTS.md` can be pointed at that same path.
 
 ## Founder context
 

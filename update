@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Updates everything this machine installs. Safe to re-run.
+# Each step is optional: if a tool is not installed, the step is skipped
+# rather than failing the whole run.
+
+set -uo pipefail
+
+DOTFILES="${DOTFILES:-$HOME/code/dotfiles}"
+
+source "$DOTFILES/scripts/utils.sh"
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
+
+# ── Homebrew ───────────────────────────────────────────────────────────
+step "Updating Homebrew..."
+brew update
+brew upgrade
+brew upgrade --cask --greedy
+
+step "Syncing Brewfile..."
+brew bundle --file="$DOTFILES/Brewfile"
+
+# ── oh-my-zsh ──────────────────────────────────────────────────────────
+step "Updating oh-my-zsh..."
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  ZSH="$HOME/.oh-my-zsh" sh "$HOME/.oh-my-zsh/tools/upgrade.sh" || true
+else
+  echo "  oh-my-zsh not installed, skipping"
+fi
+
+# ── tmux plugins ───────────────────────────────────────────────────────
+step "Updating tmux plugins..."
+if [[ -x "$HOME/.tmux/plugins/tpm/bin/update_plugins" ]]; then
+  "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
+else
+  echo "  TPM not installed, skipping"
+fi
+
+# ── Neovim plugins ─────────────────────────────────────────────────────
+step "Updating Neovim plugins..."
+if command -v nvim &>/dev/null; then
+  nvim --headless "+Lazy! sync" +qa
+  echo "  lazy.nvim synced"
+else
+  echo "  neovim not installed, skipping"
+fi
+
+# ── Composer ───────────────────────────────────────────────────────────
+step "Updating Composer packages..."
+if command -v composer &>/dev/null; then
+  composer global update
+else
+  echo "  composer not installed, skipping"
+fi
+
+# ── npm ────────────────────────────────────────────────────────────────
+step "Updating npm packages..."
+if command -v npm &>/dev/null; then
+  npm update -g
+else
+  echo "  npm not installed, skipping"
+fi
+
+# ── Cleanup ────────────────────────────────────────────────────────────
+step "Cleaning up..."
+brew cleanup --prune=all
+brew autoremove
+
+echo ""
+echo "==> Everything is up to date."
