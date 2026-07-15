@@ -38,6 +38,15 @@ Exception: `codex/config.toml` is a portable seed that `links.sh` copies (once, 
 - New command: drop a `.md` file in `commands/`, and mirror it in the `command` table in `opencode/opencode.jsonc`.
 - New skill: only if it earns its tokens. Keep `SKILL.md` under 300 lines.
 - After structural changes, re-link: `bash install`, or `DOTFILES="$HOME/code/dotfiles" bash -c 'source scripts/utils.sh; source scripts/links.sh'`.
+- Then verify:
+
+```bash
+bash doctor
+```
+
+`doctor` fails if a product, role, or learning is registered here but missing on disk (or the
+reverse), if a doc references a path that does not exist, or if a documented command has no script.
+Every registry in this README is enforced by it, so the tables cannot quietly go stale.
 
 ## Rules
 

@@ -1,390 +1,232 @@
 # AGENTS.md
 
-This file provides guidance to OpenCode when working with code in this repository.
+Guidance for any AI agent or harness working in this repository.
 
-## Code Style
-
-- Always update AGENTS.md after each change to the dotfiles (new tools, config changes, etc.)
+This is the **canonical** instruction file. `CLAUDE.md` is a symlink to it, so Claude Code, Codex,
+OpenCode, Cursor, Zed, Copilot, and anything else that reads `AGENTS.md` or `CLAUDE.md` all get the
+same bytes. There is no second copy to keep in sync. Edit this file.
 
 ## Overview
 
-This is a personal dotfiles repository for macOS systems. A single `install` script handles everything: Homebrew, symlinks, packages, and dev tooling for both fresh and existing machines.
+Personal macOS dotfiles, plus an **AI OS**: one canonical tree (`agents/`) that configures every AI
+coding agent on the machine from a single source of truth. A single `install` script handles
+Homebrew, symlinks, packages, and dev tooling on both fresh and existing machines.
 
-## Installation & Setup
-
-### Full Installation
+## Commands
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/bhushan/dotfiles/master/install)"
+bash install   # full setup, idempotent: packages, symlinks, apps
+bash update    # update brew, oh-my-zsh, tmux, neovim, composer, npm, then clean up
+bash doctor    # verify the AI OS is wired and these docs still match reality
 ```
 
-Works on a fresh Mac or an existing one. If the repo is already cloned:
+Fresh machine:
 
 ```bash
+mkdir -p ~/code && git clone https://github.com/bhushan/dotfiles.git ~/code/dotfiles
 bash ~/code/dotfiles/install
 ```
 
-The `install` script:
+`install` clones to `~/code/dotfiles` and symlinks `~/.dotfiles` to it, so docs and commands can use
+portable `~/.dotfiles` paths instead of machine-specific absolute paths.
 
-1. Installs Xcode CLT if missing (re-run after)
-2. Installs Homebrew if missing
-3. Clones this repo to `~/code/dotfiles` if missing
-4. Runs `scripts/packages.sh`, which syncs Brewfile (install new, remove unlisted)
-5. Runs `scripts/links.sh`, which creates all symlinks
-6. Runs `scripts/apps.sh`, which installs oh-my-zsh, TPM, Composer, Valet
+## Verification
 
-### Brewfile
-
-Installs all dependencies defined in `Brewfile`, including:
-
-- **Core development tools**: neovim, tmux, git, gh, lazygit, gemini-cli, OpenCode
-- **Shell enhancements**: zsh-syntax-highlighting, zsh-autosuggestions, starship
-- **Modern CLI tools**: fzf, ripgrep, fd, zoxide, bat, eza, delta, jq, yq
-- **Formatters**: shfmt, stylua, prettier
-- **System utilities**: htop, btop, tldr, tree
-- **Language runtimes**: php@8.4 (pinned), node (via nvm)
-- **PHP build dependencies**: pkg-config, openssl, brotli, pcre2 (for PECL extensions)
-- **Databases**: postgresql@17, pgvector, redis, DBngin (manages mysql, postgresql, redis)
-- **Cloud tools**: awscli, terraform, session-manager-plugin
-- **GUI applications**: kitty, hammerspoon, docker, vscode, phpstorm, webstorm, alfred, maccy
-- **Browsers**: arc
-- **Media**: spotify, obs, drawpen (on-screen annotation)
-
-### Post-Installation
-
-- oh-my-zsh is automatically installed if not present
-- TPM (Tmux Plugin Manager) is auto-installed
-- Composer is installed via php@8.4 directly (not brew, to avoid pulling in unversioned php which could upgrade to 8.5+)
-- Laravel Valet is configured and trusts `~/code` directory
-- Valet switches to php@8.4 when run interactively; non-interactive installs skip the sudo-backed PHP switch
-
-### PHP Extensions (Redis & Swoole)
-
-After installing Homebrew packages, install PHP extensions via PECL:
+Non-negotiable: **write the test first, then implement.**
 
 ```bash
-# Install Redis extension
-pecl install redis
-
-# Install Swoole with sockets, openssl, and curl support (for Laravel Octane)
-# Answer: yes, yes, no, yes, no, no, no, no, no, no, no, no, no
-printf 'yes\nyes\nno\nyes\nno\nno\nno\nno\nno\nno\nno\nno\nno\n' | pecl install swoole
+bash doctor              # AI OS health: symlinks, registries, dead refs, phantom commands
+bash scripts/doctor.test.sh   # unit tests for the doctor checks
+cd obs && npm test            # OBS config/scene tests (node --test)
 ```
 
-Verify extensions are installed:
+`doctor` exists because this repo's docs drifted from reality for months without anyone noticing. It
+compares claims against the filesystem: every product/role/learning the kernel registers must exist,
+every one on disk must be registered, every backticked repo path and markdown link in the docs must
+resolve, and every documented `bash <command>` must be a real script. It exits 1 on failure.
+**Run it after any change to `agents/`.**
 
-```bash
-php -m | grep -E "(redis|swoole)"
-```
+When adding a check, add its test to `scripts/doctor.test.sh` first. Keep the check scoped to things
+this repo owns: symlinks pointing into the repo are ours, a tool's own runtime state is not.
 
-**Note**: PHP extensions need to be reinstalled after PHP version upgrades via Homebrew.
-
-### Keeping Software Updated
-
-```bash
-bash update
-```
-
-Runs the `update` script which automatically updates:
-
-- Homebrew itself and all installed packages
-- Brewfile bundle (installs any newly added packages)
-- oh-my-zsh
-- Tmux plugins (via TPM)
-- Neovim plugins (via lazy.nvim)
-- Composer global packages
-- npm global packages
-- Cleans up old versions and unused dependencies
-
-## Code Formatting
-
-### Lua (Neovim config)
-
-```bash
-stylua .
-```
-
-Configuration: `stylua.toml` (2 spaces, 120 column width)
-
-### Shell Scripts
-
-```bash
-shfmt -w <file>
-```
-
-## Repository Architecture
-
-### Install Scripts (`scripts/`)
-
-| Script | Purpose |
-|--------|---------|
-| `scripts/packages.sh` | Syncs Homebrew packages from `Brewfile` (installs new, removes unlisted) |
-| `scripts/links.sh` | Creates all symlinks from dotfiles repo to their target locations |
-| `scripts/apps.sh` | Installs oh-my-zsh, TPM, Composer, and Laravel Valet |
-
-**Symlinks** (managed in `scripts/links.sh`):
-
-- `nvim/` → `~/.config/nvim`
-- `karabiner/` → `~/.config/karabiner`
-- `kitty/` → `~/.config/kitty`
-- `hammerspoon/` → `~/.hammerspoon`
-- `tmux/tmux.conf` → `~/.tmux.conf`
-- `aliases` → `~/.aliases`
-- `gitconfig` → `~/.gitconfig`
-- `global_gitignore` → `~/.global_gitignore`
-- `vscode/keybindings.json` → `~/Library/Application Support/Code/User/keybindings.json`
-- `vscode/settings.json` → `~/Library/Application Support/Code/User/settings.json`
-- `lazygit/config.yml` → `~/Library/Application Support/lazygit/config.yml`
-- `zsh/zshrc` → `~/.zshrc`
-- `zsh/zprofile` → `~/.zprofile`
-- `zsh/themes/custom.zsh-theme` → `~/.oh-my-zsh/themes/custom.zsh-theme`
-- `agents/` → `~/.config/agents`
-- `agents/skills` → `~/.agents/skills`
-- `agents/learnings` → `~/.agents/learnings`, `~/.claude/learnings`, `~/.gemini/learnings`, `~/.config/opencode/learnings`, `~/.codex/learnings`, `~/.openai/learnings`
-- `agents/claude/settings.json` → `~/.claude/settings.json`
-- `agents/instructions/AGENTS.md` → `~/.claude/CLAUDE.md`, `~/.claude/AGENTS.md`, `~/.gemini/GEMINI.md`, `~/.config/opencode/AGENTS.md`, `~/.codex/AGENTS.md`, `~/.openai/AGENTS.md`
-- `agents/commands` → Claude, Gemini, OpenCode, Codex, and OpenAI prompt/command directories
-- `agents/hooks` → `~/.claude/hooks`
-- `agents/opencode/opencode.jsonc` → `~/.config/opencode/opencode.jsonc`
-- `agents/opencode/tui.json` → `~/.config/opencode/tui.json`
-- `agents/opencode/themes/catppuccin-mocha.json` → `~/.config/opencode/themes/catppuccin-mocha.json`
-- `agents/codex/config.toml` → `~/.codex/config.toml`
-- `agents/openai/settings.json` → `~/.openai/settings.json`
-
-### OBS Studio Configuration (`obs/`)
-
-Minimal OBS automation via Node.js scripts using `obs-websocket-js`. The default setup is intentionally simple for recording raw green-screen camera footage for DaVinci Resolve.
-
-**Simple camera setup:**
-
-```bash
-cd obs && npm install  # first time only
-npm run setup:camera
-```
-
-Requires OBS Studio running with WebSocket server enabled (Tools > WebSocket Server Settings, port 4455, no auth).
-
-**What it creates:** One scene named `1 [YS] Camera Only` with a full-canvas camera source and a mic source. The canvas is rectangular 4K (`3840x2160`) at 60fps, recording to Apple ProRes 422 Hardware MOV files in `~/Downloads/recordings`. Chroma Key is added to the camera source but disabled by default so DaVinci receives raw green-screen footage for cleaner keying.
-
-Camera selection prefers an iPhone Continuity Camera when macOS exposes one, otherwise it falls back to the built-in camera. Mic input uses OBS's default input device.
-
-For screen recording, the older technical profile is still available:
-
-```bash
-npm run setup:technical
-```
-
-**Recording quality:**
-
-| Output | Encoder | Format |
-|--------|---------|--------|
-| Camera recording | Apple ProRes 422 Hardware | MOV |
-| Audio | 48kHz mic on tracks 1 and 2 | MOV audio tracks |
-
-### Shared Agent Configuration (`agents/`)
-
-`agents/` is the single source of truth for global AI-agent configuration across Claude Code, Gemini CLI, OpenCode, OpenAI Codex CLI, generic OpenAI agents, and Zed/global skills.
-
-**Canonical files:**
+## Repository map
 
 | Path | Purpose |
 |------|---------|
-| `agents/instructions/AGENTS.md` | Global instructions symlinked into each agent-specific config directory |
-| `agents/commands/` | Shared slash-command prompts, including `/security-audit`, `/performance-review`, `/ship`, and `/obs-setup` |
-| `agents/skills/` | Shared skill packages, limited to `code-reviewer` and `frontend-designer`; Gemini uses `~/.agents/skills` directly to avoid duplicate skill warnings |
-| `agents/learnings/` | Shared cross-agent memory for durable user preferences and learnings |
-| `agents/hooks/` | Claude Code safety hooks for destructive commands, secret reads/writes, and dangerous SQL |
-| `agents/claude/` | Claude Code settings |
-| `agents/gemini/` | Gemini CLI settings |
-| `agents/opencode/` | OpenCode settings, TUI config, MCP servers, and themes |
-| `agents/codex/` | OpenAI Codex CLI settings |
-| `agents/openai/` | Generic OpenAI agent settings |
+| `install`, `update`, `doctor` | Entry points. Idempotent, safe to re-run. |
+| `scripts/` | Install internals, sourced by the entry points (see below). |
+| `agents/` | **The AI OS.** Single source of truth for all agent config. |
+| `nvim/` | Neovim config. **Git submodule** ([bhushan/nvim](https://github.com/bhushan/nvim)) with its own README. |
+| `obs/` | OBS Studio automation via `obs-websocket-js`. |
+| `zsh/`, `aliases`, `gitconfig` | Shell and git configuration. |
+| `kitty/`, `tmux/tmux.conf` | Terminal and multiplexer. |
+| `hammerspoon/`, `karabiner/` | macOS automation and key remapping. |
+| `vscode/`, `lazygit/` | Editor and git TUI settings. |
+| `bin/` | Small scripts on `PATH` (`t`, `term-colors`). |
+| `colors/catppuccin-mocha.md` | Canonical color reference for every tool. |
+| `Brewfile` | All packages. Commented-out lines are deliberate; do not re-enable without asking. |
 
-Edit files under `agents/` first; the home-directory locations are generated symlinks. Use `~/.dotfiles` in docs and commands instead of machine-specific absolute paths so the repo remains portable and safe to publish. When the user asks any agent to store something in memory, save it in `agents/learnings/` so Claude Code, Gemini, OpenCode, Codex, OpenAI agents, and Zed share the same learnings. Current durable preferences include avoiding em dashes, asking for clarification instead of assuming unclear requirements, researching current information before presenting solutions, using parallel subagents for independent parts of bigger tasks when available, writing test cases before implementing features, and using Google Chrome by default when the user asks for a browser. Product memory includes AlfredScholar context in `agents/learnings/alfred-scholar.md`.
+### Install internals (`scripts/`)
 
-**Installed shared skills:**
+| Script | Purpose |
+|--------|---------|
+| `scripts/utils.sh` | Shared helpers (`step`, `link`, `ensure`). Sourced by everything. |
+| `scripts/packages.sh` | Syncs `Brewfile` (installs new, removes unlisted). |
+| `scripts/links.sh` | Creates every symlink. |
+| `scripts/apps.sh` | Installs oh-my-zsh, TPM, Composer, Laravel Valet. |
+| `scripts/doctor.sh` | AI OS health checks. Pure functions, sourced by `doctor`. |
+| `scripts/doctor.test.sh` | Tests for the above. |
 
-| Skill | Path | Purpose |
-|-------|------|---------|
-| `code-reviewer` | `agents/skills/code-reviewer/SKILL.md` | Strict maintainability and code-quality review skill based on Cursor's thermo-nuclear review skill |
-| `frontend-designer` | `agents/skills/frontend-designer/SKILL.md` | Production-grade frontend UI design skill based on Anthropic's frontend-design skill |
+## The AI OS (`agents/`)
 
-### Neovim Configuration (`nvim/`)
+`agents/` is the single source of truth for global AI-agent configuration. `scripts/links.sh`
+symlinks it into each tool's config directory, so every agent runs the same brain. Full system map
+and extension guide: `agents/README.md`.
 
-Uses lazy.nvim plugin manager with modular structure:
+| Path | Purpose |
+|------|---------|
+| `agents/instructions/AGENTS.md` | **The kernel.** Founder context, learnings imports, product/role registries, operating principles. Symlinked as each tool's global instruction file. |
+| `agents/learnings/` | Always-on cross-agent memory, auto-loaded into every session. |
+| `agents/products/` | Product context packs (`alfred-scholar/`, `austa/`), each with `PRODUCT.md` and `assets/`. |
+| `agents/subagents/` | Six founder roles: product-strategist, ux-reviewer, tech-lead, growth-marketer, copywriter, data-analyst. |
+| `agents/commands/` | Shared slash-command prompts: `/ship`, `/security-audit`, `/performance-review`, `/obs-setup`. |
+| `agents/skills/` | Shared skills, limited to `code-reviewer` and `frontend-designer`. Each `SKILL.md` stays under 300 lines. `agents/skills/.system` is Codex-managed; leave it alone. |
+| `agents/hooks/` | Claude Code safety hooks: destructive git, dangerous `rm`, dangerous SQL, secret reads/writes, protected-branch pushes. |
+| `agents/claude/`, `agents/gemini/`, `agents/opencode/`, `agents/codex/`, `agents/openai/` | Tool-specific settings only. |
 
-**Core configuration** (`nvim/lua/core/`):
+### Wired harnesses
 
-- `lazy.lua` - Plugin manager bootstrap and initialization
-- `options.lua` - Editor settings (tabs, line numbers, search, etc.)
-- `keymaps.lua` - Global key bindings
-- `autocmds.lua` - Autocommands (file type settings, highlights, etc.)
-- `colors.lua` - Catppuccin Mocha + Arctic Blue color palette (shared by all UI plugins)
+Five, all verified by `bash doctor`:
 
-**Plugin organization** (`nvim/lua/plugins/`):
+| Tool | Instruction file | Learnings reach context via |
+|------|------------------|-----------------------------|
+| Claude Code | `~/.claude/CLAUDE.md` | `@./learnings/*.md` imports |
+| Gemini CLI | `~/.gemini/GEMINI.md` | same `@` imports |
+| OpenCode | `~/.config/opencode/AGENTS.md` | `instructions` glob in `agents/opencode/opencode.jsonc` |
+| Codex CLI | `~/.codex/AGENTS.md` | read directive in the kernel |
+| OpenAI agents | `~/.openai/AGENTS.md` | read directive in the kernel |
 
-- `init.lua` - Main plugin specifications with inline configs
-- `editor/` - Editing enhancements (treesitter, treesitter-context, cmp, autopairs, present)
-- `ui/` - UI plugins (lualine, snacks, theme, bufferline, barbecue, animate, noice, grug-far)
-- `lsp/` - LSP configuration (language servers, formatters)
-- `git/` - Git integration (gitsigns)
-- `tools/` - Utility plugins (which-key)
-- `lang/` - Language-specific tooling (php)
+Any other harness that reads a global `AGENTS.md` works by pointing it at `~/.dotfiles/agents/instructions/AGENTS.md`.
 
-**Plugin management commands**:
+### Rules
 
-- `:Lazy` - Open plugin manager
-- `:Lazy update` - Update all plugins
-- `:Lazy sync` - Install missing and update existing plugins
+- **Edit files under `agents/` only.** The home-directory locations are generated symlinks.
+- Use portable paths (`~/.dotfiles`, `~/.config/agents`). Never machine-specific usernames, absolute
+  home paths, hostnames, or keys. This repo is public and runs on multiple Macs.
+- No secrets anywhere in this tree.
+- When asked to remember something durable, write it to `agents/learnings/`, never a tool-specific
+  memory store. Add a matching `@./learnings/<file>.md` import to the kernel so every agent loads it.
+- Product facts (pricing, positioning, features) belong in `agents/products/<slug>/PRODUCT.md`, not
+  in learnings.
+- After changing `agents/`, run `bash doctor`.
 
-**Key plugins**:
+### Two exceptions worth knowing
 
-- LSP via nvim-lspconfig with Mason for auto-installation
-- Completion via nvim-cmp with multiple sources
-- Formatting via conform.nvim (Pint for PHP, Stylua for Lua, Prettier for JS/TS)
-- Treesitter for syntax highlighting + treesitter-context for sticky function headers
-- Snacks.nvim for terminal, dashboard (branded RB + quote), zen mode, and pickers
-- Bufferline.nvim for visual buffer tabs (`<Tab>`/`<S-Tab>` to switch)
-- Barbecue.nvim + nvim-navic for winbar breadcrumbs (file > class > method)
-- mini.animate for smooth cursor/scroll/resize animations
-- mini.indentscope for animated active indent scope (teal)
-- indent-blankline.nvim for static indent guides
-- PHP refactoring via phprefactoring.nvim (`<C-e>` in PHP files)
-- Custom coderunner.nvim for executing code (`<leader>x`)
+- `agents/codex/config.toml` is **copied**, not symlinked, to `~/.codex/config.toml` on first
+  install. Codex writes machine-specific state into it (project trust, marketplaces, notify hooks),
+  which must never land in the repo. Keep only portable defaults in the seed.
+- `~/.gemini/skills` is deliberately **not** linked. Gemini already loads `~/.agents/skills`;
+  linking both produces duplicate-skill warnings.
 
-### Hammerspoon Configuration (`hammerspoon/`)
+## Toolchain
 
-Lua-based macOS automation:
+`Brewfile` is the source of truth. Many entries are commented out on purpose (the setup is
+deliberately slim), so **check `Brewfile` before assuming a tool exists.**
 
-- `init.lua` - Loads window management and shortcuts
-- `window/` - Window tiling and arrangement
-- `shortcuts/` - Global keyboard shortcuts
-- `Spoons/ControlEscape` - Caps Lock → Control/Escape modifier
+- **Core**: neovim, tmux, git, gh, lazygit, opencode, gemini-cli, claude, claude-code@latest
+- **CLI**: fzf, ripgrep, fd, zoxide, git-delta, bat, eza, jq, yq, htop, btop, tldr, tree
+- **Formatters**: shfmt, stylua
+- **Languages**: php@8.4 (pinned), go, node (via nvm)
+- **Databases**: postgresql@17, pgvector, redis
+- **Cloud**: awscli, tfenv, session-manager-plugin
+- **Media**: ffmpeg-full, whisper-cpp, obs, blackhole-2ch, drawpen
+- **Apps**: kitty, hammerspoon, alfred, maccy, stats, docker-desktop, tableplus, postman, arc, spotify
 
-### Shell Aliases (`aliases`)
+Deliberately absent (commented out, **not available**): `prettier` and `starship` are redundant here
+(Neovim formats via Mason's `prettierd`; the prompt is a custom zsh theme), plus VSCode, PhpStorm,
+WebStorm, DBngin, and MySQL.
 
-Loaded by zsh, defines shortcuts for:
+The `claude-code@latest` cask tracks current releases. Plain `claude-code` is a different, pinned,
+older cask; listing it would make `brew bundle cleanup` uninstall the version actually in use.
 
-- **Git**: `wip`, `nah`, `gl`, `push`, `pull`
-- **PHP/Laravel**: `a` (artisan), `p` (pest), `pf` (pest --filter), `pint`, `sail`
-- **Docker**: `d`, `dc`, `dcu`, `dcd`, `dps`
-- **Editors**: `v` (vim), `n`/`nv`/`nvi` (nvim)
-- **Database**: `db` function - opens database in TablePlus from .env
-
-### Testing
-
-For Laravel projects, use:
-
-```bash
-./vendor/bin/pest
-./vendor/bin/pest --filter TestName
-```
-
-## Development Workflow
-
-### Adding New Plugins to Neovim
-
-1. Add plugin spec to `nvim/lua/plugins/init.lua` or create new file in `nvim/lua/plugins/<category>/`
-2. Use `{ import = 'plugins.category.name' }` pattern for complex configs
-3. Restart Neovim or run `:Lazy sync`
-
-### Modifying Symlinks
-
-1. Edit `scripts/links.sh`
-2. Run `bash install` to re-apply
-
-## Key Customizations
-
-- **cmd+opt+d** toggles macOS dock (via Hammerspoon)
-- Caps Lock remapped to Control/Escape (ControlEscape Spoon)
-- Neovim format-on-save enabled with 500ms timeout
-- Custom zsh theme at `zsh/themes/custom.zsh-theme`
-- Git global ignore list at `global_gitignore`
-
-## Theme: Catppuccin Mocha
-
-All tools use a unified **Catppuccin Mocha** color scheme. The central color reference is at `colors/catppuccin-mocha.md`.
-
-### Configured Applications
-
-| Application | Config File                          | Theme Plugin/Config                   |
-| ----------- | ------------------------------------ | ------------------------------------- |
-| Kitty       | `kitty/current-theme.conf`           | Custom colors                         |
-| tmux        | `tmux/tmux.conf`                     | Custom status line colors (variables) |
-| Neovim      | `nvim/lua/plugins/ui/theme.lua`      | `catppuccin/nvim` with integrations   |
-| Lualine     | `nvim/lua/plugins/ui/lualine.lua`    | Uses `core/colors.lua` shared palette |
-| Snacks      | `nvim/lua/plugins/ui/snacks.lua`     | Uses `core/colors.lua` shared palette |
-| VSCode      | `vscode/settings.json`               | Catppuccin Mocha theme                |
-| lazygit     | `lazygit/config.yml`                 | Custom GUI theme                      |
-| delta       | `gitconfig`                          | Nord syntax theme                     |
-| OpenCode    | `opencode/themes/catppuccin-mocha.json` | Custom Catppuccin Mocha theme      |
-
-### Key Colors
-
-- **Background**: `#1e1e2e`
-- **Foreground**: `#cdd6f4`
-- **Blue (accent)**: `#89b4fa`
-- **Green (success)**: `#a6e3a1`
-- **Red (error)**: `#f38ba8`
-- **Mauve (keywords)**: `#cba6f7`
-
-See `colors/catppuccin-mocha.md` for the complete palette.
-
-### Arctic Blue Accent Palette
-
-For streaming and content creation, Neovim includes an **Arctic Blue** palette in `nvim/lua/core/colors.lua` under the `arctic` table. This provides custom color overrides for syntax highlighting optimized for 1080p video:
-
-- `ice` (`#7dcfff`) - keywords (local, return, function, if, for)
-- `purple` (`#bb9af7`) - functions and method calls
-- `amber` (`#e0af68`) - strings
-- `teal` (`#73daca`) - types and classes
-- `mint` (`#9ece6a`) - built-in functions, require
-- `rose` (`#f7768e`) - constants, numbers, booleans
-- `comment` (`#7a80a3`) - comments (brighter than default)
-- `cursorline` (`#292e42`) - cursor line background
-- `visual` (`#33467c`) - visual selection
-- `gutter` (`#3b4261`) - active line numbers
-
-Access via `require('core.colors').arctic` in Neovim plugin configs.
-
-## Modern CLI Tools
-
-The Brewfile includes modern replacements for traditional Unix tools:
-
-- **bat**: cat with syntax highlighting and git integration
-- **eza**: Modern replacement for ls with git integration and icons
-- **delta**: Better git diff viewer with syntax highlighting
-- **zoxide**: Smarter cd command that learns your habits
-- **btop**: Resource monitor (htop alternative) with modern UI
-- **tldr**: Simplified man pages with practical examples
-- **jq/yq**: JSON and YAML processors for CLI
-- **starship**: Fast, customizable shell prompt
-- **zsh-autosuggestions**: Fish-like autosuggestions for zsh
-
-### Usage Examples
+### Formatting
 
 ```bash
-# Modern cat with syntax highlighting
-bat file.js
-
-# Modern ls with git status and icons
-eza -la
-
-# Jump to frequently used directories
-z dotfiles
-
-# Better git diffs (configured in gitconfig)
-git diff
-
-# Quick command examples
-tldr git
+stylua .        # Lua, config in stylua.toml (2 spaces, 120 cols)
+shfmt -w <file> # Shell
 ```
 
+Neovim formats on save via conform.nvim using Mason-installed tools (`prettierd`, `gofumpt`,
+`goimports`, `ruff`) plus project-local Pint for PHP. Those live in Mason, not on `PATH`.
 
-<claude-mem-context>
-# Memory Context
+### PHP extensions
 
-# [dotfiles] recent context, 2026-05-25 7:30pm GMT+5:30
+Reinstall after any PHP version upgrade:
 
-No previous sessions found.
-</claude-mem-context>
+```bash
+pecl install redis
+printf 'yes\nyes\nno\nyes\nno\nno\nno\nno\nno\nno\nno\nno\nno\n' | pecl install swoole
+php -m | grep -E "(redis|swoole)"
+```
+
+## Neovim (`nvim/`)
+
+A **git submodule** pointing at [bhushan/nvim](https://github.com/bhushan/nvim), symlinked to
+`~/.config/nvim`. It has its own README and lifecycle. **Do not document its internals here.** That
+is what drifted before. Read `nvim/README.md` and the config itself for plugin structure, LSP,
+keymaps, and the Catppuccin + Arctic Blue palettes in `nvim/lua/core/colors.lua`.
+
+Update: `bash update` runs `nvim --headless "+Lazy! sync" +qa`.
+
+## OBS (`obs/`)
+
+Node scripts driving OBS over `obs-websocket-js`. Requires OBS running with the WebSocket server
+enabled (Tools > WebSocket Server Settings, port 4455, no auth).
+
+```bash
+cd obs && npm install       # first time
+npm run setup:technical     # screen + camera + mic + system audio, ISO recordings
+npm run setup:camera        # camera-only, for green-screen footage
+npm test                    # config and scene tests
+```
+
+Two profiles live in `obs/scenes/`:
+
+| Profile | Scene | Canvas | Use |
+|---------|-------|--------|-----|
+| `technical-tutorials` | screen, camera, mic, system audio | display size (1920x1080 fallback) @ 30fps | Tutorials, with per-source ISO files for editing |
+| `youtube-shorts` | `1 [YS] Camera Only` | 3840x2160 @ 60fps | Raw green-screen camera for DaVinci Resolve |
+
+Both record Apple ProRes 422 Hardware MOV to `~/Downloads/recordings`. Chroma Key is attached to the
+camera but disabled by default, so the editor receives unkeyed footage.
+
+ISO recording needs the `obs-source-record` plugin (`bash obs/install-source-record.sh`). System
+audio needs BlackHole plus a Multi-Output Device (`bash obs/setup-multi-output.sh`).
+
+## Theme
+
+Everything is **Catppuccin Mocha**. Canonical palette: `colors/catppuccin-mocha.md`.
+
+| Application | Config |
+|-------------|--------|
+| Kitty | `kitty/current-theme.conf` |
+| tmux | `tmux/tmux.conf` |
+| Neovim | `nvim/` submodule (catppuccin + Arctic Blue overrides) |
+| lazygit | `lazygit/config.yml` |
+| delta | `gitconfig` (Nord syntax theme) |
+| OpenCode | `agents/opencode/themes/catppuccin-mocha.json` |
+| VSCode | `vscode/settings.json` (settings symlinked; VSCode itself is not installed) |
+
+Key colors: background `#1e1e2e`, foreground `#cdd6f4`, blue `#89b4fa`, green `#a6e3a1`,
+red `#f38ba8`, mauve `#cba6f7`.
+
+## Conventions
+
+- Keep changes minimal, focused, and consistent with the surrounding code.
+- Match the existing shell style: `#!/usr/bin/env bash`, `step` for section headers, `link` for
+  symlinks, `ensure` for conditional installs.
+- Symlink changes go in `scripts/links.sh`, then re-run `bash install`.
+- Avoid destructive commands (force push, `git reset --hard`, `git clean -fd`, broad `rm -rf`)
+  unless explicitly confirmed.
+- Never commit secrets or machine-specific private details. This repo is public.
+- **Update this file when the repo changes, then run `bash doctor` to prove it is still true.**

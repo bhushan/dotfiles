@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Verifies the AI OS is wired correctly and that the docs still match reality.
+# Run after `bash install`, or any time the agents/ tree changes.
+
+set -uo pipefail
+
+DOTFILES="${DOTFILES:-$HOME/code/dotfiles}"
+
+source "$DOTFILES/scripts/utils.sh"
+source "$DOTFILES/scripts/doctor.sh"
+
+doctor_main
