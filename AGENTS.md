@@ -37,6 +37,7 @@ Non-negotiable: **write the test first, then implement.**
 ```bash
 bash doctor              # AI OS health: symlinks, registries, dead refs, phantom commands
 bash scripts/doctor.test.sh   # unit tests for the doctor checks
+bash scripts/packages.test.sh # install must survive a cleanup failure (brew stubbed)
 cd obs && npm test            # OBS config/scene tests (node --test)
 ```
 
@@ -70,12 +71,13 @@ this repo owns: symlinks pointing into the repo are ours, a tool's own runtime s
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/utils.sh` | Shared helpers (`step`, `link`, `ensure`). Sourced by everything. |
-| `scripts/packages.sh` | Syncs `Brewfile` (installs new, removes unlisted). |
+| `scripts/utils.sh` | Shared helpers (`step`, `warn`, `link`, `ensure`). Sourced by everything. |
+| `scripts/packages.sh` | Syncs `Brewfile` (installs new, removes unlisted). Cleanup is non-fatal. |
 | `scripts/links.sh` | Creates every symlink. |
 | `scripts/apps.sh` | Installs oh-my-zsh, TPM, Composer, Laravel Valet. |
 | `scripts/doctor.sh` | AI OS health checks. Pure functions, sourced by `doctor`. |
 | `scripts/doctor.test.sh` | Tests for the above. |
+| `scripts/packages.test.sh` | Tests that `install` survives a `brew cleanup` failure. |
 
 ## The AI OS (`agents/`)
 

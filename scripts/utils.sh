@@ -3,6 +3,8 @@
 
 step() { echo ""; echo "==> $*"; }
 
+warn() { echo "  warning: $*" >&2; }
+
 # link <repo-relative-path> <destination>
 # Safe to re-run. Handles both files and directories.
 link() {
